@@ -16,10 +16,16 @@ jobs:
     name: Install Dependencies
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Rust environnement
-        uses: actions/setup-rust@v1
+      - name: Check out the repository
+        uses: actions/checkout@v3
+
+      - name: Set up Rust environment
+        uses: actions/setup-rust@v2
         with:
-          rust-version: 1.51.0
+          rust-version: stable  # You can also specify a specific version like '1.72.0' or similar
+
+      - name: Install dependencies
+        run: cargo install --path .
 
   push_to_mirror:
     name: Push to mirror
