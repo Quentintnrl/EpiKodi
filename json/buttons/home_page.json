@@ -1,0 +1,120 @@
+{
+    "buttons" :[
+        [
+            {
+                "button_type": "quick",
+                "name": "power",
+                "asset": "./assets/power.png",
+                "asset_over": "./assets/power_over.png",
+                "text": ""
+            },
+            {
+                "button_type": "quick",
+                "name": "param",
+                "asset": "./assets/param.png",
+                "asset_over": "./assets/param_over.png",
+                "text": ""
+            },
+            {
+                "button_type": "quick",
+                "name": "search",
+                "asset": "./assets/search.png",
+                "asset_over": "./assets/search_over.png",
+                "text": ""
+            },
+            {
+                "button_type": "quick",
+                "name": "full_screen",
+                "asset": "./assets/full_screen.png",
+                "asset_over": "./assets/full_screen_over.png",
+                "text": ""
+            }
+        ],
+        [
+            {
+                "button_type": "home",
+                "name": "movies",
+                "asset": "./assets/movies.png",
+                "asset_over": "./assets/movies_over.png",
+                "text": "Movies"
+            },
+            {
+                "button_type": "home",
+                "name": "tv_shows",
+                "asset": "./assets/tv_shows.png",
+                "asset_over": "./assets/tv_shows_over.png",
+                "text": "TV shows"
+            },
+            {
+                "button_type": "home",
+                "name": "music",
+                "asset": "./assets/music.png",
+                "asset_over": "./assets/music_over.png",
+                "text": "Music"
+            },
+            {
+                "button_type": "home",
+                "name": "music_videos",
+                "asset": "./assets/music_videos.png",
+                "asset_over": "./assets/music_videos_over.png",
+                "text": "Music videos"
+            },
+            {
+                "button_type": "home",
+                "name": "tv",
+                "asset": "./assets/tv.png",
+                "asset_over": "./assets/tv_over.png",
+                "text": "TV"
+            },
+            {
+                "button_type": "home",
+                "name": "radio",
+                "asset": "./assets/radio.png",
+                "asset_over": "./assets/radio_over.png",
+                "text": "Radio"
+            },
+            {
+                "button_type": "home",
+                "name": "games",
+                "asset": "./assets/games.png",
+                "asset_over": "./assets/games_over.png",
+                "text": "Games"
+            },
+            {
+                "button_type": "home",
+                "name": "add_ons",
+                "asset": "./assets/add_ons.png",
+                "asset_over": "./assets/add_ons_over.png",
+                "text": "Add-ons"
+            },
+            {
+                "button_type": "home",
+                "name": "pictures",
+                "asset": "./assets/pictures.png",
+                "asset_over": "./assets/pictures_over.png",
+                "text": "Pictures"
+            },
+            {
+                "button_type": "home",
+                "name": "videos",
+                "asset": "./assets/videos.png",
+                "asset_over": "./assets/videos_over.png",
+                "text": "Videos"
+            },
+            {
+                "button_type": "home",
+                "name": "favourites",
+                "asset": "./assets/favourites.png",
+                "asset_over": "./assets/favourites_over.png",
+                "text": "Favourites"
+            },
+            {
+                "button_type": "home",
+                "name": "weather",
+                "asset": "./assets/weather.png",
+                "asset_over": "./assets/weather_over.png",
+                "text": "Weather"
+            }
+        ]
+    ]
+}
