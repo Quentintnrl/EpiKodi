@@ -10,7 +10,7 @@ fn main() {
     // let page: epikodi::page::abstract_page::Page = epikodi::page::abstract_page::Page::new(json_page);
     // page.println();
 
-    let mut file = File::open("tests/application/json/application.json").expect("File not found");
+    let mut file = File::open("json/application.json").expect("File not found");
     let mut contents = String::new();
     file.read_to_string(&mut contents).expect("Failed to read file");
 
