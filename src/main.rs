@@ -1,28 +1,21 @@
-mod button {
-    pub mod basic_button;
-}
-use button::basic_button::AbstractButton; // Use the struct
-use button::basic_button::Button; // Use the struct
+use std::io::prelude::*;
+use std::fs::File;
 
-use serde::{Deserialize, Serialize};
-use std::fs; // For file operations
+fn main() {
+    // let mut file = File::open("tests/page/json/abstract_page.json").expect("File not found");
+    // let mut contents = String::new();
+    // file.read_to_string(&mut contents).expect("Failed to read file");
 
-// use basic_button::AbstractButton; // Use the struct
+    // let json_page: epikodi::page::abstract_page::JsonPage = serde_json::from_str(&contents).expect("Failed to parse JSON");
+    // let page: epikodi::page::abstract_page::Page = epikodi::page::abstract_page::Page::new(json_page);
+    // page.println();
 
+    let mut file = File::open("tests/application/json/application.json").expect("File not found");
+    let mut contents = String::new();
+    file.read_to_string(&mut contents).expect("Failed to read file");
 
-#[derive(Serialize, Deserialize, Debug)]
-struct ButtonGroup {
-    buttons: Vec<Vec<Button>>,
-}
-
-fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
-    println!("Hello, world!");
-    // let button: AbstractButton = AbstractButton::new("./json/buttons/home_page.json".to_string());
-    let json_string = fs::read_to_string("./json/buttons/home_page.json")?;
-
-    // Deserialize the JSON string into a MyData struct
-    let data: ButtonGroup = serde_json::from_str(&json_string)?;
-
-    let _test_button = AbstractButton::new(data.buttons[0][0].clone());
-    Ok(())
+    let json_application: epikodi::application::application::JsonKodiApplication = serde_json::from_str(&contents).expect("Failed to parse JSON");
+    let mut application: epikodi::application::application::KodiApplication = epikodi::application::application::KodiApplication::new(json_application);
+    application.println();
+    application.start();
 }
