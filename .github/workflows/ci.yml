@@ -35,6 +35,9 @@ jobs:
       - name: Install Rust project dependencies
         run: cargo install --path .
 
+      - name: Run tests
+        run: cargo test
+
   push_to_mirror:
     name: Push to mirror
     if: github.event_name == 'push'
