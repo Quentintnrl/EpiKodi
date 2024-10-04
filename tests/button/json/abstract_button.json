@@ -1,0 +1,10 @@
+{
+    "button_type": "to_pop-up",
+    "name": "power",
+    "asset": "/assets/home/power.png",
+    "asset_over": "/assets/home/power_over.png",
+    "text": "",
+    "height": 50,
+    "width": 50,
+    "hide": false
+}
