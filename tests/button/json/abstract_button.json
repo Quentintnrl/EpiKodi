@@ -1,9 +1,9 @@
 {
-    "button_type": "to_pop-up",
-    "name": "power",
+    "button_type": "test",
+    "name": "button",
     "asset": "/assets/home/power.png",
     "asset_over": "/assets/home/power_over.png",
-    "text": "",
+    "text": "god bless me",
     "height": 50,
     "width": 50,
     "hide": false

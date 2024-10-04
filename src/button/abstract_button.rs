@@ -33,6 +33,7 @@ impl JsonButton {
 }
 
 pub trait AbstractButton {
+    fn new_empty() -> Button;
     fn new(json_elem: JsonButton) -> Result<Self, String> where Self: Sized;
     fn get_name(&self) -> String;
     fn get_text(&self) -> String;
@@ -55,6 +56,15 @@ pub trait AbstractButton {
         println!("}}");
         println!();
     }
+    fn set_name(&mut self, name: String);
+    fn set_text(&mut self, text: String);
+    fn set_type(&mut self, button_type: String);
+    fn set_is_hovered(&mut self, is_hovered: bool);
+    fn set_hide(&mut self, hide: bool);
+    fn set_asset(&mut self, asset: Option<ImageBuf>);
+    fn set_over_asset(&mut self, asset_over: Option<ImageBuf>);
+    fn set_height(&mut self, height: i64);
+    fn set_width(&mut self, width: i64);
 }
 
 pub struct Button {
@@ -70,6 +80,20 @@ pub struct Button {
 }
 
 impl AbstractButton for Button {
+    fn new_empty() -> Button {
+        Button {
+            _name: "".to_string(),
+            _text: "".to_string(),
+            _type_: "".to_string(),
+            _is_hovered: false,
+            _hide: false,
+            _asset: None,
+            _asset_over: None,
+            _height: 0,
+            _width: 0,
+        }
+    }
+
     fn new(json_elem: JsonButton) -> Result<Button, String> {
         let asset = load_image_from_path(&json_elem.asset)
             .ok_or_else(|| format!("Asset not found: {}", json_elem.asset))?;
@@ -123,6 +147,55 @@ impl AbstractButton for Button {
 
     fn get_width(&self) -> i64 {
         self._width
+    }
+
+    fn set_name(&mut self, name: String) {
+        self._name = name;
+    }
+
+    fn set_text(&mut self, text: String) {
+        self._text = text;
+    }
+
+    fn set_type(&mut self, button_type: String) {
+        self._type_ = button_type;
+    }
+
+    fn set_is_hovered(&mut self, is_hovered: bool) {
+        self._is_hovered = is_hovered;
+    }
+
+    fn set_hide(&mut self, hide: bool) {
+        self._hide = hide;
+    }
+
+    fn set_asset(&mut self, asset: Option<ImageBuf>) {
+        self._asset = asset;
+    }
+
+    fn set_over_asset(&mut self, asset_over: Option<ImageBuf>) {
+        self._asset_over = asset_over;
+    }
+
+    fn set_height(&mut self, height: i64) {
+        self._height = height;
+    }
+
+    fn set_width(&mut self, width: i64) {
+        self._width = width;
+    }
+
+    fn println(&self) {
+        std::println!("Button {{");
+        std::println!("\tname: {}", self.get_name());
+        std::println!("\ttext: {}", self.get_text());
+        std::println!("\ttype: {}", self.get_type());
+        std::println!("\tis_hovered: {}", self.get_is_hovered());
+        std::println!("\thide: {}", self.get_hide());
+        std::println!("\theight: {}", self.get_height());
+        std::println!("\twidth: {}", self.get_width());
+        std::println!("}}");
+        std::println!();
     }
 }
 
