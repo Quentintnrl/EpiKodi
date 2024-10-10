@@ -41,7 +41,13 @@ impl KodiApplication {
         //get the Page object
         let arc = last_page.clone();
         //get the page in thr Arc<Page> object
-        self._graphic.display_page((*arc).clone());
+        //use thread
+        let graphic = Graphic::new();
+        let thread = std::thread::spawn(move || {
+            graphic.display_page((*arc).clone());
+        });
+        thread.join().unwrap();
+        //join it
         // while self._run {
         //     check if the current page has changed
         //     if (self._page_order.last().get_new_page() != None) {
