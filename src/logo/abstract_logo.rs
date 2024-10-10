@@ -9,8 +9,8 @@ use serde::{Deserialize, Serialize};
 
 pub struct JsonLogo {
     pub asset: String,
-    pub height: i64,
-    pub width: i64,
+    pub height: f64,
+    pub width: f64,
 }
 
 impl JsonLogo {
@@ -26,8 +26,8 @@ impl JsonLogo {
 pub trait AbstractLogo {
     fn new(json_elem: JsonLogo) -> Self;
     fn get_asset(&self) -> Option<ImageBuf>;
-    fn get_height(&self) -> i64;
-    fn get_width(&self) -> i64;
+    fn get_height(&self) -> f64;
+    fn get_width(&self) -> f64;
     fn println(&self) {
         println!("Logo {{");
         println!("\tAsset: {}", self.get_asset().is_some());
@@ -40,8 +40,8 @@ pub trait AbstractLogo {
 
 pub struct Logo {
     _asset: Option<ImageBuf>,
-    _height: i64,
-    _width: i64,
+    _height: f64,
+    _width: f64,
 }
 
 impl AbstractLogo for Logo {
@@ -61,11 +61,11 @@ impl AbstractLogo for Logo {
         self._asset.clone()
     }
 
-    fn get_height(&self) -> i64 {
+    fn get_height(&self) -> f64 {
         self._height
     }
 
-    fn get_width(&self) -> i64 {
+    fn get_width(&self) -> f64 {
         self._width
     }
 }

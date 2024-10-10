@@ -6,19 +6,19 @@ use serde::Serialize;
 use crate::band::abstract_band::AbstractBand;
 use crate::band::abstract_band::Band;
 use crate::band::abstract_band::JsonBand;
-use crate::button::abstract_button::AbstractButton;
-use crate::logo::abstract_logo::AbstractLogo;
-use crate::page_content::abstract_page_content::AbstractPageContent;
-use crate::page_content::abstract_page_content::PageContent;
-use crate::page_content::abstract_page_content::JsonPageContent;
-use crate::page_content::page_content_part::PageContentPartTrait;
+// use crate::button::abstract_button::AbstractButton;
+// use crate::logo::abstract_logo::AbstractLogo;
+// use crate::page_content::abstract_page_content::AbstractPageContent;
+// use crate::page_content::abstract_page_content::PageContent;
+// use crate::page_content::abstract_page_content::JsonPageContent;
+// use crate::page_content::page_content_part::PageContentPartTrait;
 
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct JsonPage {
     pub name: String,
     pub band: JsonBand,
-    pub content: JsonPageContent,
+    // pub content: JsonPageContent,
     pub height: i64,
     pub width: i64,
 }
@@ -27,7 +27,7 @@ pub trait AbstractPage {
 	fn new(json_elem: JsonPage) -> Self;
     fn get_name(&self) -> String;
     fn get_band(&self) -> &Band;
-    fn get_content(&self) -> &PageContent;
+    // fn get_content(&self) -> &PageContent;
     fn get_hide(&self) -> bool;
     fn get_height(&self) -> i64;
     fn get_width(&self) -> i64;
@@ -35,7 +35,7 @@ pub trait AbstractPage {
     fn set_height(&mut self, height: i64);
     fn set_width(&mut self, width: i64);
     fn println(&self) {
-        println!("Page {{");
+        /*println!("Page {{");
         println!("\tPage name: {}", self.get_name());
         println!("\tPage hide: {}", self.get_hide());
         println!("\tPage height: {}", self.get_height());
@@ -75,7 +75,7 @@ pub trait AbstractPage {
         }
         println!("\t\t]");
         println!("\t}}");
-        println!("\tPageContent : {{");
+        /*println!("\tPageContent : {{");
         println!("\t\tname: {}", self.get_content().get_name());
         println!("\t\theight: {}", self.get_content().get_height());
         println!("\t\twidth: {}", self.get_content().get_width());
@@ -108,8 +108,8 @@ pub trait AbstractPage {
             println!("\t\t\t}}");
         }
         println!("\t\t]");
-        println!("\t}}");
-        println!("}}");
+        println!("\t}}");*/
+        println!("}}");*/
     }
     // fn update_next_page(&mut self);
     // fn get_next_page(&self) -> Arc<Page>;
@@ -118,7 +118,7 @@ pub trait AbstractPage {
 pub struct Page {
     _name: String,
     _band : Band,
-    _content: PageContent,
+    // _content: PageContent,
     _hide: bool,
     _height: i64,
     _width: i64,
@@ -130,7 +130,7 @@ impl AbstractPage for Page {
         Page {
             _name: json_elem.name,
             _band: Band::new(json_elem.band),
-            _content: PageContent::new(json_elem.content),
+            // _content: PageContent::new(json_elem.content),
             _hide: false,
             _height: json_elem.height,
             _width: json_elem.width,
@@ -147,9 +147,9 @@ impl AbstractPage for Page {
         &self._band
     }
 
-    fn get_content(&self) -> &PageContent {
-        &self._content
-    }
+    // fn get_content(&self) -> &PageContent {
+    //     &self._content
+    // }
 
     fn get_hide(&self) -> bool {
         self._hide

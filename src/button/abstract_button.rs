@@ -12,8 +12,8 @@ pub struct JsonButton {
     asset: String,
     asset_over: String,
     text: String,
-    height: i64,
-    width: i64,
+    height: f64,
+    width: f64,
     hide: bool,
 }
 
@@ -42,8 +42,8 @@ pub trait AbstractButton {
     fn get_hide(&self) -> bool;
     fn get_asset(&self) -> Option<ImageBuf>;
     fn get_over_asset(&self) -> Option<ImageBuf>;
-    fn get_height(&self) -> i64;
-    fn get_width(&self) -> i64;
+    fn get_height(&self) -> f64;
+    fn get_width(&self) -> f64;
     fn println(&self) {
         println!("Button {{");
         println!("\tname: {}", self.get_name());
@@ -63,8 +63,8 @@ pub trait AbstractButton {
     fn set_hide(&mut self, hide: bool);
     fn set_asset(&mut self, asset: Option<ImageBuf>);
     fn set_over_asset(&mut self, asset_over: Option<ImageBuf>);
-    fn set_height(&mut self, height: i64);
-    fn set_width(&mut self, width: i64);
+    fn set_height(&mut self, height: f64);
+    fn set_width(&mut self, width: f64);
 }
 
 pub struct Button {
@@ -75,8 +75,8 @@ pub struct Button {
     _hide: bool,
     _asset: Option<ImageBuf>,
     _asset_over: Option<ImageBuf>,
-    _height: i64,
-    _width: i64,
+    _height: f64,
+    _width: f64,
 }
 
 impl AbstractButton for Button {
@@ -89,8 +89,8 @@ impl AbstractButton for Button {
             _hide: false,
             _asset: None,
             _asset_over: None,
-            _height: 0,
-            _width: 0,
+            _height: 0.0,
+            _width: 0.0,
         }
     }
 
@@ -141,11 +141,11 @@ impl AbstractButton for Button {
         self._asset_over.clone()
     }
 
-    fn get_height(&self) -> i64 {
+    fn get_height(&self) -> f64 {
         self._height
     }
 
-    fn get_width(&self) -> i64 {
+    fn get_width(&self) -> f64 {
         self._width
     }
 
@@ -177,11 +177,11 @@ impl AbstractButton for Button {
         self._asset_over = asset_over;
     }
 
-    fn set_height(&mut self, height: i64) {
+    fn set_height(&mut self, height: f64) {
         self._height = height;
     }
 
-    fn set_width(&mut self, width: i64) {
+    fn set_width(&mut self, width: f64) {
         self._width = width;
     }
 
@@ -205,7 +205,7 @@ fn load_image_from_path(path: &str) -> Option<ImageBuf> {
     // strcat the current dir with the path
     let path_str = format!("{}{}", std::env::current_dir().unwrap().to_str().unwrap(), path);
     //print path
-    // println!("Path: {}", path_str);
+    println!("Path: {}", path_str);
     //if path is wrong, return None
     if !PathBuf::from(path_str.clone()).exists() {
         return None;
