@@ -18,6 +18,6 @@ fn test_button() {
     assert_eq!(button.get_type(), "test");
     assert_eq!(button.get_is_hovered(), false);
     assert_eq!(button.get_hide(), false);
-    assert_eq!(button.get_height(), 50);
-    assert_eq!(button.get_width(), 50);
+    assert_eq!(button.get_height(), 50.0);
+    assert_eq!(button.get_width(), 50.0);
 }

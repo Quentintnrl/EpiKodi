@@ -13,7 +13,7 @@ fn test_logo() {
 
     let json_logo: JsonLogo = serde_json::from_str(&contents).unwrap();
     let logo: Logo = Logo::new(json_logo);
-    assert_eq!(logo.get_height(), 100);
-    assert_eq!(logo.get_width(), 100);
+    assert_eq!(logo.get_height(), 100.0);
+    assert_eq!(logo.get_width(), 100.0);
 }
 

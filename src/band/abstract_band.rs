@@ -1,7 +1,8 @@
 use crate::button::abstract_button::AbstractButton;
 use crate::button::abstract_button::Button;
 use crate::button::abstract_button::JsonButton;
-use crate::logo::abstract_logo::Logo; //json button
+use crate::logo::abstract_logo::Logo; use piet::Color;
+//json button
 use serde::Deserialize;
 use serde::Serialize; //image in image
 use crate::logo::abstract_logo::AbstractLogo; //abstract logo
@@ -9,13 +10,41 @@ use crate::logo::abstract_logo::JsonLogo; //json logo
 
 #[derive(Serialize, Deserialize, Debug)]
 
+pub struct JsonRow {
+    pub buttons_row: Vec<JsonButton>,
+    pub spacer: f32,
+    pub spacer_bool: bool,
+}
+
+impl JsonRow {
+    pub fn clone(&self) -> JsonRow {
+        JsonRow {
+            buttons_row: {
+                let mut buttons = Vec::new();
+                for button in &self.buttons_row {
+                    buttons.push(button.clone());
+                }
+                buttons
+            },
+            spacer: self.spacer,
+            spacer_bool: self.spacer_bool,
+        }
+    }
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+
 pub struct JsonBand {
     pub name: String,
-    pub height: i32,
-    pub width: i32,
-    pub background_color: String,
+    pub height: f32,
+    pub width: f32,
+    pub background_r: i32,
+    pub background_g: i32,
+    pub background_b: i32,
+    pub unit_point: String,
     pub logo: JsonLogo,
-    pub buttons: Vec<Vec<JsonButton>>,
+    pub row: JsonRow,
+    pub buttons: Vec<JsonButton>,
 }
 
 impl JsonBand {
@@ -24,16 +53,16 @@ impl JsonBand {
             name: self.name.clone(),
             height: self.height,
             width: self.width,
-            background_color: self.background_color.clone(),
+            background_r: self.background_r,
+            background_g: self.background_g,
+            background_b: self.background_b,
+            unit_point: self.unit_point.clone(),
             logo: self.logo.clone(),
+            row: self.row.clone(),
             buttons: {
                 let mut buttons = Vec::new();
-                for button_row in &self.buttons {
-                    let mut button_row_vec = Vec::new();
-                    for button in button_row {
-                        button_row_vec.push(button.clone());
-                    }
-                    buttons.push(button_row_vec);
+                for button in &self.buttons {
+                    buttons.push(button.clone());
                 }
                 buttons
             },
@@ -44,13 +73,14 @@ impl JsonBand {
 pub trait AbstractBand {
     fn new(json_band: JsonBand) -> Self;
     fn get_name(&self) -> &String;
-    fn get_height(&self) -> i32;
-    fn get_width(&self) -> i32;
-    fn get_background_color(&self) -> &String;
+    fn get_height(&self) -> f32;
+    fn get_width(&self) -> f32;
+    fn get_background_color(&self) -> &Color;
     fn get_logo(&self) -> &Logo;
-    fn get_buttons(&self) -> &Vec<Vec<Box<Button>>>;
+    fn get_row(&self) -> &Row;
+    fn get_buttons(&self) -> &Vec<Box<Button>>;
     fn println(&self) {
-        println!("Band {{");
+        /*println!("Band {{");
         println!("\tname: {}", self.get_name());
         println!("\theight: {}", self.get_height());
         println!("\twidth: {}", self.get_width());
@@ -87,31 +117,75 @@ pub trait AbstractBand {
         }
         println!("\t]");
         println!("}}");
-        println!();
+        println!();*/
+    }
+    fn clone(&self) -> Self;
+}
+
+pub struct Row {
+    _buttons_row: Vec<Box<Button>>,
+    _spacer: f32,
+    _spacer_bool: bool,
+}
+
+impl Row {
+    pub fn new(json_row: JsonRow) -> Self {
+        let mut buttons = Vec::new();
+        for json_button in json_row.buttons_row {
+            let button = Button::new(json_button);
+            buttons.push(Box::new(button.unwrap()));
+        }
+
+        Row {
+            _buttons_row: buttons,
+            _spacer: json_row.spacer,
+            _spacer_bool: json_row.spacer_bool,
+        }
+    }
+
+    pub fn get_buttons_row(&self) -> &Vec<Box<Button>> {
+        &self._buttons_row
+    }
+
+    pub fn get_spacer(&self) -> f32 {
+        self._spacer
+    }
+
+    pub fn get_spacer_bool(&self) -> bool {
+        self._spacer_bool
+    }
+
+    pub fn clone(&self) -> Self {
+        let mut buttons: Vec<Box<Button>> = Vec::new();
+        for button in &self._buttons_row {
+            buttons.push(Box::new((**button).clone()));
+        }
+        Row {
+            _buttons_row: buttons,
+            _spacer: self._spacer,
+            _spacer_bool: self._spacer_bool,
+        }
     }
 }
 
 pub struct Band {
     _name: String,
-    _height: i32, //in px
-    _width: i32, //in px
-    _background_color: String, //hex color
+    _height: f32, //in px
+    _width: f32, //in px
+    _background_color: Color, //rgb color
     _logo: Option<Logo>, //logo image
-    _buttons : Vec<Vec<Box<Button>>>,
+    _row: Row,
+    _buttons : Vec<Box<Button>>,
 }
 
 impl AbstractBand for Band {
     fn new(json_band: JsonBand) -> Self {
+        //add buttons vec
         let mut buttons = Vec::new();
-        for button_row in json_band.buttons {
-            let mut button_row_vec = Vec::new();
-            for json_button in button_row {
-                let button = Button::new(json_button);
-                button_row_vec.push(Box::new(button.unwrap()));
-            }
-            buttons.push(button_row_vec);
+        for json_button in json_band.buttons {
+            let button = Button::new(json_button);
+            buttons.push(Box::new(button.unwrap()));
         }
-
         let logo : Option<Logo>;
         logo = Some(Logo::new(json_band.logo));
 
@@ -119,8 +193,9 @@ impl AbstractBand for Band {
             _name: json_band.name,
             _height: json_band.height,
             _width: json_band.width,
-            _background_color: json_band.background_color,
+            _background_color: Color::rgb8(json_band.background_r as u8, json_band.background_g as u8, json_band.background_b as u8),
             _logo: logo,
+            _row: Row::new(json_band.row),
             _buttons: buttons,
         }
     }
@@ -129,15 +204,15 @@ impl AbstractBand for Band {
         &self._name
     }
 
-    fn get_height(&self) -> i32 {
+    fn get_height(&self) -> f32 {
         self._height
     }
 
-    fn get_width(&self) -> i32 {
+    fn get_width(&self) -> f32 {
         self._width
     }
 
-    fn get_background_color(&self) -> &String {
+    fn get_background_color(&self) -> &Color {
         &self._background_color
     }
 
@@ -145,7 +220,27 @@ impl AbstractBand for Band {
         self._logo.as_ref().unwrap()
     }
 
-    fn get_buttons(&self) -> &Vec<Vec<Box<Button>>> {
+    fn get_row(&self) -> &Row {
+        &self._row
+    }
+
+    fn get_buttons(&self) -> &Vec<Box<Button>> {
         &self._buttons
+    }
+
+    fn clone(&self) -> Band {
+        let mut buttons: Vec<Box<Button>> = Vec::new();
+        for button in &self._buttons {
+            buttons.push(Box::new((**button).clone()));
+        }
+        Band {
+            _name: self._name.clone(),
+            _height: self._height,
+            _width: self._width,
+            _background_color: self._background_color.clone(),
+            _logo: Some(self._logo.as_ref().unwrap().clone()),
+            _row: self._row.clone(),
+            _buttons: buttons,
+        }
     }
 }
