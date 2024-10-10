@@ -35,6 +35,9 @@ jobs:
       - name: Install Rust project dependencies
         run: cargo install --path .
 
+      - name: Test compilation
+        run: cargo build
+
       - name: Run tests
         run: cargo test
 
