@@ -13,9 +13,12 @@ fn create_band_widget(band: Band) -> impl Widget<AppState> {
 
     let mut row_widget = Flex::row();
     for button in band.get_row().get_buttons_row() {
+        if button.get_hide() {
+            continue;
+        }
         let button_widget: SizedBox<AppState> = Image::new(button.get_asset().unwrap().clone()).fix_size(button.get_width(), button.get_height());
         row_widget = row_widget.with_child(button_widget);
-        if (band.get_row().get_spacer_bool()) {
+        if band.get_row().get_spacer_bool() {
             row_widget = row_widget.with_spacer(band.get_row().get_spacer() as f64);
         }
     }
@@ -24,6 +27,9 @@ fn create_band_widget(band: Band) -> impl Widget<AppState> {
     column.add_child(Padding::new((0.0, 0.0, 0.0, 0.0), logo_widget));
     column.add_child(Padding::new((0.0, 0.0, 0.0, 0.0), row_widget));
     for button in buttons {
+        if button.get_hide() {
+            continue;
+        }
         column.add_child(Padding::new((0.0, 0.0, 0.0, 0.0), SizedBox::new(Image::new(button.get_asset().unwrap().clone()).fix_size(button.get_width(), button.get_height()))));
     }
     column.align_vertical(UnitPoint::TOP_LEFT)
