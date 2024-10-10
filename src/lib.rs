@@ -22,3 +22,7 @@ pub mod page {
 pub mod application {
     pub mod application;
 }
+
+pub mod graphic {
+    pub mod graphic;
+}

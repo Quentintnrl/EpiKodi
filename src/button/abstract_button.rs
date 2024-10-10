@@ -65,6 +65,7 @@ pub trait AbstractButton {
     fn set_over_asset(&mut self, asset_over: Option<ImageBuf>);
     fn set_height(&mut self, height: f64);
     fn set_width(&mut self, width: f64);
+    fn clone(&self) -> Self;
 }
 
 pub struct Button {
@@ -196,6 +197,20 @@ impl AbstractButton for Button {
         std::println!("\twidth: {}", self.get_width());
         std::println!("}}");
         std::println!();
+    }
+
+    fn clone(&self) -> Button {
+        Button {
+            _name: self._name.clone(),
+            _text: self._text.clone(),
+            _type_: self._type_.clone(),
+            _is_hovered: self._is_hovered,
+            _hide: self._hide,
+            _asset: self._asset.clone(),
+            _asset_over: self._asset_over.clone(),
+            _height: self._height,
+            _width: self._width,
+        }
     }
 }
 

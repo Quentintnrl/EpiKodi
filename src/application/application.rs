@@ -2,6 +2,7 @@ use serde::{Deserialize, Serialize};
 use std::{io::Read, sync::Arc};
 
 use crate::page::abstract_page::{AbstractPage, Page, JsonPage};
+use crate::graphic::graphic::Graphic;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct JsonKodiApplication {
@@ -14,6 +15,7 @@ pub struct KodiApplication {
     pub name: String,
     _page_order : Vec<Arc<Page>>,
     _run : bool,
+    _graphic: Graphic,
     //modules
 }
 
@@ -30,19 +32,25 @@ impl KodiApplication {
             name: json_elem.name,
             _page_order: vec![Arc::new(page)],
             _run: false,
+            _graphic: Graphic::new(),
         }
     }
     pub fn start(& mut self) {
         self._run = true;
-        while self._run {
-            // check if the current page has changed
-            /*if (self._page_order.last().get_new_page() != None) {
-            //     self._page_order.push((_page_order.last().get_new_page()));
-            // }*/
-            //handle events
-            //draw
-            //check other modules
-        }
+        let last_page = self._page_order.last().unwrap();
+        //get the Page object
+        let arc = last_page.clone();
+        //get the page in thr Arc<Page> object
+        self._graphic.display_page((*arc).clone());
+        // while self._run {
+        //     check if the current page has changed
+        //     if (self._page_order.last().get_new_page() != None) {
+        //         self._page_order.push((_page_order.last().get_new_page()));
+        //     }
+        //     handle events
+        //     draw
+        //     check other modules
+        // }
     }
     pub fn println(&self) {
         println!("Application {{");

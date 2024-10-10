@@ -36,6 +36,7 @@ pub trait AbstractLogo {
         println!("}}");
         println!("");
     }
+    fn clone(&self) -> Self;
 }
 
 pub struct Logo {
@@ -67,6 +68,14 @@ impl AbstractLogo for Logo {
 
     fn get_width(&self) -> f64 {
         self._width
+    }
+
+    fn clone(&self) -> Logo {
+        Logo {
+            _asset: self._asset.clone(),
+            _height: self._height,
+            _width: self._width,
+        }
     }
 }
 

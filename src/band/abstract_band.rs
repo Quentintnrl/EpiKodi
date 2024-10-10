@@ -77,6 +77,7 @@ pub trait AbstractBand {
     fn get_width(&self) -> f32;
     fn get_background_color(&self) -> &Color;
     fn get_logo(&self) -> &Logo;
+    fn get_row(&self) -> &Row;
     fn get_buttons(&self) -> &Vec<Box<Button>>;
     fn println(&self) {
         /*println!("Band {{");
@@ -118,6 +119,7 @@ pub trait AbstractBand {
         println!("}}");
         println!();*/
     }
+    fn clone(&self) -> Self;
 }
 
 pub struct Row {
@@ -151,6 +153,18 @@ impl Row {
 
     pub fn get_spacer_bool(&self) -> bool {
         self._spacer_bool
+    }
+
+    pub fn clone(&self) -> Self {
+        let mut buttons: Vec<Box<Button>> = Vec::new();
+        for button in &self._buttons_row {
+            buttons.push(Box::new((**button).clone()));
+        }
+        Row {
+            _buttons_row: buttons,
+            _spacer: self._spacer,
+            _spacer_bool: self._spacer_bool,
+        }
     }
 }
 
@@ -206,7 +220,27 @@ impl AbstractBand for Band {
         self._logo.as_ref().unwrap()
     }
 
+    fn get_row(&self) -> &Row {
+        &self._row
+    }
+
     fn get_buttons(&self) -> &Vec<Box<Button>> {
         &self._buttons
+    }
+
+    fn clone(&self) -> Band {
+        let mut buttons: Vec<Box<Button>> = Vec::new();
+        for button in &self._buttons {
+            buttons.push(Box::new((**button).clone()));
+        }
+        Band {
+            _name: self._name.clone(),
+            _height: self._height,
+            _width: self._width,
+            _background_color: self._background_color.clone(),
+            _logo: Some(self._logo.as_ref().unwrap().clone()),
+            _row: self._row.clone(),
+            _buttons: buttons,
+        }
     }
 }

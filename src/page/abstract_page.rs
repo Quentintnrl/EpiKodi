@@ -1,5 +1,6 @@
 // use std::sync::Arc;
 
+// use druid::piet::cairo::glib::clone;
 use serde::Deserialize;
 use serde::Serialize;
 
@@ -111,6 +112,7 @@ pub trait AbstractPage {
         println!("\t}}");*/
         println!("}}");*/
     }
+    fn clone(&self) -> Self;
     // fn update_next_page(&mut self);
     // fn get_next_page(&self) -> Arc<Page>;
 }
@@ -173,6 +175,19 @@ impl AbstractPage for Page {
 
     fn set_width(&mut self, width: i64) {
         self._width = width;
+    }
+
+    fn clone(&self) -> Self {
+        let clone_page = Page {
+            _name: self._name.clone(),
+            _band: self._band.clone(),
+            // _content: self._content.clone(),
+            _hide: self._hide,
+            _height: self._height,
+            _width: self._width,
+            // _next_page: self._next_page.clone(),
+        };
+        clone_page
     }
     // fn update_next_page(&mut self) {
     //     self._next_page = self._band.get_next_page();

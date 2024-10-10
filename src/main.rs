@@ -1,17 +1,6 @@
-use druid::widget::{Flex, Image, Padding, SizedBox};
-use druid::{AppLauncher, Data, Lens, Widget, WidgetExt, WindowDesc};
-use druid::piet::ImageBuf;
-use image::GenericImageView;
-use piet::{Color, UnitPoint};
 use std::fs::File;
 use std::io::Read;
-use std::path::PathBuf; // For working with file paths
 use std::process::Command;
-
-#[derive(Clone, Data, Lens)]
-struct AppState {
-    // You can store other data related to your application here.
-}
 
 fn main() {
     let mut file = File::open("json/application.json").expect("File not found");
@@ -21,7 +10,7 @@ fn main() {
     let json_application: epikodi::application::application::JsonKodiApplication = serde_json::from_str(&contents).expect("Failed to parse JSON");
     let mut application: epikodi::application::application::KodiApplication = epikodi::application::application::KodiApplication::new(json_application);
 
-/*    let output = Command::new("gnome-extensions")
+    let output = Command::new("gnome-extensions")
         .arg("enable")
         .arg("hidetopbar@mathieu.bidon.ca")
         .output()
@@ -32,19 +21,8 @@ fn main() {
     } else {
         eprintln!("Error: {}", String::from_utf8_lossy(&output.stderr));
     }
-
-        let main_window = WindowDesc::new(build_ui())
-            .title("Image Display Example")
-            .window_size((1920.0, 1080.0))
-            .resizable(true)
-            .show_titlebar(false);
-        // Set the initial state of the application
-        let initial_state = AppState {};
-        // Launch the application
-        AppLauncher::with_window(main_window)
-            .launch(initial_state)
-            .expect("Failed to launch application");
-        let output = Command::new("gnome-extensions")
+    application.start();
+    let output = Command::new("gnome-extensions")
         .arg("disable")
         .arg("hidetopbar@mathieu.bidon.ca")
         .output()
@@ -54,10 +32,23 @@ fn main() {
         println!("Command executed successfully.");
     } else {
         eprintln!("Error: {}", String::from_utf8_lossy(&output.stderr));
-    }*/
+    }
+
+
+        /*let main_window = WindowDesc::new(build_ui())
+            .title("Image Display Example")
+            .window_size((1920.0, 1080.0))
+            .resizable(true)
+            .show_titlebar(false);
+        // Set the initial state of the application
+        let initial_state = AppState {};
+        // Launch the application
+        AppLauncher::with_window(main_window)
+            .launch(initial_state)
+            .expect("Failed to launch application");*/
 }
 
-fn build_ui() -> impl Widget<AppState> {
+/*fn build_ui() -> impl Widget<AppState> {
     // Load logo
     let logo = load_image_from_path("/assets/home/logo.png").expect("Failed to load logo");
 
@@ -181,7 +172,7 @@ fn load_image_from_path(path: &str) -> Option<ImageBuf> {
         width as usize,     // Width
         height as usize,   // Height
     ))
-}
+}*/
 
 //a struct that implement druid
 // a method where i send a page and it's display it
