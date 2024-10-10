@@ -2,25 +2,27 @@
     "name": "Home",
     "band": {
             "name": "Home Band",
-            "height": 50,
-            "width": 50,
-            "background_color": "#000000",
+            "height": 100.0,
+            "width": 460.0,
+            "background_r": 0,
+            "background_g": 0,
+            "background_b": 0,
+            "unit_point": "top_left",
             "logo": {
                 "asset": "/assets/home/logo.png",
-                "height": 50,
-                "width": 50
+                "height": 101.0,
+                "width": 460.0
             },
-            "buttons" :
-            [
-                [
+            "row": {
+                "buttons_row": [
                     {
                         "button_type": "to_pop-up",
                         "name": "power",
                         "asset": "/assets/home/power.png",
                         "asset_over": "/assets/home/power_over.png",
                         "text": "",
-                        "height": 50,
-                        "width": 50,
+                        "height": 115.0,
+                        "width": 120.0,
                         "hide": false
                     },
                     {
@@ -29,8 +31,8 @@
                         "asset": "/assets/home/param.png",
                         "asset_over": "/assets/home/param_over.png",
                         "text": "",
-                        "height": 50,
-                        "width": 50,
+                        "height": 115.0,
+                        "width": 120.0,
                         "hide": false
                     },
                     {
@@ -39,8 +41,8 @@
                         "asset": "/assets/home/search.png",
                         "asset_over": "/assets/home/search_over.png",
                         "text": "",
-                        "height": 50,
-                        "width": 50,
+                        "height": 115.0,
+                        "width": 120.0,
                         "hide": false
                     },
                     {
@@ -49,240 +51,134 @@
                         "asset": "/assets/home/fullscreen.png",
                         "asset_over": "/assets/home/fullscreen_over.png",
                         "text": "",
-                        "height": 50,
-                        "width": 50,
+                        "height": 115.0,
+                        "width": 120.0,
                         "hide": true
                     }
                 ],
-                [
-                    {
-                        "button_type": "to_content",
-                        "name": "Movies",
-                        "asset": "/assets/home/movies.png",
-                        "asset_over": "/assets/home/movies_over.png",
-                        "text": "",
-                        "height": 50,
-                        "width": 50,
-                        "hide": false
-                    },
-                    {
-                        "button_type": "to_content",
-                        "name": "Tv Shows",
-                        "asset": "/assets/home/tv_shows.png",
-                        "asset_over": "/assets/home/tv_shows_over.png",
-                        "text": "",
-                        "height": 50,
-                        "width": 50,
-                        "hide": false
-                    },
-                    {
-                        "button_type": "to_content",
-                        "name": "Music",
-                        "asset": "/assets/home/music.png",
-                        "asset_over": "/assets/home/music_over.png",
-                        "text": "",
-                        "height": 50,
-                        "width": 50,
-                        "hide": false
-                    },
-                    {
-                        "button_type": "to_content",
-                        "name": "Music Videos",
-                        "asset": "/assets/home/music_videos.png",
-                        "asset_over": "/assets/home/music_videos_over.png",
-                        "text": "",
-                        "height": 50,
-                        "width": 50,
-                        "hide": false
-                    },
-                    {
-                        "button_type": "to_content",
-                        "name": "Tv",
-                        "asset": "/assets/home/tv.png",
-                        "asset_over": "/assets/home/tv_over.png",
-                        "text": "",
-                        "height": 50,
-                        "width": 50,
-                        "hide": false
-                    },
-                    {
-                        "button_type": "to_content",
-                        "name": "Radio",
-                        "asset": "/assets/home/radio.png",
-                        "asset_over": "/assets/home/radio_over.png",
-                        "text": "",
-                        "height": 50,
-                        "width": 50,
-                        "hide": false
-                    },
-                    {
-                        "button_type": "to_content",
-                        "name": "Games",
-                        "asset": "/assets/home/games.png",
-                        "asset_over": "/assets/home/games_over.png",
-                        "text": "",
-                        "height": 50,
-                        "width": 50,
-                        "hide": false
-                    },
-                    {
-                        "button_type": "to_content",
-                        "name": "Add-ons",
-                        "asset": "/assets/home/add_ons.png",
-                        "asset_over": "/assets/home/add_ons_over.png",
-                        "text": "",
-                        "height": 50,
-                        "width": 50,
-                        "hide": false
-                    },
-                    {
-                        "button_type": "to_content",
-                        "name": "Pictures",
-                        "asset": "/assets/home/pictures.png",
-                        "asset_over": "/assets/home/pictures_over.png",
-                        "text": "",
-                        "height": 50,
-                        "width": 50,
-                        "hide": false
-                    },
-                    {
-                        "button_type": "to_content",
-                        "name": "Videos",
-                        "asset": "/assets/home/videos.png",
-                        "asset_over": "/assets/home/videos_over.png",
-                        "text": "",
-                        "height": 50,
-                        "width": 50,
-                        "hide": false
-                    },
-                    {
-                        "button_type": "to_content",
-                        "name": "Favourites",
-                        "asset": "/assets/home/favourites.png",
-                        "asset_over": "/assets/home/favourites_over.png",
-                        "text": "",
-                        "height": 50,
-                        "width": 50,
-                        "hide": false
-                    },
-                    {
-                        "button_type": "to_content",
-                        "name": "Weather",
-                        "asset": "/assets/home/weather.png",
-                        "asset_over": "/assets/home/weather_over.png",
-                        "text": "",
-                        "height": 50,
-                        "width": 50,
-                        "hide": false
-                    }
-                ]
-            ]
-    },
-    "content": {
-            "name": "Movies",
-            "height": 100,
-            "width": 100,
-            "page_content_parts":
-            [
+                "spacer": 57.5,
+                "spacer_bool": true
+            },
+            "buttons": [
                 {
-                    "name": "Categories",
-                    "name_left_space": 20,
-                    "name_button_space": 30,
-                    "buttons":
-                    [
-                        {
-                            "button_type": "to_page",
-                            "name": "Genres",
-                            "asset": "/assets/home/movies/genres.png",
-                            "asset_over": "/assets/home/movies/genres_over.png",
-                            "text": "",
-                            "height": 50,
-                            "width": 50,
-                            "hide": false
-                        },
-                        {
-                            "button_type": "to_page",
-                            "name": "Titles",
-                            "asset": "/assets/home/movies/titles.png",
-                            "asset_over": "/assets/home/movies/titles_over.png",
-                            "text": "",
-                            "height": 50,
-                            "width": 50,
-                            "hide": false
-                        },
-                        {
-                            "button_type": "to_page",
-                            "name": "Years",
-                            "asset": "/assets/home/movies/years.png",
-                            "asset_over": "/assets/home/movies/years_over.png",
-                            "text": "",
-                            "height": 50,
-                            "width": 50,
-                            "hide": false
-                        },
-                        {
-                            "button_type": "to_page",
-                            "name": "Actors",
-                            "asset": "/assets/home/movies/actors.png",
-                            "asset_over": "/assets/home/movies/actors_over.png",
-                            "text": "",
-                            "height": 50,
-                            "width": 50,
-                            "hide": false
-                        },
-                        {
-                            "button_type": "to_page",
-                            "name": "Directors",
-                            "asset": "/assets/home/movies/directors.png",
-                            "asset_over": "/assets/home/movies/directors_over.png",
-                            "text": "",
-                            "height": 50,
-                            "width": 50,
-                            "hide": false
-                        },
-                        {
-                            "button_type": "to_page",
-                            "name": "Studios",
-                            "asset": "/assets/home/movies/studios.png",
-                            "asset_over": "/assets/home/movies/studios_over.png",
-                            "text": "",
-                            "height": 50,
-                            "width": 50,
-                            "hide": false
-                        },
-                        {
-                            "button_type": "to_page",
-                            "name": "Countries",
-                            "asset": "/assets/home/movies/countries.png",
-                            "asset_over": "/assets/home/movies/countries_over.png",
-                            "text": "",
-                            "height": 50,
-                            "width": 50,
-                            "hide": false
-                        },
-                        {
-                            "button_type": "to_page",
-                            "name": "Tags",
-                            "asset": "/assets/home/movies/tags.png",
-                            "asset_over": "/assets/home/movies/tags_over.png",
-                            "text": "",
-                            "height": 50,
-                            "width": 50,
-                            "hide": false
-                        },
-                        {
-                            "button_type": "to_page",
-                            "name": "Versions",
-                            "asset": "/assets/home/movies/versions.png",
-                            "asset_over": "/assets/home/movies/versions_over.png",
-                            "text": "",
-                            "height": 50,
-                            "width": 50,
-                            "hide": false
-                        }
-                    ],
-                    "current_button_pos": 0,
-                    "button_space": 50
+                    "button_type": "to_content",
+                    "name": "Movies",
+                    "asset": "/assets/home/movies.png",
+                    "asset_over": "/assets/home/movies_over.png",
+                    "text": "",
+                    "height": 100.0,
+                    "width": 460.0,
+                    "hide": false
+                },
+                {
+                    "button_type": "to_content",
+                    "name": "Tv Shows",
+                    "asset": "/assets/home/tv_shows.png",
+                    "asset_over": "/assets/home/tv_shows_over.png",
+                    "text": "",
+                    "height": 100.0,
+                    "width": 460.0,
+                    "hide": false
+                },
+                {
+                    "button_type": "to_content",
+                    "name": "Music",
+                    "asset": "/assets/home/music.png",
+                    "asset_over": "/assets/home/music_over.png",
+                    "text": "",
+                    "height": 100.0,
+                    "width": 460.0,
+                    "hide": false
+                },
+                {
+                    "button_type": "to_content",
+                    "name": "Music Videos",
+                    "asset": "/assets/home/music_videos.png",
+                    "asset_over": "/assets/home/music_videos_over.png",
+                    "text": "",
+                    "height": 100.0,
+                    "width": 460.0,
+                    "hide": false
+                },
+                {
+                    "button_type": "to_content",
+                    "name": "Tv",
+                    "asset": "/assets/home/tv.png",
+                    "asset_over": "/assets/home/tv_over.png",
+                    "text": "",
+                    "height": 100.0,
+                    "width": 460.0,
+                    "hide": false
+                },
+                {
+                    "button_type": "to_content",
+                    "name": "Radio",
+                    "asset": "/assets/home/radio.png",
+                    "asset_over": "/assets/home/radio_over.png",
+                    "text": "",
+                    "height": 100.0,
+                    "width": 460.0,
+                    "hide": false
+                },
+                {
+                    "button_type": "to_content",
+                    "name": "Games",
+                    "asset": "/assets/home/games.png",
+                    "asset_over": "/assets/home/games_over.png",
+                    "text": "",
+                    "height": 100.0,
+                    "width": 460.0,
+                    "hide": false
+                },
+                {
+                    "button_type": "to_content",
+                    "name": "Add-ons",
+                    "asset": "/assets/home/add_ons.png",
+                    "asset_over": "/assets/home/add_ons_over.png",
+                    "text": "",
+                    "height": 100.0,
+                    "width": 460.0,
+                    "hide": false
+                },
+                {
+                    "button_type": "to_content",
+                    "name": "Pictures",
+                    "asset": "/assets/home/pictures.png",
+                    "asset_over": "/assets/home/pictures_over.png",
+                    "text": "",
+                    "height": 100.0,
+                    "width": 460.0,
+                    "hide": false
+                },
+                {
+                    "button_type": "to_content",
+                    "name": "Videos",
+                    "asset": "/assets/home/videos.png",
+                    "asset_over": "/assets/home/videos_over.png",
+                    "text": "",
+                    "height": 100.0,
+                    "width": 460.0,
+                    "hide": false
+                },
+                {
+                    "button_type": "to_content",
+                    "name": "Favourites",
+                    "asset": "/assets/home/favourites.png",
+                    "asset_over": "/assets/home/favourites_over.png",
+                    "text": "",
+                    "height": 100.0,
+                    "width": 460.0,
+                    "hide": false
+                },
+                {
+                    "button_type": "to_content",
+                    "name": "Weather",
+                    "asset": "/assets/home/weather.png",
+                    "asset_over": "/assets/home/weather_over.png",
+                    "text": "",
+                    "height": 100.0,
+                    "width": 460.0,
+                    "hide": false
                 }
             ]
     },
