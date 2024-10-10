@@ -88,7 +88,8 @@ fn build_ui_new(page: Page) -> impl Widget<AppState> {
 
 #[derive(Clone, Lens)]
 struct AppState {
-    hovered_images: Vec<bool>,  // One boolean per image
+    hovered_images: Vec<bool>,  // One boolean per image for hover state
+    clicked_images: Vec<bool>,  // One boolean per image for click state
 }
 
 impl druid::Data for AppState {
@@ -126,6 +127,23 @@ impl<W: Widget<AppState>> Controller<AppState, W> for HoverController {
                 }
                 ctx.request_paint(); // Request a repaint on mouse movement
             }
+            Event::MouseDown(mouse_event) => {
+                // Check if the mouse was clicked within the widget's rect
+                let rect = druid::Rect::from_origin_size((0.0, 0.0), (self.width, self.height));
+                if rect.contains(mouse_event.pos) {
+                    data.clicked_images[self.index] = true;  // Set the click flag for this image
+                    println!("Image {} clicked!", self.index); // Debug print
+
+                    // Here you can handle the action when the image is clicked
+                    // For example, you can navigate to another page or trigger an event.
+                    // Implement your action here.
+                    // e.g. perform_action_on_click(self.index);
+
+                    // Optionally reset the clicked state
+                    data.clicked_images[self.index] = false; // Reset after handling
+                }
+                ctx.request_paint(); // Request a repaint on mouse down
+            }
             _ => {}
         }
 
@@ -159,7 +177,12 @@ impl Graphic {
     }
 
     pub fn display_page(&self, page: Page) {
-        let window = self.create_window(page.clone(), 1080.0, 1920.0, "Kodi".to_string());
-        self.display(window, AppState { hovered_images: vec![false; page.get_band().get_buttons().len() + page.get_band().get_row().get_buttons_row().len()] });
+        let button_count = page.get_band().get_buttons().len() + page.get_band().get_row().get_buttons_row().len();
+        let initial_state = AppState {
+            hovered_images: vec![false; button_count],
+            clicked_images: vec![false; button_count],  // Initialize clicked images
+        };
+        let window = self.create_window(page, 1080.0, 1920.0, "EpiKodi".to_string());
+        self.display(window, initial_state);
     }
 }
