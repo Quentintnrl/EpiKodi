@@ -1,4 +1,4 @@
 #include "Debug.hpp"
 
 // Define the debug variable
-bool debug = false;
+bool debug_value = false;
