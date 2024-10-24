@@ -1,6 +1,11 @@
 #include "JsonImage.hpp"
+#include "Debug.hpp"
+#include <iostream>
 
 JsonImage::JsonImage(const nlohmann::json& json) {
+    if (DEBUG_ENABLED()) {
+        std::cout << "JsonImage: " << json << std::endl;
+    }
     _ImagePath = findImagePath(json);
     _position = findPosition(json);
     _size = findSize(json);

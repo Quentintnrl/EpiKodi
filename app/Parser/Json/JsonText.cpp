@@ -1,7 +1,11 @@
 #include "JsonText.hpp"
+#include "Debug.hpp"
 #include <iostream>
 
 JsonText::JsonText(const nlohmann::json& json) {
+    if (DEBUG_ENABLED()) {
+        std::cout << "JsonText: " << json << std::endl;
+    }
     _text = findText(json);
     _fontPath = findFontPath(json);
     _position = findPosition(json);

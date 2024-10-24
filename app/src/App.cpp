@@ -1,10 +1,8 @@
 #include "App.hpp"
-#include "Parser.hpp"
 
-App::App() {
+App::App(JsonApp jsonApp) {
     _Running = false;
-    name = "App";
-    Parser parser("path/to/file");
+    name = jsonApp.getName();
 }
 
 App::~App() {

@@ -1,6 +1,11 @@
 #include "JsonBox.hpp"
+#include "Debug.hpp"
+#include <iostream>
 
 JsonBox::JsonBox(const nlohmann::json &json) : AbstractJsonElem() {
+    if (DEBUG_ENABLED()) {
+        std::cout << "JsonBox: " << json << std::endl;
+    }
     _texts = findTexts(json);
     _buttons = findButtons(json);
     _images = findImages(json);

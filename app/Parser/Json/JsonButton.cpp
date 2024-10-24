@@ -1,4 +1,6 @@
 #include "JsonButton.hpp"
+#include "Debug.hpp"
+#include <iostream>
 
 const std::unordered_map<std::string, ButtonType> buttonTypeMap = {
     {"ToPopUp", ButtonType::ToPopUp},
@@ -13,6 +15,9 @@ const std::unordered_map<ButtonType, std::string> buttonTypeStringMap = {
 };
 
 JsonButton::JsonButton(const nlohmann::json& json) {
+    if (DEBUG_ENABLED()) {
+        std::cout << "JsonButton: " << json.dump(4) << std::endl;
+    }
     _type = findButtonType(json);
     _name = findName(json);
     _ImagePath = findImagePath(json);

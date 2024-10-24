@@ -1,11 +1,11 @@
 #pragma once
-#include <string>
+#include "JsonApp.hpp"
 
 #define CONFIG_PATH "json/application.json"
 
 class App {
     public:
-        App();
+        App(JsonApp jsonApp);
         ~App();
         void start();
         void run();
