@@ -1,8 +1,10 @@
 #include "App.hpp"
+#include "Parser.hpp"
 
 App::App() {
     _Running = false;
     name = "App";
+    Parser parser("path/to/file");
 }
 
 App::~App() {

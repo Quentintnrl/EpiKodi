@@ -1,4 +1,7 @@
+#pragma once
 #include <string>
+
+#define CONFIG_PATH "json/application.json"
 
 class App {
     public:
