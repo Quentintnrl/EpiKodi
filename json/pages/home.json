@@ -2,8 +2,270 @@
     "name": "Home",
     "boxes": [
         {
+            "type": "static",
             "texts": [],
-            "buttons": [],
+            "buttons": [
+                {
+                    "type": "ToPopUp",
+                    "name": "power",
+                    "imagePath": "assets/home/power.png",
+                    "hoverImagePath": "assets/home/power_hover.png",
+                    "position": [
+                        0,
+                        101
+                    ],
+                    "size": [
+                        115,
+                        120
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "settings",
+                    "imagePath": "assets/home/settings.png",
+                    "hoverImagePath": "assets/home/settings_hover.png",
+                    "position": [
+                        115,
+                        101
+                    ],
+                    "size": [
+                        115,
+                        120
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "ToPopUp",
+                    "name": "search",
+                    "imagePath": "assets/home/search.png",
+                    "hoverImagePath": "assets/home/search_hover.png",
+                    "position": [
+                        230,
+                        101
+                    ],
+                    "size": [
+                        115,
+                        120
+                    ],
+                    "hide": false
+
+                }
+            ],
+            "images": [
+                {
+                    "path": "assets/home/logo.png",
+                    "position": [
+                        0,
+                        0
+                    ],
+                    "size": [
+                        460,
+                        101
+                    ],
+                    "hide": false
+                }
+            ]
+        },
+        {
+            "type": "hor_scroll",
+            "texts": [],
+            "buttons": [
+                {
+                    "type": "AddBox",
+                    "name": "movies",
+                    "imagePath": "assets/home/movies.png",
+                    "hoverImagePath": "assets/home/movies_hover.png",
+                    "position": [
+                        0,
+                        221
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "tv_shows",
+                    "imagePath": "assets/home/tv_shows.png",
+                    "hoverImagePath": "assets/home/tv_shows_hover.png",
+                    "position": [
+                        0,
+                        100
+                    ],
+                    "size": [
+                        460,
+                        321
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "music",
+                    "imagePath": "assets/home/music.png",
+                    "hoverImagePath": "assets/home/music_hover.png",
+                    "position": [
+                        0,
+                        421
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "music_videos",
+                    "imagePath": "assets/home/music_videos.png",
+                    "hoverImagePath": "assets/home/music_videos_hover.png",
+                    "position": [
+                        0,
+                        521
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "tv",
+                    "imagePath": "assets/home/tv.png",
+                    "hoverImagePath": "assets/home/tv_hover.png",
+                    "position": [
+                        0,
+                        621
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "radio",
+                    "imagePath": "assets/home/radio.png",
+                    "hoverImagePath": "assets/home/radio_hover.png",
+                    "position": [
+                        0,
+                        721
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "games",
+                    "imagePath": "assets/home/games.png",
+                    "hoverImagePath": "assets/home/games_hover.png",
+                    "position": [
+                        0,
+                        821
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "add_ons",
+                    "imagePath": "assets/home/add_ons.png",
+                    "hoverImagePath": "assets/home/add_ons_hover.png",
+                    "position": [
+                        0,
+                        921
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "pictures",
+                    "imagePath": "assets/home/pictures.png",
+                    "hoverImagePath": "assets/home/pictures_hover.png",
+                    "position": [
+                        0,
+                        1101
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "videos",
+                    "imagePath": "assets/home/videos.png",
+                    "hoverImagePath": "assets/home/videos_hover.png",
+                    "position": [
+                        0,
+                        1101
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "favourites",
+                    "imagePath": "assets/home/favourites.png",
+                    "hoverImagePath": "assets/home/favourites_hover.png",
+                    "position": [
+                        0,
+                        1201
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "weather",
+                    "imagePath": "assets/home/weather.png",
+                    "hoverImagePath": "assets/home/weather_hover.png",
+                    "position": [
+                        0,
+                        1301
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                }
+            ],
             "images": []
         }
     ]
