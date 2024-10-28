@@ -1,6 +1,5 @@
 target_sources(EpiKodiLib
   PRIVATE
-  AbstractJsonElem.cpp
   AbstractJsonElem.hpp
   JsonApp.cpp
   JsonApp.hpp
