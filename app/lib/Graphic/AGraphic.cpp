@@ -1,130 +1,115 @@
 #include "AGraphic.hpp"
 
-void AGraphic::addText(const std::shared_ptr<IGraphicElem> text)
+void AGraphic::addBox(const std::shared_ptr<IBox> box)
 {
-    _text.push_back(text);
+    _boxes.push_back(box);
 }
 
-void AGraphic::addButton(const std::shared_ptr<IGraphicElem> button)
+void AGraphic::removeBox(const std::shared_ptr<IBox> box)
 {
-    _button.push_back(button);
-}
-
-void AGraphic::addImage(const std::shared_ptr<IGraphicElem> image)
-{
-    _image.push_back(image);
-}
-
-void AGraphic::removeText(const std::shared_ptr<IGraphicElem> text)
-{
-    for (std::size_t i = 0; i < _text.size(); i++) {
-        if (_text[i] == text) {
-            _text.erase(_text.begin() + i);
+    for (std::size_t i = 0; i < _boxes.size(); i++) {
+        if (_boxes[i] == box) {
+            _boxes.erase(_boxes.begin() + i);
             return;
         }
     }
 }
 
-void AGraphic::removeButton(const std::shared_ptr<IGraphicElem> button)
+void AGraphic::removeElem(const std::shared_ptr<IGraphicElem> elem)
 {
-    for (std::size_t i = 0; i < _button.size(); i++) {
-        if (_button[i] == button) {
-            _button.erase(_button.begin() + i);
+    for (auto &box: _boxes) {
+        if (box->contain(elem->getUuid())) {
+            box->remove(elem->getUuid());
+            break;
+        }
+    }
+}
+
+void AGraphic::updateBox(const std::shared_ptr<IBox> box)
+{
+    for (std::size_t i = 0; i < _boxes.size(); i++) {
+        if (_boxes[i] == box) {
+            _boxes[i]->update(box);
             return;
         }
     }
 }
 
-void AGraphic::removeImage(const std::shared_ptr<IGraphicElem> image)
+void AGraphic::updateElem(const std::shared_ptr<IGraphicElem> elem)
 {
-    for (std::size_t i = 0; i < _image.size(); i++) {
-        if (_image[i] == image) {
-            _image.erase(_image.begin() + i);
-            return;
+    for (auto &box: _boxes) {
+        if (box->contain(elem->getUuid())) {
+            box->updateElem(elem);
+            break;
         }
     }
 }
 
-void AGraphic::updateText(const std::shared_ptr<IGraphicElem> text)
+const std::vector<std::shared_ptr<IBox>> AGraphic::getBoxe(const Iuuid &uuid)
 {
-    for (std::size_t i = 0; i < _text.size(); i++) {
-        if (_text[i] == text) {
-            _text[i]->update(text);
-            return;
+    std::vector<std::shared_ptr<IBox>> box = {};
+
+    for (std::size_t i = 0; i < _boxes.size(); i++) {
+        if (_boxes[i]->getUuid() == uuid) {
+            box.push_back(_boxes[i]);
         }
     }
+    return box;
 }
 
-void AGraphic::updateButton(const std::shared_ptr<IGraphicElem> button)
-{
-    for (std::size_t i = 0; i < _button.size(); i++) {
-        if (_button[i] == button) {
-            _button[i]->update(button);
-            return;
-        }
-    }
-}
-
-void AGraphic::updateImage(const std::shared_ptr<IGraphicElem> image)
-{
-    for (std::size_t i = 0; i < _image.size(); i++) {
-        if (_image[i] == image) {
-            _image[i]->update(image);
-            return;
-        }
-    }
-}
-
-const std::shared_ptr<IGraphicElem> AGraphic::getText(const Iuuid &uuid)
+const std::shared_ptr<IGraphicElem> AGraphic::getElem(const Iuuid &uuid)
 {
     std::shared_ptr<IGraphicElem> elem = nullptr;
 
-    for (std::size_t i = 0; i < _text.size(); i++) {
-        if (_text[i]->getUuid() == uuid) {
-            elem = _text[i];
+    for (auto &box: _boxes) {
+        if (box->contain(uuid)) {
+            elem = box->getElem(uuid);
             break;
         }
     }
     return elem;
 }
 
-const std::shared_ptr<IGraphicElem> AGraphic::getButton(const Iuuid &uuid)
+const std::vector<std::shared_ptr<IBox>> AGraphic::getBoxes()
 {
-    std::shared_ptr<IGraphicElem> elem = nullptr;
+    return _boxes;
+}
 
-    for (std::size_t i = 0; i < _button.size(); i++) {
-        if (_button[i]->getUuid() == uuid) {
-            elem = _button[i];
+const std::vector<std::shared_ptr<IGraphicElem>> AGraphic::getTexts(const Iuuid &boxUuid)
+{
+    std::vector<std::shared_ptr<IGraphicElem>> texts = {};
+
+    for (auto &box: _boxes) {
+        if (box->getUuid() == boxUuid) {
+            texts = box->getTexts();
             break;
         }
     }
-    return elem;
+    return texts;
 }
 
-const std::shared_ptr<IGraphicElem> AGraphic::getImage(const Iuuid &uuid)
+const std::vector<std::shared_ptr<IGraphicElem>> AGraphic::getButtons(const Iuuid &boxUuid)
 {
-    std::shared_ptr<IGraphicElem> elem = nullptr;
+    std::vector<std::shared_ptr<IGraphicElem>> buttons = {};
 
-    for (std::size_t i = 0; i < _image.size(); i++) {
-        if (_image[i]->getUuid() == uuid) {
-            elem = _image[i];
+    for (auto &box: _boxes) {
+        if (box->getUuid() == boxUuid) {
+            buttons = box->getButtons();
             break;
         }
     }
-    return elem;
+    return buttons;
 }
 
-const std::vector<std::shared_ptr<IGraphicElem>> &AGraphic::getTexts()
+const std::vector<std::shared_ptr<IGraphicElem>> AGraphic::getImages(const Iuuid &boxUuid)
 {
-    return _text;
-}
+    std::vector<std::shared_ptr<IGraphicElem>> images = {};
 
-const std::vector<std::shared_ptr<IGraphicElem>> &AGraphic::getButtons()
-{
-    return _button;
-}
-
-const std::vector<std::shared_ptr<IGraphicElem>> &AGraphic::getImages()
-{
-    return _image;
+    for (auto &box: _boxes) {
+        if (box->getUuid() == boxUuid) {
+            images = box->getImages();
+            break;
+        }
+    }
+    return images;
 }

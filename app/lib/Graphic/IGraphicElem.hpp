@@ -22,14 +22,14 @@ class IGraphicElem {
         virtual const bool &getHide() = 0;
         virtual const Iuuid &getUuid() = 0;
 
-        virtual void update(const std::shared_ptr<IGraphicElem> &elem) = 0;
+        virtual void update(const std::shared_ptr<IGraphicElem> elem) = 0;
 
         virtual void debug(std::size_t i = 0) = 0;
 
 
         //Operators
-        virtual bool operator==(const std::shared_ptr<IGraphicElem> &elem) const = 0;
-        virtual bool operator!=(const std::shared_ptr<IGraphicElem> &elem) const = 0;
+        virtual bool operator==(const std::shared_ptr<IGraphicElem> elem) const = 0;
+        virtual bool operator!=(const std::shared_ptr<IGraphicElem> elem) const = 0;
     protected:
         virtual ~IGraphicElem() = default;
 };
