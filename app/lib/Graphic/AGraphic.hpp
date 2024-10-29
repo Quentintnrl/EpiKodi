@@ -21,9 +21,9 @@ class AGraphic : public IGraphic
         const std::shared_ptr<IGraphicElem> getElem(const Iuuid &uuid) override;
 
         const std::vector<std::shared_ptr<IBox>> getBoxes() override;
-        const std::vector<std::shared_ptr<IGraphicElem>> getTexts(const Iuuid &boxUuid) override;
-        const std::vector<std::shared_ptr<IGraphicElem>> getButtons(const Iuuid &boxUuid) override;
-        const std::vector<std::shared_ptr<IGraphicElem>> getImages(const Iuuid &boxUuid) override;
+        const std::vector<std::shared_ptr<IText>> getTexts(const Iuuid &boxUuid) override;
+        const std::vector<std::shared_ptr<IButton>> getButtons(const Iuuid &boxUuid) override;
+        const std::vector<std::shared_ptr<IImage>> getImages(const Iuuid &boxUuid) override;
     protected:
         virtual ~AGraphic() = default;
         std::vector<std::shared_ptr<IBox>> _boxes;

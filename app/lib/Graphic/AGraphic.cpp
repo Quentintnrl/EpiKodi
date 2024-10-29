@@ -75,9 +75,9 @@ const std::vector<std::shared_ptr<IBox>> AGraphic::getBoxes()
     return _boxes;
 }
 
-const std::vector<std::shared_ptr<IGraphicElem>> AGraphic::getTexts(const Iuuid &boxUuid)
+const std::vector<std::shared_ptr<IText>> AGraphic::getTexts(const Iuuid &boxUuid)
 {
-    std::vector<std::shared_ptr<IGraphicElem>> texts = {};
+    std::vector<std::shared_ptr<IText>> texts = {};
 
     for (auto &box: _boxes) {
         if (box->getUuid() == boxUuid) {
@@ -88,9 +88,9 @@ const std::vector<std::shared_ptr<IGraphicElem>> AGraphic::getTexts(const Iuuid 
     return texts;
 }
 
-const std::vector<std::shared_ptr<IGraphicElem>> AGraphic::getButtons(const Iuuid &boxUuid)
+const std::vector<std::shared_ptr<IButton>> AGraphic::getButtons(const Iuuid &boxUuid)
 {
-    std::vector<std::shared_ptr<IGraphicElem>> buttons = {};
+    std::vector<std::shared_ptr<IButton>> buttons = {};
 
     for (auto &box: _boxes) {
         if (box->getUuid() == boxUuid) {
@@ -101,9 +101,9 @@ const std::vector<std::shared_ptr<IGraphicElem>> AGraphic::getButtons(const Iuui
     return buttons;
 }
 
-const std::vector<std::shared_ptr<IGraphicElem>> AGraphic::getImages(const Iuuid &boxUuid)
+const std::vector<std::shared_ptr<IImage>> AGraphic::getImages(const Iuuid &boxUuid)
 {
-    std::vector<std::shared_ptr<IGraphicElem>> images = {};
+    std::vector<std::shared_ptr<IImage>> images = {};
 
     for (auto &box: _boxes) {
         if (box->getUuid() == boxUuid) {

@@ -24,9 +24,9 @@ class IGraphic {
         virtual const std::shared_ptr<IGraphicElem> getElem(const Iuuid &uuid) = 0;
 
         virtual const std::vector<std::shared_ptr<IBox>> getBoxes() = 0;
-        virtual const std::vector<std::shared_ptr<IGraphicElem>> getTexts(const Iuuid &boxUuid) = 0;
-        virtual const std::vector<std::shared_ptr<IGraphicElem>> getButtons(const Iuuid &boxUuid) = 0;
-        virtual const std::vector<std::shared_ptr<IGraphicElem>> getImages(const Iuuid &boxUuid) = 0;
+        virtual const std::vector<std::shared_ptr<IText>> getTexts(const Iuuid &boxUuid) = 0;
+        virtual const std::vector<std::shared_ptr<IButton>> getButtons(const Iuuid &boxUuid) = 0;
+        virtual const std::vector<std::shared_ptr<IImage>> getImages(const Iuuid &boxUuid) = 0;
 
 
         virtual void debug(std::size_t i = 0) = 0;
