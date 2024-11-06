@@ -8,7 +8,6 @@
 class IBox {
     public:
         virtual ~IBox() = default;
-        virtual void draw() = 0;
 
         //add, remove, update, get
         virtual void addText(const std::shared_ptr<IText> text) = 0;
@@ -42,6 +41,5 @@ class IBox {
         virtual void operator=(const std::shared_ptr<IBox> box) = 0;
         virtual Iuuid &getUuid() = 0;
 
-
-        virtual void debug(std::size_t i = 0) = 0;
+        virtual void debug(const std::size_t i = 0) = 0;
 };

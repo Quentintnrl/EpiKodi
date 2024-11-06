@@ -24,6 +24,8 @@ class AGraphic : public IGraphic
         const std::vector<std::shared_ptr<IText>> getTexts(const Iuuid &boxUuid) override;
         const std::vector<std::shared_ptr<IButton>> getButtons(const Iuuid &boxUuid) override;
         const std::vector<std::shared_ptr<IImage>> getImages(const Iuuid &boxUuid) override;
+
+        virtual void debug(std::size_t i = 0) = 0;
     protected:
         virtual ~AGraphic() = default;
         std::vector<std::shared_ptr<IBox>> _boxes;

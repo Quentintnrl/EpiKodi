@@ -1,12 +1,7 @@
 #pragma once
 
 #include "AGraphicElem.hpp"
-
-enum ButtonType {
-    ToPopUp,
-    AddBox,
-    ToPage
-};
+#include "JsonButton.hpp"
 
 class IButton : public AGraphicElem
 {
@@ -21,9 +16,9 @@ class IButton : public AGraphicElem
         virtual const ButtonType getType() const = 0;
         virtual const std::string getName() const = 0;
 
-        virtual void update(std::shared_ptr<IGraphicElem> elem) = 0;
+        virtual void update(const std::shared_ptr<IGraphicElem> elem) = 0;
 
-        virtual void debug(std::size_t i = 0) = 0;
+        virtual void debug(const std::size_t i = 0) = 0;
     protected:
         virtual ~IButton() = default;
 };

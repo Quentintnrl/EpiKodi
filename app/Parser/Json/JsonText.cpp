@@ -25,7 +25,7 @@ const std::tuple<int, int> JsonText::getPosition() const {
     return _position;
 }
 
-const std::tuple<int, int> JsonText::getSize() const {
+const std::size_t JsonText::getSize() const {
     return _size;
 }
 
@@ -37,7 +37,7 @@ const void JsonText::debug(const std::size_t i) {
     printDebug("text: " + _text + ",", i + 1);
     printDebug("fontPath: " + _fontPath + ",", i + 1);
     printDebug("position: (" + std::to_string(std::get<0>(_position)) + ", " + std::to_string(std::get<1>(_position)) + "),", i + 1);
-    printDebug("size: (" + std::to_string(std::get<0>(_size)) + ", " + std::to_string(std::get<1>(_size)) + "),", i + 1);
+    printDebug("size: " + std::to_string(_size) + ",", i + 1);
     printDebug("hide: " + std::to_string(hide) + ",", i + 1);
     printDebug("}", i);
 }
@@ -54,8 +54,8 @@ const std::tuple<int, int> JsonText::findPosition(const nlohmann::json& json) co
     return std::make_tuple(json.at("position").at(0).get<int>(), json.at("position").at(1).get<int>());
 }
 
-const std::tuple<int, int> JsonText::findSize(const nlohmann::json& json) const {
-    return std::make_tuple(json.at("size").at(0).get<int>(), json.at("size").at(1).get<int>());
+const std::size_t JsonText::findSize(const nlohmann::json& json) const {
+    return json.at("size").get<std::size_t>();
 }
 
 const bool JsonText::findHide(const nlohmann::json& json) const {

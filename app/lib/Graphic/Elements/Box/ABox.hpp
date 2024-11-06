@@ -41,7 +41,7 @@ class Abox : public IBox
         Iuuid &getUuid() override final;
 
 
-        virtual void debug(std::size_t i = 0) = 0;
+        virtual void debug(const std::size_t i = 0) = 0;
     protected:
         std::vector<std::shared_ptr<IText>> _texts;
         std::vector<std::shared_ptr<IButton>> _buttons;

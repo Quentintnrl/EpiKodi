@@ -19,9 +19,9 @@ class AButton : public IButton
         const ButtonType getType() const override final;
         const std::string getName() const override final;
 
-        virtual void update(std::shared_ptr<IGraphicElem> elem) = 0;
+        virtual void update(const std::shared_ptr<IGraphicElem> elem) = 0;
 
-        virtual void debug(std::size_t i = 0) = 0;
+        virtual void debug(const std::size_t i = 0) = 0;
     protected:
         ButtonType _type;
         std::string _name;

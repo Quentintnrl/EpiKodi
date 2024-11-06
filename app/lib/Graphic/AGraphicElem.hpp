@@ -23,9 +23,9 @@ class AGraphicElem : public IGraphicElem {
         const bool &getHide() override final;
         const Iuuid &getUuid() override final;
 
-        virtual void update(std::shared_ptr<IGraphicElem> elem) = 0;
+        virtual void update(const std::shared_ptr<IGraphicElem> elem) = 0;
 
-        virtual void debug(std::size_t i = 0) = 0;
+        virtual void debug(const std::size_t i = 0) = 0;
 
         //Operators
         bool operator==(const std::shared_ptr<IGraphicElem> elem) const final;

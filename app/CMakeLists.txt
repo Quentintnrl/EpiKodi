@@ -18,6 +18,7 @@ add_executable(EpiKodi
 target_include_directories(EpiKodiLib PUBLIC
 )
 
+add_subdirectory(Graphic)
 add_subdirectory(lib)
 add_subdirectory(src)
 add_subdirectory(Parser)
