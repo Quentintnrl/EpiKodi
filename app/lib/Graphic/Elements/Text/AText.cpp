@@ -9,3 +9,8 @@ void AText::setText(const std::string &text)
 {
     _text = text;
 }
+
+const std::string &AText::getText() const
+{
+    return _text;
+}

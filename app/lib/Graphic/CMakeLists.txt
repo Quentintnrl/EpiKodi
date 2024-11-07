@@ -7,6 +7,8 @@ add_library(GraphicLib STATIC
   IGraphic.hpp
 )
 
+set_target_properties(GraphicLib PROPERTIES POSITION_INDEPENDENT_CODE ON)
+
 add_subdirectory(Elements)
 
 target_include_directories(EpiKodiLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

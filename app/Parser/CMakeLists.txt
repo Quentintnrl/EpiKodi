@@ -2,6 +2,8 @@ target_sources(Parser PRIVATE
   Parser.cpp
   Parser.hpp
 )
+
+set_target_properties(Parser PROPERTIES POSITION_INDEPENDENT_CODE ON)
 add_subdirectory(Json)
 
 
