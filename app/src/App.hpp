@@ -3,6 +3,7 @@
 
 #define CONFIG_PATH "json/application.json"
 #define LIBS_PATH "libs/"
+#define PARSER_LOAD "createParser"
 
 class App {
     public:

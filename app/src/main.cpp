@@ -3,6 +3,7 @@
 #include "Debug.hpp"
 #include "App.hpp"
 #include "IParser.hpp"
+#include "dlLoader.hpp"
 
 int main(int argc, char **argv) {
     if (argc == 2) {
@@ -14,6 +15,8 @@ int main(int argc, char **argv) {
             SET_DEBUG(false);
         }
     }
+    DlLoader dlLoader;
+    std::shared_ptr<IParser> parser = dlLoader.getInstance<IParser>(std::string(LIBS_PATH) + "libParser.so", PARSER_LOAD);
     // IParser parser("/json/application.json");
     // parser.parse();
     // App app(parser.getParseResult());

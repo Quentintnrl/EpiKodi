@@ -1,5 +1,5 @@
-add_library(dlLoader STATIC
-  dlLoader.cpp
+target_sources(EpiKodiLib
+  PRIVATE
   dlLoader.hpp
 )
 
