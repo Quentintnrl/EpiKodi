@@ -27,19 +27,15 @@ jobs:
 
       - name: Install system dependencies
         run: |
-          sudo apt-get update && sudo apt-get install -y \
-          libpango1.0-dev \
-          pkg-config \
-          libgtk-3-dev
-
-      - name: Install Rust project dependencies
-        run: cargo install --path .
+          sudo apt-get update
+          sudo apt-get install -y libssl-dev
+          sudo apt-get install libsfml-dev
 
       - name: Test compilation
-        run: cargo build
+        run: ./compile.sh
 
       - name: Run tests
-        run: cargo test
+        run: ./compile.sh tests
 
   push_to_mirror:
     name: Push to mirror

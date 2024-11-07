@@ -1,187 +1,272 @@
 {
     "name": "Home",
-    "band": {
-            "name": "Home Band",
-            "height": 100.0,
-            "width": 460.0,
-            "background_r": 0,
-            "background_g": 0,
-            "background_b": 0,
-            "unit_point": "top_left",
-            "logo": {
-                "asset": "/assets/home/logo.png",
-                "height": 101.0,
-                "width": 460.0
-            },
-            "row": {
-                "buttons_row": [
-                    {
-                        "button_type": "to_pop-up",
-                        "name": "power",
-                        "asset": "/assets/home/power.png",
-                        "asset_over": "/assets/home/power_over.png",
-                        "text": "",
-                        "height": 115.0,
-                        "width": 120.0,
-                        "hide": false
-                    },
-                    {
-                        "button_type": "to_page",
-                        "name": "param",
-                        "asset": "/assets/home/param.png",
-                        "asset_over": "/assets/home/param_over.png",
-                        "text": "",
-                        "height": 115.0,
-                        "width": 120.0,
-                        "hide": false
-                    },
-                    {
-                        "button_type": "to_pop-up",
-                        "name": "search",
-                        "asset": "/assets/home/search.png",
-                        "asset_over": "/assets/home/search_over.png",
-                        "text": "",
-                        "height": 115.0,
-                        "width": 120.0,
-                        "hide": false
-                    },
-                    {
-                        "button_type": "action",
-                        "name": "fullscreen",
-                        "asset": "/assets/home/fullscreen.png",
-                        "asset_over": "/assets/home/fullscreen_over.png",
-                        "text": "",
-                        "height": 115.0,
-                        "width": 120.0,
-                        "hide": true
-                    }
-                ],
-                "spacer": 30.0,
-                "spacer_bool": true
-            },
+    "boxes": [
+        {
+            "type": "static",
+            "texts": [],
             "buttons": [
                 {
-                    "button_type": "to_content",
-                    "name": "Movies",
-                    "asset": "/assets/home/movies.png",
-                    "asset_over": "/assets/home/movies_over.png",
-                    "text": "",
-                    "height": 100.0,
-                    "width": 460.0,
+                    "type": "ToPopUp",
+                    "name": "power",
+                    "imagePath": "assets/home/power.png",
+                    "hoverImagePath": "assets/home/power_hover.png",
+                    "position": [
+                        0,
+                        101
+                    ],
+                    "size": [
+                        115,
+                        120
+                    ],
                     "hide": false
+
                 },
                 {
-                    "button_type": "to_content",
-                    "name": "Tv Shows",
-                    "asset": "/assets/home/tv_shows.png",
-                    "asset_over": "/assets/home/tv_shows_over.png",
-                    "text": "",
-                    "height": 100.0,
-                    "width": 460.0,
+                    "type": "ToPage",
+                    "name": "settings",
+                    "imagePath": "assets/home/settings.png",
+                    "hoverImagePath": "assets/home/settings_hover.png",
+                    "position": [
+                        115,
+                        101
+                    ],
+                    "size": [
+                        115,
+                        120
+                    ],
                     "hide": false
+
                 },
                 {
-                    "button_type": "to_content",
-                    "name": "Music",
-                    "asset": "/assets/home/music.png",
-                    "asset_over": "/assets/home/music_over.png",
-                    "text": "",
-                    "height": 100.0,
-                    "width": 460.0,
+                    "type": "ToPopUp",
+                    "name": "search",
+                    "imagePath": "assets/home/search.png",
+                    "hoverImagePath": "assets/home/search_hover.png",
+                    "position": [
+                        230,
+                        101
+                    ],
+                    "size": [
+                        115,
+                        120
+                    ],
                     "hide": false
-                },
+
+                }
+            ],
+            "images": [
                 {
-                    "button_type": "to_content",
-                    "name": "Music Videos",
-                    "asset": "/assets/home/music_videos.png",
-                    "asset_over": "/assets/home/music_videos_over.png",
-                    "text": "",
-                    "height": 100.0,
-                    "width": 460.0,
-                    "hide": false
-                },
-                {
-                    "button_type": "to_content",
-                    "name": "Tv",
-                    "asset": "/assets/home/tv.png",
-                    "asset_over": "/assets/home/tv_over.png",
-                    "text": "",
-                    "height": 100.0,
-                    "width": 460.0,
-                    "hide": false
-                },
-                {
-                    "button_type": "to_content",
-                    "name": "Radio",
-                    "asset": "/assets/home/radio.png",
-                    "asset_over": "/assets/home/radio_over.png",
-                    "text": "",
-                    "height": 100.0,
-                    "width": 460.0,
-                    "hide": false
-                },
-                {
-                    "button_type": "to_content",
-                    "name": "Games",
-                    "asset": "/assets/home/games.png",
-                    "asset_over": "/assets/home/games_over.png",
-                    "text": "",
-                    "height": 100.0,
-                    "width": 460.0,
-                    "hide": false
-                },
-                {
-                    "button_type": "to_content",
-                    "name": "Add-ons",
-                    "asset": "/assets/home/add_ons.png",
-                    "asset_over": "/assets/home/add_ons_over.png",
-                    "text": "",
-                    "height": 100.0,
-                    "width": 460.0,
-                    "hide": false
-                },
-                {
-                    "button_type": "to_content",
-                    "name": "Pictures",
-                    "asset": "/assets/home/pictures.png",
-                    "asset_over": "/assets/home/pictures_over.png",
-                    "text": "",
-                    "height": 100.0,
-                    "width": 460.0,
-                    "hide": false
-                },
-                {
-                    "button_type": "to_content",
-                    "name": "Videos",
-                    "asset": "/assets/home/videos.png",
-                    "asset_over": "/assets/home/videos_over.png",
-                    "text": "",
-                    "height": 100.0,
-                    "width": 460.0,
-                    "hide": false
-                },
-                {
-                    "button_type": "to_content",
-                    "name": "Favourites",
-                    "asset": "/assets/home/favourites.png",
-                    "asset_over": "/assets/home/favourites_over.png",
-                    "text": "",
-                    "height": 100.0,
-                    "width": 460.0,
-                    "hide": false
-                },
-                {
-                    "button_type": "to_content",
-                    "name": "Weather",
-                    "asset": "/assets/home/weather.png",
-                    "asset_over": "/assets/home/weather_over.png",
-                    "text": "",
-                    "height": 100.0,
-                    "width": 460.0,
+                    "path": "assets/home/logo.png",
+                    "position": [
+                        0,
+                        0
+                    ],
+                    "size": [
+                        460,
+                        101
+                    ],
                     "hide": false
                 }
             ]
-    },
-    "height": 1080,
-    "width": 1920
+        },
+        {
+            "type": "hor_scroll",
+            "texts": [],
+            "buttons": [
+                {
+                    "type": "AddBox",
+                    "name": "movies",
+                    "imagePath": "assets/home/movies.png",
+                    "hoverImagePath": "assets/home/movies_hover.png",
+                    "position": [
+                        0,
+                        221
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "tv_shows",
+                    "imagePath": "assets/home/tv_shows.png",
+                    "hoverImagePath": "assets/home/tv_shows_hover.png",
+                    "position": [
+                        0,
+                        100
+                    ],
+                    "size": [
+                        460,
+                        321
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "music",
+                    "imagePath": "assets/home/music.png",
+                    "hoverImagePath": "assets/home/music_hover.png",
+                    "position": [
+                        0,
+                        421
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "music_videos",
+                    "imagePath": "assets/home/music_videos.png",
+                    "hoverImagePath": "assets/home/music_videos_hover.png",
+                    "position": [
+                        0,
+                        521
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "tv",
+                    "imagePath": "assets/home/tv.png",
+                    "hoverImagePath": "assets/home/tv_hover.png",
+                    "position": [
+                        0,
+                        621
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "radio",
+                    "imagePath": "assets/home/radio.png",
+                    "hoverImagePath": "assets/home/radio_hover.png",
+                    "position": [
+                        0,
+                        721
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "games",
+                    "imagePath": "assets/home/games.png",
+                    "hoverImagePath": "assets/home/games_hover.png",
+                    "position": [
+                        0,
+                        821
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "add_ons",
+                    "imagePath": "assets/home/add_ons.png",
+                    "hoverImagePath": "assets/home/add_ons_hover.png",
+                    "position": [
+                        0,
+                        921
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "pictures",
+                    "imagePath": "assets/home/pictures.png",
+                    "hoverImagePath": "assets/home/pictures_hover.png",
+                    "position": [
+                        0,
+                        1101
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "videos",
+                    "imagePath": "assets/home/videos.png",
+                    "hoverImagePath": "assets/home/videos_hover.png",
+                    "position": [
+                        0,
+                        1101
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "favourites",
+                    "imagePath": "assets/home/favourites.png",
+                    "hoverImagePath": "assets/home/favourites_hover.png",
+                    "position": [
+                        0,
+                        1201
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "weather",
+                    "imagePath": "assets/home/weather.png",
+                    "hoverImagePath": "assets/home/weather_hover.png",
+                    "position": [
+                        0,
+                        1301
+                    ],
+                    "size": [
+                        460,
+                        100
+                    ],
+                    "hide": false
+
+                }
+            ],
+            "images": []
+        }
+    ]
 }
