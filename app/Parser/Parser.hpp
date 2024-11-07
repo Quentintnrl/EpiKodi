@@ -7,6 +7,7 @@ class Parser : public AParser {
         Parser() = default;
         Parser(const std::string path);
         ~Parser() = default;
+        void setFilePath(const std::string path);
         void parse();
         const JsonApp getParseResult() const;
     private:

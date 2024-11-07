@@ -8,6 +8,7 @@ add_library(Debug STATIC
   Debug.cpp
   Debug.hpp
 )
+set_target_properties(Debug PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 target_include_directories(EpiKodiLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(GraphicLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

@@ -32,3 +32,5 @@ target_link_libraries(EpiKodi EpiKodiLib)
 target_link_libraries(EpiKodi GraphicLib)
 target_link_libraries(EpiKodi ParserLib)
 target_link_libraries(EpiKodi Debug)
+
+target_link_libraries(Graphic Debug)

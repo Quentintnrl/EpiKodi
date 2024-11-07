@@ -31,6 +31,10 @@ void Parser::parse() {
     }
 }
 
+void Parser::setFilePath(const std::string path) {
+    _path = path;
+}
+
 const JsonApp Parser::getParseResult() const {
     return _app;
 }
