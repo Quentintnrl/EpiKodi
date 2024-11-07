@@ -1,13 +1,3 @@
-# target_sources(EpiKodiLib
-#   PRIVATE
-#   AGraphic.cpp
-#   AGraphic.hpp
-#   AGraphicElem.cpp
-#   AGraphicElem.hpp
-#   IGraphicElem.hpp
-#   IGraphic.hpp
-# )
-
 add_library(GraphicLib STATIC
   AGraphic.cpp
   AGraphic.hpp

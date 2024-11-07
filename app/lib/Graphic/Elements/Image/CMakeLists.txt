@@ -1,10 +1,3 @@
-# target_sources(EpiKodiLib
-#   PRIVATE
-#   AImage.hpp
-#   AImage.cpp
-#   IImage.hpp
-# )
-
 target_sources(GraphicLib
   PRIVATE
   AImage.hpp

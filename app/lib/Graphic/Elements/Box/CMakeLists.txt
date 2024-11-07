@@ -1,10 +1,3 @@
-# target_sources(EpiKodiLib
-#   PRIVATE
-#   ABox.hpp
-#   ABox.cpp
-#   IBox.hpp
-# )
-
 target_sources(GraphicLib
   PRIVATE
   ABox.hpp

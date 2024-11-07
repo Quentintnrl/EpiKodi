@@ -1,10 +1,3 @@
-# target_sources(EpiKodiLib
-#   PRIVATE
-#   AParser.cpp
-#   AParser.hpp
-#   IParser.hpp
-# )
-
 add_library(ParserLib STATIC
   AParser.cpp
   AParser.hpp

@@ -1,10 +1,3 @@
-# target_sources(EpiKodiLib
-#   PRIVATE
-#   IUuid.hpp
-#   Uuid.cpp
-#   Uuid.hpp
-# )
-
 add_library(UuidLib STATIC
   IUuid.hpp
   Uuid.cpp

@@ -1,10 +1,3 @@
-# target_sources(EpiKodiLib
-#   PRIVATE
-#   AText.hpp
-#   AText.cpp
-#   IText.hpp
-# )
-
 target_sources(GraphicLib
   PRIVATE
   AText.hpp

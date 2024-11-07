@@ -1,10 +1,3 @@
-# target_sources(EpiKodiLib
-#   PRIVATE
-#   AButton.hpp
-#   AButton.cpp
-#   IButton.hpp
-# )
-
 target_sources(GraphicLib
   PRIVATE
   AButton.hpp
