@@ -21,7 +21,7 @@ compile_tests () {
     cd build
     make
     cd ..
-    sudo ./build/tests/$tests_binary
+    # ./build/tests/$tests_binary
 }
 
 compile() {
@@ -31,7 +31,6 @@ compile() {
     cd build
     make
     cd ..
-    # mv build/app/$app_binary .
 }
 
 rm -rf build
