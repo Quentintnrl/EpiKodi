@@ -1,8 +1,8 @@
 #include <string>
+#include <iostream>
 #include "Debug.hpp"
 #include "App.hpp"
-#include "Parser.hpp"
-#include <iostream>
+#include "IParser.hpp"
 
 int main(int argc, char **argv) {
     if (argc == 2) {
@@ -14,8 +14,8 @@ int main(int argc, char **argv) {
             SET_DEBUG(false);
         }
     }
-    Parser parser("/json/application.json");
-    parser.parse();
+    // IParser parser("/json/application.json");
+    // parser.parse();
     // App app(parser.getParseResult());
     // app.start();
     // app.run();

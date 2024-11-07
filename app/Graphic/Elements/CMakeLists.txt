@@ -1,14 +1,14 @@
-target_sources(EpiKodiLib
-  PRIVATE
-  Box.cpp
-  Box.hpp
-  Button.cpp
-  Button.hpp
-  Image.cpp
-  Image.hpp
-  Text.cpp
-  Text.hpp
-)
+# target_sources(EpiKodiLib
+#   PRIVATE
+#   Box.cpp
+#   Box.hpp
+#   Button.cpp
+#   Button.hpp
+#   Image.cpp
+#   Image.hpp
+#   Text.cpp
+#   Text.hpp
+# )
 
 target_sources(Graphic
   PRIVATE

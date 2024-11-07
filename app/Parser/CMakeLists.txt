@@ -1,8 +1,8 @@
-target_sources(EpiKodiLib
-  PRIVATE
-  Parser.cpp
-  Parser.hpp
-  )
+# target_sources(EpiKodiLib
+#   PRIVATE
+#   Parser.cpp
+#   Parser.hpp
+#   )
 
   target_sources(Parser PRIVATE
   Parser.cpp
