@@ -11,6 +11,7 @@ class AParser : public IParser
         std::string getFilePath();
         const std::string &getFilePath() const;
         virtual void parse() = 0;
+        virtual const JsonApp getParseResult() const = 0;
     protected:
         virtual ~AParser() = default;
         std::string _path;

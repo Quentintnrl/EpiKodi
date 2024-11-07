@@ -3,13 +3,16 @@
 #include <string>
 #include <stdexcept>
 #include <dlfcn.h>
+#include "Debug.hpp"
 
 class DlLoader {
 public:
     template <typename T>
     std::shared_ptr<T> getInstance(const std::string &path, const std::string &name) {
-        std::cout << "Loading library: " << path << std::endl;
-        std::cout << "Loading symbol: " << name << std::endl;
+        if (DEBUG_ENABLED()) {
+            std::cout << "Loading library: " << path << std::endl;
+            std::cout << "Loading symbol: " << name << std::endl;
+        }
         void *handle = dlopen(path.c_str(), RTLD_LAZY | RTLD_GLOBAL);
         if (!handle) {
             std::cerr << "Cannot open library" << std::endl;

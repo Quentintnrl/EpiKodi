@@ -23,14 +23,15 @@ add_executable(EpiKodi
 target_include_directories(EpiKodiLib PUBLIC
 )
 
-add_subdirectory(Graphic)
 add_subdirectory(lib)
+add_subdirectory(Graphic)
 add_subdirectory(Parser)
 add_subdirectory(src)
 
 target_link_libraries(EpiKodi EpiKodiLib)
 target_link_libraries(EpiKodi GraphicLib)
 target_link_libraries(EpiKodi ParserLib)
+target_link_libraries(EpiKodi ParserJsonLib)
 target_link_libraries(EpiKodi Debug)
 
 target_link_libraries(Graphic Debug)

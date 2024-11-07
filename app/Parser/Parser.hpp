@@ -9,7 +9,7 @@ class Parser : public AParser {
         ~Parser() = default;
         void setFilePath(const std::string path);
         void parse();
-        const JsonApp getParseResult() const;
+        const JsonApp getParseResult() const override;
     private:
         JsonApp _app;
 };

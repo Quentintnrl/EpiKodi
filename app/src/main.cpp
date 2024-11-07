@@ -17,9 +17,9 @@ int main(int argc, char **argv) {
     }
     DlLoader dlLoader;
     std::shared_ptr<IParser> parser = dlLoader.getInstance<IParser>(std::string(LIBS_PATH) + "libParser.so", PARSER_LOAD);
-    // IParser parser("/json/application.json");
-    // parser.parse();
-    // App app(parser.getParseResult());
+    parser->setFilePath(std::string(CONFIG_PATH));
+    parser->parse();
+    App app(parser->getParseResult());
     // app.start();
     // app.run();
     return 0;
