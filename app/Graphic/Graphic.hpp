@@ -12,7 +12,7 @@
 #define WINDOW_HEIGHT 1080
 #define DEFAULT_FRAME_RATE 60
 
-class Graphic final : AGraphic {
+class Graphic final : public AGraphic {
     public:
         Graphic(const std::string &appName);
         ~Graphic();

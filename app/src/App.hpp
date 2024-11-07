@@ -2,6 +2,7 @@
 #include "JsonApp.hpp"
 
 #define CONFIG_PATH "json/application.json"
+#define LIBS_PATH "libs/"
 
 class App {
     public:

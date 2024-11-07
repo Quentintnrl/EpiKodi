@@ -34,3 +34,9 @@ void Parser::parse() {
 const JsonApp Parser::getParseResult() const {
     return _app;
 }
+
+extern "C" {
+    Parser *createParser(const std::string path) {
+        return new Parser(path);
+    }
+}

@@ -59,3 +59,9 @@ void Graphic::debug(std::size_t i) {
     }
     printDebug("}", i);
 }
+
+extern "C" {
+    IGraphic *createGraphic(const std::string &appName) {
+        return new Graphic(appName);
+    }
+}

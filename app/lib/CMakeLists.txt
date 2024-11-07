@@ -1,3 +1,4 @@
+add_subdirectory(dlLoader)
 add_subdirectory(Graphic)
 add_subdirectory(Parser)
 add_subdirectory(Uuid)
