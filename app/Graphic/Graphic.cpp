@@ -8,7 +8,8 @@ Graphic::Graphic(const std::string &appName) {
 }
 
 Graphic::~Graphic() {
-    _window.close();
+    if (_window.isOpen())
+        _window.close();
 }
 
 void Graphic::draw() {

@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
     parser->setFilePath(std::string(CONFIG_PATH));
     parser->parse();
     App app(parser->getParseResult());
-    // app.start();
-    // app.run();
+    app.start();
+    app.run();
     return 0;
 }
