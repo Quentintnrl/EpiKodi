@@ -6,6 +6,7 @@
 #define CONFIG_PATH "/json/application.json"
 #define LIBS_PATH "libs/"
 #define PARSER_LOAD "createParser"
+#define GRAPHIC_LOAD "createGraphic"
 
 class App {
     public:

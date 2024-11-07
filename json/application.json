@@ -2,6 +2,6 @@
     "name": "EpiKodi",
     "components": [
     ],
-    "graphic_path": "/libs/libGraphic.so",
+    "graphic_path": "libGraphic.so",
     "home_page_path": "/json/pages/home.json"
 }

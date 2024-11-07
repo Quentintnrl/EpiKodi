@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <dlfcn.h>
 #include "Debug.hpp"
+#include <iostream>
 
 class DlLoader {
 public:

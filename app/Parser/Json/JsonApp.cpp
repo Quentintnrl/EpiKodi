@@ -17,12 +17,16 @@ const std::string JsonApp::getName() const {
     return _name;
 }
 
-const JsonPage JsonApp::getPage() const {
-    return _page;
+const std::string JsonApp::getGraphicPath() const {
+    return _graphicPath;
 }
 
 const std::vector<std::string> JsonApp::getComponentsPath() const {
     return _componentsPath;
+}
+
+const JsonPage JsonApp::getPage() const {
+    return _page;
 }
 
 const void JsonApp::debug(const std::size_t i) {
@@ -42,6 +46,18 @@ const std::string JsonApp::findName(const nlohmann::json& json) const {
     return json["name"];
 }
 
+const std::string JsonApp::findGraphicPath(const nlohmann::json& json) const {
+    return json["graphic_path"];
+}
+
+const std::vector<std::string> JsonApp::findComponentsPath(const nlohmann::json& json) const {
+    std::vector<std::string> componentsPath;
+    for (const auto& component : json["components"]) {
+        componentsPath.push_back(component["path"]);
+    }
+    return componentsPath;
+}
+
 const JsonPage JsonApp::findPage(const nlohmann::json& json) const {
     std::string path = json["home_page_path"];
     const std::string completePath = getenv("PWD") + path;
@@ -55,16 +71,4 @@ const JsonPage JsonApp::findPage(const nlohmann::json& json) const {
     buffer << file.rdbuf();
     nlohmann::json page = nlohmann::json::parse(buffer.str());
     return JsonPage(page);
-}
-
-const std::string JsonApp::findGraphicPath(const nlohmann::json& json) const {
-    return json["graphic_path"];
-}
-
-const std::vector<std::string> JsonApp::findComponentsPath(const nlohmann::json& json) const {
-    std::vector<std::string> componentsPath;
-    for (const auto& component : json["components"]) {
-        componentsPath.push_back(component["path"]);
-    }
-    return componentsPath;
 }
