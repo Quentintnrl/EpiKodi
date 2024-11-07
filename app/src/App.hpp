@@ -1,5 +1,7 @@
 #pragma once
 #include "JsonApp.hpp"
+#include "IGraphic.hpp"
+#include <memory>
 
 #define CONFIG_PATH "/json/application.json"
 #define LIBS_PATH "libs/"
@@ -15,4 +17,5 @@ class App {
     private:
         bool _Running;
         std::string name;
+        std::shared_ptr<IGraphic> graphic;
 };
