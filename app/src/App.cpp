@@ -2,6 +2,9 @@
 
 App::App(JsonApp jsonApp) {
     _Running = false;
+    if (DEBUG_ENABLED()) {
+        jsonApp.debug(0);
+    }
     name = jsonApp.getName();
 }
 
