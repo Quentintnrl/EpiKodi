@@ -26,11 +26,12 @@ compile_tests () {
 
 compile() {
     clean_all
+    mkdir components
     cmake -S . -B build -DTESTS=OFF -DBUILD=ON
     cd build
     make
     cd ..
-    mv build/app/$app_binary .
+    # mv build/app/$app_binary .
 }
 
 rm -rf build

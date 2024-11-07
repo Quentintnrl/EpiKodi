@@ -1,4 +1,11 @@
-target_sources(EpiKodiLib
+# target_sources(EpiKodiLib
+#   PRIVATE
+#   ABox.hpp
+#   ABox.cpp
+#   IBox.hpp
+# )
+
+target_sources(GraphicLib
   PRIVATE
   ABox.hpp
   ABox.cpp
@@ -6,3 +13,5 @@ target_sources(EpiKodiLib
 )
 
 target_include_directories(EpiKodiLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(GraphicLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(Graphic PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
