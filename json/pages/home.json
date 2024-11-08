@@ -96,7 +96,7 @@
                     "hoverImagePath": "assets/home/tv_shows_hover.png",
                     "position": [
                         0,
-                        100
+                        321
                     ],
                     "size": [
                         460,
@@ -208,7 +208,7 @@
                     "hoverImagePath": "assets/home/pictures_hover.png",
                     "position": [
                         0,
-                        1101
+                        1021
                     ],
                     "size": [
                         460,
@@ -224,7 +224,7 @@
                     "hoverImagePath": "assets/home/videos_hover.png",
                     "position": [
                         0,
-                        1101
+                        1121
                     ],
                     "size": [
                         460,
@@ -240,7 +240,7 @@
                     "hoverImagePath": "assets/home/favourites_hover.png",
                     "position": [
                         0,
-                        1201
+                        1221
                     ],
                     "size": [
                         460,
@@ -256,7 +256,7 @@
                     "hoverImagePath": "assets/home/weather_hover.png",
                     "position": [
                         0,
-                        1301
+                        1321
                     ],
                     "size": [
                         460,
