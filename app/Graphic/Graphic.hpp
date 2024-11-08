@@ -2,6 +2,7 @@
 
 #include "AGraphic.hpp"
 #include "GraphicBox.hpp"
+#include "GraphicPage.hpp"
 #include "GraphicEvent.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
@@ -24,6 +25,7 @@ namespace SFMLGraphic {
             void loop() override;
 
             void addBox(const JsonBox &jsonBox);
+            void addPage(const JsonPage &jsonPage) override;
             void addButton(const Uuid &boxId, const JsonButton &jsonButton);
             void addImage(const Uuid &boxId, const JsonImage &jsonImage);
             void addText(const Uuid &boxId, const JsonText &jsonText);
@@ -33,11 +35,11 @@ namespace SFMLGraphic {
             void setButtonState(const Uuid buttonId, const bool state) override;
             const GraphicEvent getLastEvent() override;
             void debug(std::size_t i) override;
-            sf::RenderWindow getWindow;
         private:
             void draw() override;
             void manageEvents() override;
             std::vector<std::shared_ptr<GraphicBox>> _box;
+            std::vector<std::shared_ptr<GraphicPage>> _pages;
             sf::RenderWindow _window;
             std::string _appName;
             std::mutex _mutex;

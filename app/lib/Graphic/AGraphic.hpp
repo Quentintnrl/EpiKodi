@@ -11,6 +11,7 @@ class AGraphic : public IGraphic
         //add, remove, update, get
 
         virtual void addBox(const JsonBox &box) = 0;
+        virtual void addPage(const JsonPage &page) = 0;
 
         virtual void debug(std::size_t i = 0) = 0;
         virtual const std::tuple<std::size_t, std::size_t> getCursorPosition() const = 0;

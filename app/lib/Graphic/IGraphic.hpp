@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JsonBox.hpp"
+#include "JsonPage.hpp"
 #include "GraphicEvent.hpp"
 #include <SFML/Graphics.hpp>
 #include "Uuid.hpp"
@@ -12,6 +13,7 @@ class IGraphic {
 
         //add, remove, update, get
         virtual void addBox(const JsonBox &box) = 0;
+        virtual void addPage(const JsonPage &page) = 0;
         virtual const std::tuple<std::size_t, std::size_t> getCursorPosition() const = 0;
         virtual const std::tuple<std::size_t, std::size_t> getWindowSize() const = 0;
         virtual void setButtonState(const Uuid buttonId, const bool state) = 0;

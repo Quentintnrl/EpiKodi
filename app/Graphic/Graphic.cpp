@@ -67,6 +67,10 @@ void SFMLGraphic::Graphic::addBox(const JsonBox &jsonBox) {
     _box.push_back(std::make_shared<GraphicBox>(jsonBox));
 }
 
+void SFMLGraphic::Graphic::addPage(const JsonPage &jsonPage) {
+    _pages.push_back(std::make_shared<GraphicPage>(jsonPage));
+}
+
 void SFMLGraphic::Graphic::addButton(const Uuid &boxId, const JsonButton &jsonButton) {
     for (const auto &box : _box) {
         if (box->getUuid() == boxId) {
@@ -127,9 +131,16 @@ void SFMLGraphic::Graphic::debug(std::size_t i) {
     } else {
         printDebug(_appName + " {", i);
     }
+    printDebug("Boxes {", i + 1);
     for (const auto &box : _box) {
-        box->debug(i + 1);
+        box->debug(i + 2);
     }
+    printDebug("},", i + 1);
+    printDebug("Pages {", i + 1);
+    for (const auto &page : _pages) {
+        page->debug(i + 2);
+    }
+    printDebug("}", i + 1);
     printDebug("}", i);
 }
 

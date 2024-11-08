@@ -18,6 +18,7 @@ App::App(JsonApp jsonApp) {
     _pages.push_back(std::make_shared<Page>(jsonApp.getPage()));
     for (auto &page : jsonApp.getPages()) {
         _pagesList.push_back(std::make_shared<Page>(page));
+        graphic->addPage(page);
     }
     for (auto &box : jsonApp.getPage().getBoxes()) {
         graphic->addBox(box);
