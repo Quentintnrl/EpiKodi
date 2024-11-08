@@ -111,6 +111,7 @@ void App::handleWheel(const GraphicEvent &event) {
 void App::handleBack() {
     if (_pages.size() > 1) {
         _pages.pop_back();
+        graphic->changePage(_pages.back()->getName());
     }
 }
 
@@ -124,12 +125,9 @@ void App::addBox(const std::shared_ptr<Button> button) {
 
 void App::addPage(const std::shared_ptr<Button> button) {
     for (auto &page : _pagesList) {
-        std::cout << "search: " << button->getTarget() << std::endl;
-        std::cout << "page:   " << page->getName() << std::endl;
         if (page->getName() == button->getTarget()) {
             _pages.push_back(page);
             graphic->changePage(page->getName());
-            std::cout << "find" << std::endl;
             break;
         }
     }
