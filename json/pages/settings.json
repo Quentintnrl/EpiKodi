@@ -1,0 +1,233 @@
+{
+    "name": "Settings",
+    "boxes": [
+        {
+            "type": "static",
+            "texts": [],
+            "buttons": [
+                {
+                    "type": "ToPage",
+                    "name": "file_manager",
+                    "imagePath": "assets/home/file_manager.png",
+                    "hoverImagePath": "assets/home/file_manager_hover.png",
+                    "position": [
+                        165,
+                        90
+                    ],
+                    "size": [
+                        380,
+                        235
+                    ],
+                    "hide": false,
+                    "uuid": "0f9661d5-77ad-4492-914d-767087352313"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "add_ons",
+                    "imagePath": "assets/home/add_ons.png",
+                    "hoverImagePath": "assets/home/add_ons_hover.png",
+                    "position": [
+                        555,
+                        90
+                    ],
+                    "size": [
+                        380,
+                        235
+                    ],
+                    "hide": false,
+                    "uuid": "c5466571-2bd5-424d-8447-1aa2a28e078e"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "sytem_information",
+                    "imagePath": "assets/home/sytem_information.png",
+                    "hoverImagePath": "assets/home/sytem_information_hover.png",
+                    "position": [
+                        945,
+                        90
+                    ],
+                    "size": [
+                        380,
+                        235
+                    ],
+                    "hide": false,
+                    "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "event_log",
+                    "imagePath": "assets/home/event_log.png",
+                    "hoverImagePath": "assets/home/event_log_hover.png",
+                    "position": [
+                        1335,
+                        90
+                    ],
+                    "size": [
+                        380,
+                        235
+                    ],
+                    "hide": false,
+                    "uuid": "0f9661d5-77ad-4492-914d-767087352313"
+
+                }
+            ],
+            "images": [
+            ]
+        },
+        {
+            "type": "static",
+            "texts": [],
+            "buttons": [
+                {
+                    "type": "ToPage",
+                    "name": "player",
+                    "imagePath": "assets/home/player.png",
+                    "hoverImagePath": "assets/home/player_hover.png",
+                    "position": [
+                        165,
+                        490
+                    ],
+                    "size": [
+                        380,
+                        235
+                    ],
+                    "hide": false,
+                    "uuid": "0f9661d5-77ad-4492-914d-767087352313"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "media",
+                    "imagePath": "assets/home/media.png",
+                    "hoverImagePath": "assets/home/media_hover.png",
+                    "position": [
+                        555,
+                        490
+                    ],
+                    "size": [
+                        380,
+                        235
+                    ],
+                    "hide": false,
+                    "uuid": "c5466571-2bd5-424d-8447-1aa2a28e078e"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "mvr_&_live_tv",
+                    "imagePath": "assets/home/mvr_&_live_tv.png",
+                    "hoverImagePath": "assets/home/mvr_&_live_tv_hover.png",
+                    "position": [
+                        945,
+                        490
+                    ],
+                    "size": [
+                        380,
+                        235
+                    ],
+                    "hide": false,
+                    "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "services",
+                    "imagePath": "assets/home/services.png",
+                    "hoverImagePath": "assets/home/services_hover.png",
+                    "position": [
+                        1335,
+                        490
+                    ],
+                    "size": [
+                        380,
+                        235
+                    ],
+                    "hide": false,
+                    "uuid": "0f9661d5-77ad-4492-914d-767087352313"
+
+                }
+            ],
+            "images": [
+            ]
+        },
+        {
+            "type": "static",
+            "texts": [],
+            "buttons": [
+                {
+                    "type": "ToPage",
+                    "name": "games",
+                    "imagePath": "assets/home/games.png",
+                    "hoverImagePath": "assets/home/games_hover.png",
+                    "position": [
+                        165,
+                        750
+                    ],
+                    "size": [
+                        380,
+                        235
+                    ],
+                    "hide": false,
+                    "uuid": "0f9661d5-77ad-4492-914d-767087352313"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "interface",
+                    "imagePath": "assets/home/interface.png",
+                    "hoverImagePath": "assets/home/interface_hover.png",
+                    "position": [
+                        555,
+                        750
+                    ],
+                    "size": [
+                        380,
+                        235
+                    ],
+                    "hide": false,
+                    "uuid": "c5466571-2bd5-424d-8447-1aa2a28e078e"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "profiles",
+                    "imagePath": "assets/home/profiles.png",
+                    "hoverImagePath": "assets/home/profiles_hover.png",
+                    "position": [
+                        945,
+                        750
+                    ],
+                    "size": [
+                        380,
+                        235
+                    ],
+                    "hide": false,
+                    "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "system",
+                    "imagePath": "assets/home/system.png",
+                    "hoverImagePath": "assets/home/system_hover.png",
+                    "position": [
+                        1335,
+                        750
+                    ],
+                    "size": [
+                        380,
+                        235
+                    ],
+                    "hide": false,
+                    "uuid": "0f9661d5-77ad-4492-914d-767087352313"
+
+                }
+            ],
+            "images": [
+            ]
+        }
+    ]
+}

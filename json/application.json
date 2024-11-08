@@ -3,5 +3,10 @@
     "components": [
     ],
     "graphic_path": "libGraphic.so",
-    "home_page_path": "/json/pages/home.json"
+    "home_page_path": "/json/pages/home.json",
+    "pages": [
+        {
+            "path": "/json/pages/settings.json"
+        }
+    ]
 }
