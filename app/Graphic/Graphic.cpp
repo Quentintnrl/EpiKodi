@@ -19,7 +19,7 @@ void Graphic::draw() {
     _window.display();
 }
 
-void Graphic::addBox(const JsonBox jsonBox) {
+void Graphic::addBox(const JsonBox &jsonBox) {
     _box.push_back(std::make_shared<Box>(jsonBox));
 }
 

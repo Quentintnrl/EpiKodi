@@ -1,6 +1,7 @@
 #pragma once
 #include "JsonApp.hpp"
 #include "IGraphic.hpp"
+#include "Page.hpp"
 #include <memory>
 
 #define CONFIG_PATH "/json/application.json"
@@ -19,4 +20,5 @@ class App {
         bool _Running;
         std::string name;
         std::shared_ptr<IGraphic> graphic;
+        std::vector<std::shared_ptr<Page>> _pages;
 };

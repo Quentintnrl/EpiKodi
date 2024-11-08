@@ -31,6 +31,8 @@ JsonText.cpp
 JsonText.hpp
 )
 
+set_target_properties(ParserJsonLib PROPERTIES POSITION_INDEPENDENT_CODE ON)
+
 message(STATUS "CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}/../../lib/Debug")
 target_include_directories(ParserJsonLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../../lib/Debug)
 target_link_libraries(ParserJsonLib Debug)

@@ -14,6 +14,10 @@ App::App(JsonApp jsonApp) {
     }
     DlLoader dlLoader;
     graphic = dlLoader.getInstance<IGraphic>(graphicPath, GRAPHIC_LOAD);
+    _pages.push_back(std::make_shared<Page>(jsonApp.getPage()));
+    for (auto &box : jsonApp.getPage().getBoxes()) {
+        graphic->addBox(box);
+    }
 }
 
 App::~App() {

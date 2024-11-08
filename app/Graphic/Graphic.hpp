@@ -18,7 +18,7 @@ class Graphic final : public AGraphic {
         ~Graphic();
         void draw() override;
 
-        void addBox(const JsonBox jsonBox);
+        void addBox(const JsonBox &jsonBox);
         void addButton(const Uuid &boxId, const JsonButton &jsonButton);
         void addImage(const Uuid &boxId, const JsonImage &jsonImage);
         void addText(const Uuid &boxId, const JsonText &jsonText);
