@@ -1,5 +1,7 @@
 #include "GraphicImage.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 
 SFMLGraphic::GraphicImage::GraphicImage(const JsonImage &json)
 {
@@ -54,14 +56,12 @@ void SFMLGraphic::GraphicImage::debug(const std::size_t i)
 
 void SFMLGraphic::GraphicImage::draw(sf::RenderWindow &window)
 {
-    return;
-    // if (!_hide) {
-    //     sf::Texture texture;
-    //     texture.loadFromImage(_image);
-    //     sf::Sprite sprite(texture);
+    if (!_hide) {
+        sf::Texture texture;
+        texture.loadFromImage(_image);
+        sf::Sprite sprite(texture);
 
-    //     sprite.setPosition(std::get<0>(_position), std::get<1>(_position));
-    //     sprite.setScale(std::get<0>(_size) / _image.getSize().x, std::get<1>(_size) / _image.getSize().y);
-    //     window.draw(sprite);
-    // }
+        sprite.setPosition(std::get<0>(_position), std::get<1>(_position));
+        window.draw(sprite);
+    }
 }
