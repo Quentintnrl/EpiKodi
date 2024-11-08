@@ -24,6 +24,8 @@ SFMLGraphic::GraphicButton::GraphicButton(const JsonButton &jsonButton)
     _position = jsonButton.getPosition();
     _size = jsonButton.getSize();
     hide = jsonButton.getHide();
+    hover = false;
+    _uuid = jsonButton.getUuid();
 }
 
 const void SFMLGraphic::GraphicButton::setImage(const std::string imagePath)
@@ -34,6 +36,11 @@ const void SFMLGraphic::GraphicButton::setImage(const std::string imagePath)
 const void SFMLGraphic::GraphicButton::setHoverImage(const std::string hoverImagePath)
 {
     _hoverImage.loadFromFile(hoverImagePath);
+}
+
+const void SFMLGraphic::GraphicButton::setHover(const bool hover)
+{
+    this->hover = hover;
 }
 
 const sf::Image &SFMLGraphic::GraphicButton::getImage() const
@@ -77,7 +84,11 @@ void SFMLGraphic::GraphicButton::draw(sf::RenderWindow &window)
 {
     sf::Sprite sprite;
     sf::Texture texture;
-    texture.loadFromImage(_image);
+    if (hover) {
+        texture.loadFromImage(_hoverImage);
+    } else {
+        texture.loadFromImage(_image);
+    }
     sprite.setTexture(texture);
     sprite.setPosition(std::get<0>(_position), std::get<1>(_position));
     window.draw(sprite);

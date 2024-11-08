@@ -16,6 +16,7 @@ namespace SFMLGraphic {
 
             const void setImage(const std::string imagePath);
             const void setHoverImage(const std::string hoverImagePath);
+            const void setHover(const bool hover);
 
             const sf::Image &getImage() const;
             const sf::Image &getHoverImage() const;
@@ -34,5 +35,6 @@ namespace SFMLGraphic {
             sf::Image _image;
             sf::Image _hoverImage;
             bool hide;
+            bool hover;
     };
 }

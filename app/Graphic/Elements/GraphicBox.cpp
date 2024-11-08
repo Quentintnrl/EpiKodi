@@ -1,5 +1,6 @@
 #include "GraphicBox.hpp"
 #include "GraphicButton.hpp"
+#include <iostream>
 #include "GraphicImage.hpp"
 #include "GraphicText.hpp"
 
@@ -37,6 +38,18 @@ void SFMLGraphic::GraphicBox::addImage(const JsonImage &image)
 void SFMLGraphic::GraphicBox::addText(const JsonText &text)
 {
     _texts.push_back(std::make_shared<GraphicText>(text));
+}
+
+void SFMLGraphic::GraphicBox::setButtonState(const Uuid buttonId, const bool state)
+{
+    for (const auto &button : _buttons) {
+        std::cout << buttonId.toString() << std::endl;
+        std::cout << button->getUuid().toString() << std::endl;
+        if (button->getUuid() == buttonId) {
+            std::dynamic_pointer_cast<GraphicButton>(button)->setHover(state);
+            return;
+        }
+    }
 }
 
 void SFMLGraphic::GraphicBox::debug(const std::size_t i) {

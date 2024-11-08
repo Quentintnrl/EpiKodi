@@ -56,6 +56,22 @@ void SFMLGraphic::Graphic::addText(const Uuid &boxId, const JsonText &jsonText) 
     }
 }
 
+const std::tuple<std::size_t, std::size_t> SFMLGraphic::Graphic::getCursorPosition() const {
+    sf::Vector2i position = sf::Mouse::getPosition(_window);
+    return std::make_tuple(position.x, position.y);
+}
+
+const std::tuple<std::size_t, std::size_t> SFMLGraphic::Graphic::getWindowSize() const {
+    return std::make_tuple(_window.getSize().x, _window.getSize().y);
+}
+
+void SFMLGraphic::Graphic::setButtonState(const Uuid buttonId, const bool state) {
+    for (const auto &box : _box) {
+        auto tmpBox = std::dynamic_pointer_cast<GraphicBox>(box);
+        tmpBox->setButtonState(buttonId, state);
+    }
+}
+
 void SFMLGraphic::Graphic::debug(std::size_t i) {
     if (_appName.empty()) {
         printDebug("Graphic {", i);

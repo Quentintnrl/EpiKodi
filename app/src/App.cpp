@@ -37,7 +37,17 @@ void App::start() {
 void App::run() {
     while (_Running) {
         graphic->draw();
-        // Do something
+        std::tuple<std::size_t , std::size_t> pos = graphic->getCursorPosition();
+        std::tuple<std::size_t , std::size_t> windowSize = graphic->getWindowSize();
+        for (auto &box : _pages.back()->getBoxes()) {
+            for (auto &button : box.getButtons()) {
+                if (button->isHover(pos, windowSize, std::make_tuple(APP_WIDTH, APP_HEIGHT))) {
+                    graphic->setButtonState(button->getUuid(), true);
+                } else {
+                    graphic->setButtonState(button->getUuid(), false);
+                }
+            }
+        }
     }
 }
 

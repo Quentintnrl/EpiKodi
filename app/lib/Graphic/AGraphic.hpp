@@ -1,5 +1,6 @@
 #pragma once
 #include "IGraphic.hpp"
+#include "Uuid.hpp" // Include the header file that defines Uuid
 
 class AGraphic : public IGraphic
 {
@@ -12,6 +13,9 @@ class AGraphic : public IGraphic
         virtual void addBox(const JsonBox &box) = 0;
 
         virtual void debug(std::size_t i = 0) = 0;
+        virtual const std::tuple<std::size_t, std::size_t> getCursorPosition() const = 0;
+        virtual const std::tuple<std::size_t, std::size_t> getWindowSize() const = 0;
+        virtual void setButtonState(const Uuid buttonId, const bool state) = 0;
     protected:
         virtual ~AGraphic() = default;
 };

@@ -24,6 +24,7 @@ class JsonButton : public AbstractJsonElem {
         const std::tuple<int, int> getPosition() const;
         const std::tuple<int, int> getSize() const;
         const bool getHide() const;
+        const std::string getUuid() const;
 
         const void debug(const std::size_t i) override;
 
@@ -36,6 +37,7 @@ class JsonButton : public AbstractJsonElem {
         const std::tuple<int, int> findPosition(const nlohmann::json& json) const;
         const std::tuple<int, int> findSize(const nlohmann::json& json) const;
         const bool findHide(const nlohmann::json& json) const;
+        const std::string findUuid(const nlohmann::json& json) const;
 
         enum ButtonType _type;
         std::string _name;
@@ -44,4 +46,5 @@ class JsonButton : public AbstractJsonElem {
         std::tuple<int, int> _position;
         std::tuple<int, int> _size;
         bool hide;
+        std::string _uuid;
 };

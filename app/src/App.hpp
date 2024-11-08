@@ -9,6 +9,9 @@
 #define PARSER_LOAD "createParser"
 #define GRAPHIC_LOAD "createGraphic"
 
+#define APP_WIDTH 1920
+#define APP_HEIGHT 1080
+
 class App {
     public:
         App(JsonApp jsonApp);
