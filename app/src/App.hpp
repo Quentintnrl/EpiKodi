@@ -33,4 +33,5 @@ class App {
         std::string name;
         std::shared_ptr<IGraphic> graphic;
         std::vector<std::shared_ptr<Page>> _pages;
+        std::vector<std::shared_ptr<Page>> _pagesList;
 };

@@ -5,12 +5,15 @@ Button::Button(const JsonButton &jsonButton) : AppElement() {
     _size = jsonButton.getSize();
     _uuid = jsonButton.getUuid();
     _type = jsonButton.getType();
+    _target = jsonButton.getTarget();
 }
 
 Button::Button(const Button& other) : AppElement() {
     _uuid = other._uuid.toString();
     _position = other._position;
     _size = other._size;
+    _type = other._type;
+    _target = other._target;
 }
 
 const bool Button::isHover(std::tuple<std::size_t, std::size_t> CursorPosition, std::tuple<std::size_t, std::size_t> WindowSize, std::tuple<std::size_t, std::size_t> baseWindowSize) {
@@ -25,6 +28,10 @@ const bool Button::getState() const {
 
 const ButtonType Button::getType() const {
     return _type;
+}
+
+const std::string Button::getTarget() const {
+    return _target;
 }
 
 Button& Button::operator=(const Button& other) {

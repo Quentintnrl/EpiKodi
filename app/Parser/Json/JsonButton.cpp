@@ -26,6 +26,7 @@ JsonButton::JsonButton(const nlohmann::json& json) {
     _size = findSize(json);
     hide = findHide(json);
     _uuid = findUuid(json);
+    _target = findTarget(json);
 }
 
 const ButtonType JsonButton::getType() const {
@@ -64,6 +65,10 @@ const std::string JsonButton::getUuid() const {
     return _uuid;
 }
 
+const std::string JsonButton::getTarget() const {
+    return _target;
+}
+
 const void JsonButton::debug(const std::size_t i) {
     printDebug("Button: {", i);
     printDebug("type: " + getTypeString(), i + 1);
@@ -73,6 +78,8 @@ const void JsonButton::debug(const std::size_t i) {
     printDebug("position: (" + std::to_string(std::get<0>(_position)) + ", " + std::to_string(std::get<1>(_position)) + ")", i + 1);
     printDebug("size: (" + std::to_string(std::get<0>(_size)) + ", " + std::to_string(std::get<1>(_size)) + ")", i + 1);
     printDebug("hide: " + std::to_string(hide), i + 1);
+    printDebug("uuid: " + _uuid, i + 1);
+    printDebug("target: " + _target, i + 1);
     printDebug("}", i);
 }
 
@@ -107,4 +114,8 @@ const bool JsonButton::findHide(const nlohmann::json& json) const {
 
 const std::string JsonButton::findUuid(const nlohmann::json& json) const {
     return json.at("uuid").get<std::string>();
+}
+
+const std::string JsonButton::findTarget(const nlohmann::json& json) const {
+    return json.at("target").get<std::string>();
 }

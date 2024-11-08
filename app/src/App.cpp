@@ -16,6 +16,9 @@ App::App(JsonApp jsonApp) {
     DlLoader dlLoader;
     graphic = dlLoader.getInstance<IGraphic>(graphicPath, GRAPHIC_LOAD);
     _pages.push_back(std::make_shared<Page>(jsonApp.getPage()));
+    for (auto &page : jsonApp.getPages()) {
+        _pagesList.push_back(std::make_shared<Page>(page));
+    }
     for (auto &box : jsonApp.getPage().getBoxes()) {
         graphic->addBox(box);
     }
@@ -120,5 +123,14 @@ void App::addBox(const std::shared_ptr<Button> button) {
 }
 
 void App::addPage(const std::shared_ptr<Button> button) {
+    for (auto &page : _pagesList) {
+        std::cout << "search: " << button->getTarget() << std::endl;
+        std::cout << "page:   " << page->getName() << std::endl;
+        if (page->getName() == button->getTarget()) {
+            _pages.push_back(page);
+            std::cout << "find" << std::endl;
+            break;
+        }
+    }
     return;
 }

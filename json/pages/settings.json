@@ -20,7 +20,7 @@
                     ],
                     "hide": false,
                     "uuid": "0f9661d5-77ad-4492-914d-767087352313",
-                    "target": "file_manager"
+                    "target": "File_manager"
 
                 },
                 {
@@ -38,7 +38,7 @@
                     ],
                     "hide": false,
                     "uuid": "c5466571-2bd5-424d-8447-1aa2a28e078e",
-                    "target": "add_ons"
+                    "target": "Add_ons"
 
                 },
                 {
@@ -56,7 +56,7 @@
                     ],
                     "hide": false,
                     "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0",
-                    "target": "sytem_information"
+                    "target": "Sytem_information"
 
                 },
                 {
@@ -74,7 +74,7 @@
                     ],
                     "hide": false,
                     "uuid": "0f9661d5-77ad-4492-914d-767087352313",
-                    "target": "event_log"
+                    "target": "Event_log"
 
                 }
             ],
@@ -100,7 +100,7 @@
                     ],
                     "hide": false,
                     "uuid": "0f9661d5-77ad-4492-914d-767087352313",
-                    "target": "player"
+                    "target": "Player"
 
                 },
                 {
@@ -118,7 +118,7 @@
                     ],
                     "hide": false,
                     "uuid": "c5466571-2bd5-424d-8447-1aa2a28e078e",
-                    "target": "media"
+                    "target": "Media"
 
                 },
                 {
@@ -136,7 +136,7 @@
                     ],
                     "hide": false,
                     "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0",
-                    "target": "_live_tv"
+                    "target": "Mvr_&_live_tv"
 
                 },
                 {
@@ -154,7 +154,7 @@
                     ],
                     "hide": false,
                     "uuid": "0f9661d5-77ad-4492-914d-767087352313",
-                    "target": "services"
+                    "target": "Services"
 
                 }
             ],
@@ -180,7 +180,7 @@
                     ],
                     "hide": false,
                     "uuid": "0f9661d5-77ad-4492-914d-767087352313",
-                    "target": "games"
+                    "target": "Games"
 
                 },
                 {
@@ -198,7 +198,7 @@
                     ],
                     "hide": false,
                     "uuid": "c5466571-2bd5-424d-8447-1aa2a28e078e",
-                    "target": "interface"
+                    "target": "Interface"
 
                 },
                 {
@@ -216,7 +216,7 @@
                     ],
                     "hide": false,
                     "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0",
-                    "target": "profiles"
+                    "target": "Profiles"
 
                 },
                 {
@@ -234,7 +234,7 @@
                     ],
                     "hide": false,
                     "uuid": "0f9661d5-77ad-4492-914d-767087352313",
-                    "target": "system"
+                    "target": "System"
 
                 }
             ],

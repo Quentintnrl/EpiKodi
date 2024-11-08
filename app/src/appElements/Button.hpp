@@ -11,9 +11,11 @@ public:
     const bool isHover(std::tuple<std::size_t, std::size_t> CursorPosition, std::tuple<std::size_t, std::size_t> WindowSize, std::tuple<std::size_t, std::size_t> baseWindowSize);
     const bool getState() const;
     const ButtonType getType() const;
+    const std::string getTarget() const;
 private:
     std::tuple<std::size_t, std::size_t> _position;
     std::tuple<std::size_t, std::size_t> _size;
     bool _state;
     ButtonType _type;
+    std::string _target;
 };
