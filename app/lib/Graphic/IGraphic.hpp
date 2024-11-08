@@ -7,7 +7,7 @@
 class IGraphic {
     public:
         virtual ~IGraphic() = default;
-        virtual void draw() = 0;
+        virtual void loop() = 0;
 
         //add, remove, update, get
         virtual void addBox(const JsonBox &box) = 0;
@@ -16,4 +16,6 @@ class IGraphic {
         virtual void setButtonState(const Uuid buttonId, const bool state) = 0;
         virtual void debug(std::size_t i = 0) = 0;
     protected:
+        virtual void draw() = 0;
+        virtual void manageEvents() = 0;
 };

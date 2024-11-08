@@ -14,12 +14,54 @@ SFMLGraphic::Graphic::~Graphic() {
         _window.close();
 }
 
+void SFMLGraphic::Graphic::loop() {
+    draw();
+    manageEvents();
+}
+
 void SFMLGraphic::Graphic::draw() {
     _window.clear();
     for (std::size_t i = 0; i < _box.size(); i++) {
         _box[i]->draw(_window);
     }
     _window.display();
+}
+
+void SFMLGraphic::Graphic::manageEvents() {
+    sf::Event event;
+    while (_window.pollEvent(event)) {
+        if (event.type == sf::Event::Closed) {
+            _eventQueue.push(GraphicEvent::QUIT);
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up) {
+            _eventQueue.push(GraphicEvent::KEY_UP);
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
+            _eventQueue.push(GraphicEvent::KEY_RIGHT);
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Down) {
+            _eventQueue.push(GraphicEvent::KEY_DOWN);
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
+            _eventQueue.push(GraphicEvent::KEY_LEFT);
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
+            _eventQueue.push(GraphicEvent::KEY_ENTER);
+        }
+        if (event.type == sf::Event::MouseButtonPressed) {
+            _eventQueue.push(GraphicEvent::MOUSE_CLICK);
+        }
+        if (event.type == sf::Event::MouseWheelScrolled && event.mouseWheelScroll.delta > 0) {
+            _eventQueue.push(GraphicEvent::MOUSE_WHEEL_UP);
+        }
+        if (event.type == sf::Event::MouseWheelScrolled && event.mouseWheelScroll.delta < 0) {
+            _eventQueue.push(GraphicEvent::MOUSE_WHEEL_DOWN);
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+            _eventQueue.push(GraphicEvent::GO_BACK);
+        }
+    }
+    std::cout << "Event queue size: " << _eventQueue.size() << std::endl;
 }
 
 void SFMLGraphic::Graphic::addBox(const JsonBox &jsonBox) {

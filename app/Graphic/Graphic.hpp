@@ -2,11 +2,15 @@
 
 #include "AGraphic.hpp"
 #include "GraphicBox.hpp"
+#include "GraphicEvent.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
+#include <queue>
+#include <mutex>
+#include <memory>
 
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
@@ -17,7 +21,7 @@ namespace SFMLGraphic {
         public:
             Graphic(const std::string &appName);
             ~Graphic();
-            void draw() override;
+            void loop() override;
 
             void addBox(const JsonBox &jsonBox);
             void addButton(const Uuid &boxId, const JsonButton &jsonButton);
@@ -31,8 +35,12 @@ namespace SFMLGraphic {
             void debug(std::size_t i) override;
             sf::RenderWindow getWindow;
         private:
+            void draw() override;
+            void manageEvents() override;
             std::vector<std::shared_ptr<GraphicBox>> _box;
             sf::RenderWindow _window;
             std::string _appName;
+            std::mutex _mutex;
+            std::queue<GraphicEvent> _eventQueue;
     };
 }

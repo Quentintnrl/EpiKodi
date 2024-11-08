@@ -36,7 +36,7 @@ void App::start() {
 
 void App::run() {
     while (_Running) {
-        graphic->draw();
+        graphic->loop();
         std::tuple<std::size_t , std::size_t> pos = graphic->getCursorPosition();
         std::tuple<std::size_t , std::size_t> windowSize = graphic->getWindowSize();
         for (auto &box : _pages.back()->getBoxes()) {
