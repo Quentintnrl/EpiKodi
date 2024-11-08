@@ -127,8 +127,6 @@ const GraphicEvent SFMLGraphic::Graphic::getLastEvent() {
 
 const void SFMLGraphic::Graphic::changePage(const std::string &pageName) {
     for (const auto &page : _pages) {
-        std::cout << page->getName() << std::endl;
-        std::cout << pageName << std::endl;
         if (page->getName() == pageName) {
             _box.clear();
             for (const auto &box : page->getBoxes()) {
