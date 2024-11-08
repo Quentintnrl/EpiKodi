@@ -5,9 +5,16 @@
 #include <dlfcn.h>
 #include "Debug.hpp"
 #include <iostream>
+#include <vector>
 
 class DlLoader {
 public:
+    DlLoader() = default;
+    ~DlLoader() {
+        for (auto handle : handles) {
+            dlclose(handle);
+        }
+    }
     template <typename T>
     std::shared_ptr<T> getInstance(const std::string &path, const std::string &name) {
         if (DEBUG_ENABLED()) {
@@ -30,4 +37,6 @@ public:
             delete instance;
         });
     }
+private:
+    std::vector<void *> handles;
 };

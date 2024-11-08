@@ -20,6 +20,7 @@ class App {
         void run();
         void stop();
     private:
+        void handleEvents();
         bool _Running;
         std::string name;
         std::shared_ptr<IGraphic> graphic;

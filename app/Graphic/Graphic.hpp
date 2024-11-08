@@ -31,7 +31,7 @@ namespace SFMLGraphic {
             const std::tuple<std::size_t, std::size_t> getCursorPosition() const override;
             const std::tuple<std::size_t, std::size_t> getWindowSize() const override;
             void setButtonState(const Uuid buttonId, const bool state) override;
-
+            const GraphicEvent getLastEvent() override;
             void debug(std::size_t i) override;
             sf::RenderWindow getWindow;
         private:

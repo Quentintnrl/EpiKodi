@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JsonBox.hpp"
+#include "GraphicEvent.hpp"
 #include <SFML/Graphics.hpp>
 #include "Uuid.hpp"
 
@@ -15,6 +16,7 @@ class IGraphic {
         virtual const std::tuple<std::size_t, std::size_t> getWindowSize() const = 0;
         virtual void setButtonState(const Uuid buttonId, const bool state) = 0;
         virtual void debug(std::size_t i = 0) = 0;
+        virtual const GraphicEvent getLastEvent() = 0;
     protected:
         virtual void draw() = 0;
         virtual void manageEvents() = 0;

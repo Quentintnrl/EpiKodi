@@ -114,6 +114,14 @@ void SFMLGraphic::Graphic::setButtonState(const Uuid buttonId, const bool state)
     }
 }
 
+const GraphicEvent SFMLGraphic::Graphic::getLastEvent() {
+    if (_eventQueue.empty())
+        return GraphicEvent::NONE;
+    GraphicEvent event = _eventQueue.front();
+    _eventQueue.pop();
+    return event;
+}
+
 void SFMLGraphic::Graphic::debug(std::size_t i) {
     if (_appName.empty()) {
         printDebug("Graphic {", i);

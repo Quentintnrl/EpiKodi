@@ -16,6 +16,7 @@ class AGraphic : public IGraphic
         virtual const std::tuple<std::size_t, std::size_t> getCursorPosition() const = 0;
         virtual const std::tuple<std::size_t, std::size_t> getWindowSize() const = 0;
         virtual void setButtonState(const Uuid buttonId, const bool state) = 0;
+        virtual const GraphicEvent getLastEvent() = 0;
     protected:
         virtual void draw() = 0;
         virtual void manageEvents() = 0;

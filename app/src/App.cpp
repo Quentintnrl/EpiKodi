@@ -1,5 +1,6 @@
 #include "App.hpp"
 #include "dlLoader.hpp"
+#include "GraphicEvent.hpp"
 #include <iostream>
 
 App::App(JsonApp jsonApp) {
@@ -24,9 +25,6 @@ App::App(JsonApp jsonApp) {
 }
 
 App::~App() {
-    if (_Running) {
-        stop();
-    }
     stop();
 }
 
@@ -48,9 +46,17 @@ void App::run() {
                 }
             }
         }
+        handleEvents();
     }
 }
 
 void App::stop() {
     _Running = false;
+}
+
+void App::handleEvents() {
+    GraphicEvent lastEvent = graphic->getLastEvent();
+    if (lastEvent == GraphicEvent::QUIT) {
+        stop();
+    }
 }
