@@ -8,8 +8,8 @@
                 {
                     "type": "ToPage",
                     "name": "file_manager",
-                    "imagePath": "assets/home/file_manager.png",
-                    "hoverImagePath": "assets/home/file_manager_hover.png",
+                    "imagePath": "assets/settings/file_manager.png",
+                    "hoverImagePath": "assets/settings/file_manager_hover.png",
                     "position": [
                         165,
                         90
@@ -26,8 +26,8 @@
                 {
                     "type": "ToPage",
                     "name": "add_ons",
-                    "imagePath": "assets/home/add_ons.png",
-                    "hoverImagePath": "assets/home/add_ons_hover.png",
+                    "imagePath": "assets/settings/add_ons.png",
+                    "hoverImagePath": "assets/settings/add_ons_hover.png",
                     "position": [
                         555,
                         90
@@ -43,9 +43,9 @@
                 },
                 {
                     "type": "ToPage",
-                    "name": "sytem_information",
-                    "imagePath": "assets/home/sytem_information.png",
-                    "hoverImagePath": "assets/home/sytem_information_hover.png",
+                    "name": "system_information",
+                    "imagePath": "assets/settings/system_information.png",
+                    "hoverImagePath": "assets/settings/system_information_hover.png",
                     "position": [
                         945,
                         90
@@ -62,8 +62,8 @@
                 {
                     "type": "ToPage",
                     "name": "event_log",
-                    "imagePath": "assets/home/event_log.png",
-                    "hoverImagePath": "assets/home/event_log_hover.png",
+                    "imagePath": "assets/settings/event_log.png",
+                    "hoverImagePath": "assets/settings/event_log_hover.png",
                     "position": [
                         1335,
                         90
@@ -88,8 +88,8 @@
                 {
                     "type": "ToPage",
                     "name": "player",
-                    "imagePath": "assets/home/player.png",
-                    "hoverImagePath": "assets/home/player_hover.png",
+                    "imagePath": "assets/settings/player.png",
+                    "hoverImagePath": "assets/settings/player_hover.png",
                     "position": [
                         165,
                         490
@@ -106,8 +106,8 @@
                 {
                     "type": "ToPage",
                     "name": "media",
-                    "imagePath": "assets/home/media.png",
-                    "hoverImagePath": "assets/home/media_hover.png",
+                    "imagePath": "assets/settings/media.png",
+                    "hoverImagePath": "assets/settings/media_hover.png",
                     "position": [
                         555,
                         490
@@ -123,9 +123,9 @@
                 },
                 {
                     "type": "ToPage",
-                    "name": "mvr_&_live_tv",
-                    "imagePath": "assets/home/mvr_&_live_tv.png",
-                    "hoverImagePath": "assets/home/mvr_&_live_tv_hover.png",
+                    "name": "pvr_&_live_tv",
+                    "imagePath": "assets/settings/pvr_&_live_tv.png",
+                    "hoverImagePath": "assets/settings/pvr_&_live_tv_hover.png",
                     "position": [
                         945,
                         490
@@ -136,14 +136,14 @@
                     ],
                     "hide": false,
                     "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0",
-                    "target": "Mvr_&_live_tv"
+                    "target": "Pvr_&_live_tv"
 
                 },
                 {
                     "type": "ToPage",
                     "name": "services",
-                    "imagePath": "assets/home/services.png",
-                    "hoverImagePath": "assets/home/services_hover.png",
+                    "imagePath": "assets/settings/services.png",
+                    "hoverImagePath": "assets/settings/services_hover.png",
                     "position": [
                         1335,
                         490
@@ -168,8 +168,8 @@
                 {
                     "type": "ToPage",
                     "name": "games",
-                    "imagePath": "assets/home/games.png",
-                    "hoverImagePath": "assets/home/games_hover.png",
+                    "imagePath": "assets/settings/games.png",
+                    "hoverImagePath": "assets/settings/games_hover.png",
                     "position": [
                         165,
                         750
@@ -186,8 +186,8 @@
                 {
                     "type": "ToPage",
                     "name": "interface",
-                    "imagePath": "assets/home/interface.png",
-                    "hoverImagePath": "assets/home/interface_hover.png",
+                    "imagePath": "assets/settings/interface.png",
+                    "hoverImagePath": "assets/settings/interface_hover.png",
                     "position": [
                         555,
                         750
@@ -204,8 +204,8 @@
                 {
                     "type": "ToPage",
                     "name": "profiles",
-                    "imagePath": "assets/home/profiles.png",
-                    "hoverImagePath": "assets/home/profiles_hover.png",
+                    "imagePath": "assets/settings/profiles.png",
+                    "hoverImagePath": "assets/settings/profiles_hover.png",
                     "position": [
                         945,
                         750
@@ -222,8 +222,8 @@
                 {
                     "type": "ToPage",
                     "name": "system",
-                    "imagePath": "assets/home/system.png",
-                    "hoverImagePath": "assets/home/system_hover.png",
+                    "imagePath": "assets/settings/system.png",
+                    "hoverImagePath": "assets/settings/system_hover.png",
                     "position": [
                         1335,
                         750
