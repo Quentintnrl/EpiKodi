@@ -59,4 +59,66 @@ void App::handleEvents() {
     if (lastEvent == GraphicEvent::QUIT) {
         stop();
     }
+    if (lastEvent == GraphicEvent::KEY_UP ||
+        lastEvent == GraphicEvent::KEY_DOWN ||
+        lastEvent == GraphicEvent::KEY_LEFT ||
+        lastEvent == GraphicEvent::KEY_RIGHT) {
+        handleArrow(lastEvent);
+    }
+    if (lastEvent == GraphicEvent::KEY_ENTER ||
+        lastEvent == GraphicEvent::MOUSE_CLICK) {
+        handleSelect();
+    }
+    if (lastEvent == GraphicEvent::MOUSE_WHEEL_UP ||
+        lastEvent == GraphicEvent::MOUSE_WHEEL_DOWN) {
+        handleWheel(lastEvent);
+    }
+    if (lastEvent == GraphicEvent::GO_BACK) {
+        handleBack();
+    }
+}
+
+void App::handleArrow(const GraphicEvent &event) {
+    return;
+}
+
+void App::handleSelect() {
+    for (const auto &box : _pages.back()->getBoxes()) {
+        for (const auto &button : box.getButtons()) {
+            if (button->getState()) {
+                if (button->getType() == ToPopUp) {
+                    addPopUp(button);
+                }
+                if (button->getType() == AddBox) {
+                    addBox(button);
+                }
+                if (button->getType() == ToPage) {
+                    addPage(button);
+                }
+            }
+        }
+    }
+    return;
+}
+
+void App::handleWheel(const GraphicEvent &event) {
+    return;
+}
+
+void App::handleBack() {
+    if (_pages.size() > 1) {
+        _pages.pop_back();
+    }
+}
+
+void App::addPopUp(const std::shared_ptr<Button> button) {
+    return;
+}
+
+void App::addBox(const std::shared_ptr<Button> button) {
+    return;
+}
+
+void App::addPage(const std::shared_ptr<Button> button) {
+    return;
 }

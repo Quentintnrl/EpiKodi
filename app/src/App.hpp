@@ -21,6 +21,14 @@ class App {
         void stop();
     private:
         void handleEvents();
+        void handleArrow(const GraphicEvent &event);
+        void handleSelect();
+        void handleWheel(const GraphicEvent &event);
+        void handleBack();
+
+        void addPopUp(const std::shared_ptr<Button> button);
+        void addBox(const std::shared_ptr<Button> button);
+        void addPage(const std::shared_ptr<Button> button);
         bool _Running;
         std::string name;
         std::shared_ptr<IGraphic> graphic;

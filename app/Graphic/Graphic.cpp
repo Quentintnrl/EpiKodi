@@ -61,7 +61,6 @@ void SFMLGraphic::Graphic::manageEvents() {
             _eventQueue.push(GraphicEvent::GO_BACK);
         }
     }
-    std::cout << "Event queue size: " << _eventQueue.size() << std::endl;
 }
 
 void SFMLGraphic::Graphic::addBox(const JsonBox &jsonBox) {
