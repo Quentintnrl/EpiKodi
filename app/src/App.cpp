@@ -18,6 +18,9 @@ App::App(JsonApp jsonApp) {
     for (auto &box : jsonApp.getPage().getBoxes()) {
         graphic->addBox(box);
     }
+    if (DEBUG_ENABLED()) {
+        graphic->debug(0);
+    }
 }
 
 App::~App() {
@@ -33,6 +36,7 @@ void App::start() {
 
 void App::run() {
     while (_Running) {
+        graphic->draw();
         // Do something
     }
 }

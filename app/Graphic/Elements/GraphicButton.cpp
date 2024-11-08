@@ -1,4 +1,7 @@
-#include "Button.hpp"
+#include "GraphicButton.hpp"
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 const std::unordered_map<std::string, ButtonType> buttonTypeMap = {
     {"ToPopUp", ButtonType::ToPopUp},
@@ -12,7 +15,7 @@ const std::unordered_map<ButtonType, std::string> buttonTypeStringMap = {
     {ButtonType::ToPage, "ToPage"}
 };
 
-Button::Button(const JsonButton &jsonButton)
+SFMLGraphic::GraphicButton::GraphicButton(const JsonButton &jsonButton)
 {
     _type = jsonButton.getType();
     _name = jsonButton.getName();
@@ -23,29 +26,29 @@ Button::Button(const JsonButton &jsonButton)
     hide = jsonButton.getHide();
 }
 
-const void Button::setImage(const std::string imagePath)
+const void SFMLGraphic::GraphicButton::setImage(const std::string imagePath)
 {
     _image.loadFromFile(imagePath);
 }
 
-const void Button::setHoverImage(const std::string hoverImagePath)
+const void SFMLGraphic::GraphicButton::setHoverImage(const std::string hoverImagePath)
 {
     _hoverImage.loadFromFile(hoverImagePath);
 }
 
-const sf::Image &Button::getImage() const
+const sf::Image &SFMLGraphic::GraphicButton::getImage() const
 {
     return _image;
 }
 
-const sf::Image &Button::getHoverImage() const
+const sf::Image &SFMLGraphic::GraphicButton::getHoverImage() const
 {
     return _hoverImage;
 }
 
-void Button::update(const std::shared_ptr<IGraphicElem> elem)
+void SFMLGraphic::GraphicButton::update(const std::shared_ptr<IGraphicElem> elem)
 {
-    std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(elem);
+    std::shared_ptr<GraphicButton> button = std::dynamic_pointer_cast<GraphicButton>(elem);
     if (button) {
         _type = button->_type;
         _name = button->_name;
@@ -57,7 +60,7 @@ void Button::update(const std::shared_ptr<IGraphicElem> elem)
     }
 }
 
-void Button::debug(const std::size_t i)
+void SFMLGraphic::GraphicButton::debug(const std::size_t i)
 {
     printDebug("Button {", i);
     printDebug("Type: " + buttonTypeStringMap.at(_type), i + 1);
@@ -68,4 +71,14 @@ void Button::debug(const std::size_t i)
     printDebug("Size: " + std::to_string(std::get<0>(_size)) + ", " + std::to_string(std::get<1>(_size)), i + 1);
     printDebug("Hide: " + std::to_string(hide), i + 1);
     printDebug("}", i);
+}
+
+void SFMLGraphic::GraphicButton::draw(sf::RenderWindow &window)
+{
+    sf::Sprite sprite;
+    sf::Texture texture;
+    texture.loadFromImage(_image);
+    sprite.setTexture(texture);
+    sprite.setPosition(std::get<0>(_position), std::get<1>(_position));
+    window.draw(sprite);
 }

@@ -1,60 +1,67 @@
 #include "Graphic.hpp"
-#include "Box.hpp"
+#include "GraphicBox.hpp"
+#include "GraphicButton.hpp"
+#include <iostream>
 
-Graphic::Graphic(const std::string &appName) {
-    _window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), appName);
+SFMLGraphic::Graphic::Graphic(const std::string &appName) {
+    _window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), appName, sf::Style::Fullscreen);
     _window.setFramerateLimit(DEFAULT_FRAME_RATE);
     _appName = appName;
 }
 
-Graphic::~Graphic() {
+SFMLGraphic::Graphic::~Graphic() {
     if (_window.isOpen())
         _window.close();
 }
 
-void Graphic::draw() {
+void SFMLGraphic::Graphic::draw() {
     _window.clear();
-    for (const auto &box : _box) {
+    for (std::size_t i = 0; i < _box.size(); i++) {
+        _box[i]->draw(_window);
     }
     _window.display();
 }
 
-void Graphic::addBox(const JsonBox &jsonBox) {
-    _box.push_back(std::make_shared<Box>(jsonBox));
+void SFMLGraphic::Graphic::addBox(const JsonBox &jsonBox) {
+    _box.push_back(std::make_shared<GraphicBox>(jsonBox));
 }
 
-void Graphic::addButton(const Uuid &boxId, const JsonButton &jsonButton) {
+void SFMLGraphic::Graphic::addButton(const Uuid &boxId, const JsonButton &jsonButton) {
     for (const auto &box : _box) {
         if (box->getUuid() == boxId) {
-            auto tmpBox = std::dynamic_pointer_cast<Box>(box);
+            auto tmpBox = std::dynamic_pointer_cast<GraphicBox>(box);
             tmpBox->addButton(jsonButton);
             return;
         }
     }
 }
 
-void Graphic::addImage(const Uuid &boxId, const JsonImage &jsonImage) {
+void SFMLGraphic::Graphic::addImage(const Uuid &boxId, const JsonImage &jsonImage) {
     for (const auto &box : _box) {
         if (box->getUuid() == boxId) {
-            auto tmpBox = std::dynamic_pointer_cast<Box>(box);
+            auto tmpBox = std::dynamic_pointer_cast<GraphicBox>(box);
             tmpBox->addImage(jsonImage);
             return;
         }
     }
 }
 
-void Graphic::addText(const Uuid &boxId, const JsonText &jsonText) {
+void SFMLGraphic::Graphic::addText(const Uuid &boxId, const JsonText &jsonText) {
     for (const auto &box : _box) {
         if (box->getUuid() == boxId) {
-            auto tmpBox = std::dynamic_pointer_cast<Box>(box);
+            auto tmpBox = std::dynamic_pointer_cast<GraphicBox>(box);
             tmpBox->addText(jsonText);
             return;
         }
     }
 }
 
-void Graphic::debug(std::size_t i) {
-    printDebug(_appName + " {", i);
+void SFMLGraphic::Graphic::debug(std::size_t i) {
+    if (_appName.empty()) {
+        printDebug("Graphic {", i);
+    } else {
+        printDebug(_appName + " {", i);
+    }
     for (const auto &box : _box) {
         box->debug(i + 1);
     }
@@ -63,6 +70,6 @@ void Graphic::debug(std::size_t i) {
 
 extern "C" {
     IGraphic *createGraphic(const std::string &appName) {
-        return new Graphic(appName);
+        return new SFMLGraphic::Graphic(appName);
     }
 }
