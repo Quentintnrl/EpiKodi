@@ -1,13 +1,14 @@
 target_sources(Graphic
   PRIVATE
-  Box.cpp
-  Box.hpp
-  Button.cpp
-  Button.hpp
-  Image.cpp
-  Image.hpp
-  Text.cpp
-  Text.hpp
+  GraphicBox.cpp
+  GraphicBox.hpp
+  GraphicButton.cpp
+  GraphicButton.hpp
+  GraphicImage.cpp
+  GraphicImage.hpp
+  GraphicText.cpp
+  GraphicText.hpp
 )
 
 target_include_directories(Graphic PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(EpiKodiLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

@@ -1,5 +1,6 @@
 #pragma once
 #include "IGraphic.hpp"
+#include "Uuid.hpp" // Include the header file that defines Uuid
 
 class AGraphic : public IGraphic
 {
@@ -9,24 +10,12 @@ class AGraphic : public IGraphic
 
         //add, remove, update, get
 
-        void addBox(const std::shared_ptr<IBox> box) override;
-
-        void removeBox(const std::shared_ptr<IBox> box) override;
-        void removeElem(const std::shared_ptr<IGraphicElem> elem) override;
-
-        void updateBox(const std::shared_ptr<IBox> box) override;
-        void updateElem(const std::shared_ptr<IGraphicElem> elem) override;
-
-        const std::vector<std::shared_ptr<IBox>> getBoxe(const Iuuid &uuid) override;
-        const std::shared_ptr<IGraphicElem> getElem(const Iuuid &uuid) override;
-
-        const std::vector<std::shared_ptr<IBox>> getBoxes() override;
-        const std::vector<std::shared_ptr<IText>> getTexts(const Iuuid &boxUuid) override;
-        const std::vector<std::shared_ptr<IButton>> getButtons(const Iuuid &boxUuid) override;
-        const std::vector<std::shared_ptr<IImage>> getImages(const Iuuid &boxUuid) override;
+        virtual void addBox(const JsonBox &box) = 0;
 
         virtual void debug(std::size_t i = 0) = 0;
+        virtual const std::tuple<std::size_t, std::size_t> getCursorPosition() const = 0;
+        virtual const std::tuple<std::size_t, std::size_t> getWindowSize() const = 0;
+        virtual void setButtonState(const Uuid buttonId, const bool state) = 0;
     protected:
         virtual ~AGraphic() = default;
-        std::vector<std::shared_ptr<IBox>> _boxes;
 };

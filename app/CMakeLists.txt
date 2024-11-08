@@ -29,9 +29,12 @@ add_subdirectory(Parser)
 add_subdirectory(src)
 
 target_link_libraries(EpiKodi EpiKodiLib)
+target_link_libraries(EpiKodi UuidLib)
 target_link_libraries(EpiKodi GraphicLib)
 target_link_libraries(EpiKodi ParserLib)
 target_link_libraries(EpiKodi ParserJsonLib)
 target_link_libraries(EpiKodi Debug)
 
 target_link_libraries(Graphic Debug)
+target_link_libraries(Graphic UuidLib)
+target_link_libraries(Graphic ParserJsonLib)

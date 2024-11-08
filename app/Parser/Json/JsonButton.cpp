@@ -25,6 +25,7 @@ JsonButton::JsonButton(const nlohmann::json& json) {
     _position = findPosition(json);
     _size = findSize(json);
     hide = findHide(json);
+    _uuid = findUuid(json);
 }
 
 const ButtonType JsonButton::getType() const {
@@ -57,6 +58,10 @@ const std::tuple<int, int> JsonButton::getSize() const {
 
 const bool JsonButton::getHide() const {
     return hide;
+}
+
+const std::string JsonButton::getUuid() const {
+    return _uuid;
 }
 
 const void JsonButton::debug(const std::size_t i) {
@@ -98,4 +103,8 @@ const std::tuple<int, int> JsonButton::findSize(const nlohmann::json& json) cons
 
 const bool JsonButton::findHide(const nlohmann::json& json) const {
     return json.at("hide").get<bool>();
+}
+
+const std::string JsonButton::findUuid(const nlohmann::json& json) const {
+    return json.at("uuid").get<std::string>();
 }

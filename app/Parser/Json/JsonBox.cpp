@@ -22,6 +22,10 @@ JsonBox::JsonBox(const nlohmann::json &json) : AbstractJsonElem() {
     _images = findImages(json);
 }
 
+const BoxType JsonBox::getType() const {
+    return _type;
+}
+
 const std::vector<JsonText> JsonBox::getTexts() const {
     return _texts;
 }

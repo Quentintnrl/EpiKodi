@@ -18,7 +18,8 @@
                         115,
                         120
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "0f9661d5-77ad-4492-914d-767087352313"
 
                 },
                 {
@@ -34,7 +35,8 @@
                         115,
                         120
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "c5466571-2bd5-424d-8447-1aa2a28e078e"
 
                 },
                 {
@@ -50,7 +52,8 @@
                         115,
                         120
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0"
 
                 }
             ],
@@ -65,7 +68,8 @@
                         460,
                         101
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "097d92f4-a993-43b4-a22e-32f115aed524"
                 }
             ]
         },
@@ -86,7 +90,8 @@
                         460,
                         100
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "e8b25fb0-59db-4df5-b3e0-db9056e69e15"
 
                 },
                 {
@@ -96,13 +101,14 @@
                     "hoverImagePath": "assets/home/tv_shows_hover.png",
                     "position": [
                         0,
-                        100
+                        321
                     ],
                     "size": [
                         460,
                         321
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "d57a5892-cad2-4cb8-b1a7-7d35188f2459"
 
                 },
                 {
@@ -118,7 +124,8 @@
                         460,
                         100
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "a740ac93-5e57-4942-82d6-b9e4d3e4700f"
 
                 },
                 {
@@ -134,7 +141,8 @@
                         460,
                         100
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "9e17e9b5-e7a6-49ab-b563-51c766e86760"
 
                 },
                 {
@@ -150,7 +158,8 @@
                         460,
                         100
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "84a50d3d-271d-4306-8b6e-4ceb49a9a0c5"
 
                 },
                 {
@@ -166,7 +175,8 @@
                         460,
                         100
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "5ef37275-7362-4ed0-a34d-39246aaa7891"
 
                 },
                 {
@@ -182,7 +192,8 @@
                         460,
                         100
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "9537e603-ac8a-4c56-8a24-f2eabaf99ac8"
 
                 },
                 {
@@ -198,7 +209,8 @@
                         460,
                         100
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "86a42b0d-4cc3-44b0-926a-666ae4f9d460"
 
                 },
                 {
@@ -208,13 +220,14 @@
                     "hoverImagePath": "assets/home/pictures_hover.png",
                     "position": [
                         0,
-                        1101
+                        1021
                     ],
                     "size": [
                         460,
                         100
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "ca582866-4d61-43ac-85bc-45f0ee111a77"
 
                 },
                 {
@@ -224,13 +237,14 @@
                     "hoverImagePath": "assets/home/videos_hover.png",
                     "position": [
                         0,
-                        1101
+                        1121
                     ],
                     "size": [
                         460,
                         100
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "42a50f84-9549-4ab3-838b-8920ebcde010"
 
                 },
                 {
@@ -240,13 +254,14 @@
                     "hoverImagePath": "assets/home/favourites_hover.png",
                     "position": [
                         0,
-                        1201
+                        1221
                     ],
                     "size": [
                         460,
                         100
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "ad5ce03c-5886-423e-bf1b-f3545190867b"
 
                 },
                 {
@@ -256,13 +271,14 @@
                     "hoverImagePath": "assets/home/weather_hover.png",
                     "position": [
                         0,
-                        1301
+                        1321
                     ],
                     "size": [
                         460,
                         100
                     ],
-                    "hide": false
+                    "hide": false,
+                    "uuid": "751fe07d-3d49-4a58-8d8b-aead93ea01e4"
 
                 }
             ],
