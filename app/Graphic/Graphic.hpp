@@ -34,6 +34,7 @@ namespace SFMLGraphic {
             const std::tuple<std::size_t, std::size_t> getWindowSize() const override;
             void setButtonState(const Uuid buttonId, const bool state) override;
             const GraphicEvent getLastEvent() override;
+            const void changePage(const std::string &pageName) override;
             void debug(std::size_t i) override;
         private:
             void draw() override;

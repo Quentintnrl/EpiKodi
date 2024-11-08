@@ -16,13 +16,12 @@ App::App(JsonApp jsonApp) {
     DlLoader dlLoader;
     graphic = dlLoader.getInstance<IGraphic>(graphicPath, GRAPHIC_LOAD);
     _pages.push_back(std::make_shared<Page>(jsonApp.getPage()));
+    graphic->addPage(jsonApp.getPage());
     for (auto &page : jsonApp.getPages()) {
         _pagesList.push_back(std::make_shared<Page>(page));
         graphic->addPage(page);
     }
-    for (auto &box : jsonApp.getPage().getBoxes()) {
-        graphic->addBox(box);
-    }
+    graphic->changePage(jsonApp.getPage().getName());
     if (DEBUG_ENABLED()) {
         graphic->debug(0);
     }
@@ -129,6 +128,7 @@ void App::addPage(const std::shared_ptr<Button> button) {
         std::cout << "page:   " << page->getName() << std::endl;
         if (page->getName() == button->getTarget()) {
             _pages.push_back(page);
+            graphic->changePage(page->getName());
             std::cout << "find" << std::endl;
             break;
         }

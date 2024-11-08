@@ -11,6 +11,7 @@ namespace SFMLGraphic {
             ~GraphicPage() = default;
             void addBox(const JsonBox &jsonBox);
             const std::vector<std::shared_ptr<GraphicBox>> &getBoxes() const;
+            const std::string &getName() const;
             void debug(const std::size_t i);
         private:
             std::vector<std::shared_ptr<GraphicBox>> _box;

@@ -19,6 +19,7 @@ class IGraphic {
         virtual void setButtonState(const Uuid buttonId, const bool state) = 0;
         virtual void debug(std::size_t i = 0) = 0;
         virtual const GraphicEvent getLastEvent() = 0;
+        virtual const void changePage(const std::string &pageName) = 0;
     protected:
         virtual void draw() = 0;
         virtual void manageEvents() = 0;

@@ -15,6 +15,10 @@ const std::vector<std::shared_ptr<SFMLGraphic::GraphicBox>> &SFMLGraphic::Graphi
     return _box;
 }
 
+const std::string &SFMLGraphic::GraphicPage::getName() const {
+    return name;
+}
+
 void SFMLGraphic::GraphicPage::debug(const std::size_t i) {
     printDebug("Page {", i);
     for (const auto &box : _box) {
