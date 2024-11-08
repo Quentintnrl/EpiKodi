@@ -19,7 +19,8 @@
                         235
                     ],
                     "hide": false,
-                    "uuid": "0f9661d5-77ad-4492-914d-767087352313"
+                    "uuid": "0f9661d5-77ad-4492-914d-767087352313",
+                    "target": "file_manager"
 
                 },
                 {
@@ -36,7 +37,8 @@
                         235
                     ],
                     "hide": false,
-                    "uuid": "c5466571-2bd5-424d-8447-1aa2a28e078e"
+                    "uuid": "c5466571-2bd5-424d-8447-1aa2a28e078e",
+                    "target": "add_ons"
 
                 },
                 {
@@ -53,7 +55,8 @@
                         235
                     ],
                     "hide": false,
-                    "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0"
+                    "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0",
+                    "target": "sytem_information"
 
                 },
                 {
@@ -70,7 +73,8 @@
                         235
                     ],
                     "hide": false,
-                    "uuid": "0f9661d5-77ad-4492-914d-767087352313"
+                    "uuid": "0f9661d5-77ad-4492-914d-767087352313",
+                    "target": "event_log"
 
                 }
             ],
@@ -95,7 +99,8 @@
                         235
                     ],
                     "hide": false,
-                    "uuid": "0f9661d5-77ad-4492-914d-767087352313"
+                    "uuid": "0f9661d5-77ad-4492-914d-767087352313",
+                    "target": "player"
 
                 },
                 {
@@ -112,7 +117,8 @@
                         235
                     ],
                     "hide": false,
-                    "uuid": "c5466571-2bd5-424d-8447-1aa2a28e078e"
+                    "uuid": "c5466571-2bd5-424d-8447-1aa2a28e078e",
+                    "target": "media"
 
                 },
                 {
@@ -129,7 +135,8 @@
                         235
                     ],
                     "hide": false,
-                    "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0"
+                    "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0",
+                    "target": "_live_tv"
 
                 },
                 {
@@ -146,7 +153,8 @@
                         235
                     ],
                     "hide": false,
-                    "uuid": "0f9661d5-77ad-4492-914d-767087352313"
+                    "uuid": "0f9661d5-77ad-4492-914d-767087352313",
+                    "target": "services"
 
                 }
             ],
@@ -171,7 +179,8 @@
                         235
                     ],
                     "hide": false,
-                    "uuid": "0f9661d5-77ad-4492-914d-767087352313"
+                    "uuid": "0f9661d5-77ad-4492-914d-767087352313",
+                    "target": "games"
 
                 },
                 {
@@ -188,7 +197,8 @@
                         235
                     ],
                     "hide": false,
-                    "uuid": "c5466571-2bd5-424d-8447-1aa2a28e078e"
+                    "uuid": "c5466571-2bd5-424d-8447-1aa2a28e078e",
+                    "target": "interface"
 
                 },
                 {
@@ -205,7 +215,8 @@
                         235
                     ],
                     "hide": false,
-                    "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0"
+                    "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0",
+                    "target": "profiles"
 
                 },
                 {
@@ -222,7 +233,8 @@
                         235
                     ],
                     "hide": false,
-                    "uuid": "0f9661d5-77ad-4492-914d-767087352313"
+                    "uuid": "0f9661d5-77ad-4492-914d-767087352313",
+                    "target": "system"
 
                 }
             ],
