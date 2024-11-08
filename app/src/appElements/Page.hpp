@@ -11,6 +11,8 @@ class Page : public AppElement {
         void addBox(const Box &box);
 
         const std::vector<Box> getBoxes() const;
+        const std::string getName() const;
     private:
         std::vector<Box> _boxes;
+        std::string name;
 };

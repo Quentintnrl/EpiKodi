@@ -5,5 +5,6 @@ target_sources(EpiKodiLib
 )
 
 add_subdirectory(appElements)
+add_subdirectory(GraphicEvent)
 
 target_include_directories(EpiKodiLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

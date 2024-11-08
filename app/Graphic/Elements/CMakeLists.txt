@@ -6,6 +6,8 @@ target_sources(Graphic
   GraphicButton.hpp
   GraphicImage.cpp
   GraphicImage.hpp
+  GraphicPage.cpp
+  GraphicPage.hpp
   GraphicText.cpp
   GraphicText.hpp
 )

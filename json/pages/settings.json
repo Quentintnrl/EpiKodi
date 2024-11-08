@@ -1,0 +1,245 @@
+{
+    "name": "Settings",
+    "boxes": [
+        {
+            "type": "static",
+            "texts": [],
+            "buttons": [
+                {
+                    "type": "ToPage",
+                    "name": "file_manager",
+                    "imagePath": "assets/settings/file_manager.png",
+                    "hoverImagePath": "assets/settings/file_manager_hover.png",
+                    "position": [
+                        180,
+                        140
+                    ],
+                    "size": [
+                        370,
+                        225
+                    ],
+                    "hide": false,
+                    "uuid": "0f9661d5-77ad-4492-914d-767087352313",
+                    "target": "File_manager"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "add_ons",
+                    "imagePath": "assets/settings/add_ons.png",
+                    "hoverImagePath": "assets/settings/add_ons_hover.png",
+                    "position": [
+                        555,
+                        140
+                    ],
+                    "size": [
+                        370,
+                        225
+                    ],
+                    "hide": false,
+                    "uuid": "11d15fc6-eda6-46c3-ad68-82f726992553",
+                    "target": "Add_ons"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "system_information",
+                    "imagePath": "assets/settings/system_information.png",
+                    "hoverImagePath": "assets/settings/system_information_hover.png",
+                    "position": [
+                        945,
+                        140
+                    ],
+                    "size": [
+                        370,
+                        225
+                    ],
+                    "hide": false,
+                    "uuid": "6570895d-103f-433b-9ab7-1b34c2db55da",
+                    "target": "Sytem_information"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "event_log",
+                    "imagePath": "assets/settings/event_log.png",
+                    "hoverImagePath": "assets/settings/event_log_hover.png",
+                    "position": [
+                        1335,
+                        140
+                    ],
+                    "size": [
+                        370,
+                        225
+                    ],
+                    "hide": false,
+                    "uuid": "3ffadac1-63b8-4463-a76b-2a47b639eed6",
+                    "target": "Event_log"
+
+                }
+            ],
+            "images": [
+            ]
+        },
+        {
+            "type": "static",
+            "texts": [],
+            "buttons": [
+                {
+                    "type": "ToPage",
+                    "name": "player",
+                    "imagePath": "assets/settings/player.png",
+                    "hoverImagePath": "assets/settings/player_hover.png",
+                    "position": [
+                        165,
+                        490
+                    ],
+                    "size": [
+                        370,
+                        225
+                    ],
+                    "hide": false,
+                    "uuid": "b3749988-94d0-47a8-9615-b0c64be0dd62",
+                    "target": "Player"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "media",
+                    "imagePath": "assets/settings/media.png",
+                    "hoverImagePath": "assets/settings/media_hover.png",
+                    "position": [
+                        555,
+                        490
+                    ],
+                    "size": [
+                        370,
+                        225
+                    ],
+                    "hide": false,
+                    "uuid": "94d04246-f99c-4e61-9307-247208f9a3a7",
+                    "target": "Media"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "pvr_&_live_tv",
+                    "imagePath": "assets/settings/pvr_&_live_tv.png",
+                    "hoverImagePath": "assets/settings/pvr_&_live_tv_hover.png",
+                    "position": [
+                        945,
+                        490
+                    ],
+                    "size": [
+                        370,
+                        225
+                    ],
+                    "hide": false,
+                    "uuid": "1c4edfdd-5a48-4964-bf46-09cf452dcedc",
+                    "target": "Pvr_&_live_tv"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "services",
+                    "imagePath": "assets/settings/services.png",
+                    "hoverImagePath": "assets/settings/services_hover.png",
+                    "position": [
+                        1335,
+                        490
+                    ],
+                    "size": [
+                        370,
+                        225
+                    ],
+                    "hide": false,
+                    "uuid": "4334e66c-99e8-4625-a70a-98c4dfab7bbe",
+                    "target": "Services"
+
+                }
+            ],
+            "images": [
+            ]
+        },
+        {
+            "type": "static",
+            "texts": [],
+            "buttons": [
+                {
+                    "type": "ToPage",
+                    "name": "games",
+                    "imagePath": "assets/settings/games.png",
+                    "hoverImagePath": "assets/settings/games_hover.png",
+                    "position": [
+                        165,
+                        750
+                    ],
+                    "size": [
+                        370,
+                        225
+                    ],
+                    "hide": false,
+                    "uuid": "8c7a66a0-78a7-4a08-9b79-a0aac9705fa4",
+                    "target": "Games"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "interface",
+                    "imagePath": "assets/settings/interface.png",
+                    "hoverImagePath": "assets/settings/interface_hover.png",
+                    "position": [
+                        555,
+                        750
+                    ],
+                    "size": [
+                        370,
+                        225
+                    ],
+                    "hide": false,
+                    "uuid": "5dff9d17-cb88-4d4a-8e0a-17a6df424b09",
+                    "target": "Interface"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "profiles",
+                    "imagePath": "assets/settings/profiles.png",
+                    "hoverImagePath": "assets/settings/profiles_hover.png",
+                    "position": [
+                        945,
+                        750
+                    ],
+                    "size": [
+                        370,
+                        225
+                    ],
+                    "hide": false,
+                    "uuid": "7def1171-9d04-4347-8727-2c55ba04d1bb",
+                    "target": "Profiles"
+
+                },
+                {
+                    "type": "ToPage",
+                    "name": "system",
+                    "imagePath": "assets/settings/system.png",
+                    "hoverImagePath": "assets/settings/system_hover.png",
+                    "position": [
+                        1335,
+                        750
+                    ],
+                    "size": [
+                        370,
+                        225
+                    ],
+                    "hide": false,
+                    "uuid": "dfa12f8e-8b92-4cc0-9945-f22668ffbbb3",
+                    "target": "System"
+
+                }
+            ],
+            "images": [
+            ]
+        }
+    ]
+}

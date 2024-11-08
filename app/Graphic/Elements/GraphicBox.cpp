@@ -43,8 +43,6 @@ void SFMLGraphic::GraphicBox::addText(const JsonText &text)
 void SFMLGraphic::GraphicBox::setButtonState(const Uuid buttonId, const bool state)
 {
     for (const auto &button : _buttons) {
-        std::cout << buttonId.toString() << std::endl;
-        std::cout << button->getUuid().toString() << std::endl;
         if (button->getUuid() == buttonId) {
             std::dynamic_pointer_cast<GraphicButton>(button)->setHover(state);
             return;

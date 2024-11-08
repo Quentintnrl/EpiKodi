@@ -19,7 +19,8 @@
                         120
                     ],
                     "hide": false,
-                    "uuid": "0f9661d5-77ad-4492-914d-767087352313"
+                    "uuid": "0f9661d5-77ad-4492-914d-767087352313",
+                    "target": "Power"
 
                 },
                 {
@@ -36,7 +37,8 @@
                         120
                     ],
                     "hide": false,
-                    "uuid": "c5466571-2bd5-424d-8447-1aa2a28e078e"
+                    "uuid": "c5466571-2bd5-424d-8447-1aa2a28e078e",
+                    "target": "Settings"
 
                 },
                 {
@@ -53,7 +55,8 @@
                         120
                     ],
                     "hide": false,
-                    "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0"
+                    "uuid": "17f7b278-63b6-4a6b-905d-61ca6bbff2b0",
+                    "target": "Search"
 
                 }
             ],
@@ -91,7 +94,8 @@
                         100
                     ],
                     "hide": false,
-                    "uuid": "e8b25fb0-59db-4df5-b3e0-db9056e69e15"
+                    "uuid": "e8b25fb0-59db-4df5-b3e0-db9056e69e15",
+                    "target": "Movies"
 
                 },
                 {
@@ -108,7 +112,8 @@
                         321
                     ],
                     "hide": false,
-                    "uuid": "d57a5892-cad2-4cb8-b1a7-7d35188f2459"
+                    "uuid": "d57a5892-cad2-4cb8-b1a7-7d35188f2459",
+                    "target": "Tv_shows"
 
                 },
                 {
@@ -125,7 +130,8 @@
                         100
                     ],
                     "hide": false,
-                    "uuid": "a740ac93-5e57-4942-82d6-b9e4d3e4700f"
+                    "uuid": "a740ac93-5e57-4942-82d6-b9e4d3e4700f",
+                    "target": "Music"
 
                 },
                 {
@@ -142,7 +148,8 @@
                         100
                     ],
                     "hide": false,
-                    "uuid": "9e17e9b5-e7a6-49ab-b563-51c766e86760"
+                    "uuid": "9e17e9b5-e7a6-49ab-b563-51c766e86760",
+                    "target": "Music_videos"
 
                 },
                 {
@@ -159,7 +166,8 @@
                         100
                     ],
                     "hide": false,
-                    "uuid": "84a50d3d-271d-4306-8b6e-4ceb49a9a0c5"
+                    "uuid": "84a50d3d-271d-4306-8b6e-4ceb49a9a0c5",
+                    "target": "Tv"
 
                 },
                 {
@@ -176,7 +184,8 @@
                         100
                     ],
                     "hide": false,
-                    "uuid": "5ef37275-7362-4ed0-a34d-39246aaa7891"
+                    "uuid": "5ef37275-7362-4ed0-a34d-39246aaa7891",
+                    "target": "Radio"
 
                 },
                 {
@@ -193,7 +202,8 @@
                         100
                     ],
                     "hide": false,
-                    "uuid": "9537e603-ac8a-4c56-8a24-f2eabaf99ac8"
+                    "uuid": "9537e603-ac8a-4c56-8a24-f2eabaf99ac8",
+                    "target": "Games"
 
                 },
                 {
@@ -210,7 +220,8 @@
                         100
                     ],
                     "hide": false,
-                    "uuid": "86a42b0d-4cc3-44b0-926a-666ae4f9d460"
+                    "uuid": "86a42b0d-4cc3-44b0-926a-666ae4f9d460",
+                    "target": "Add_ons"
 
                 },
                 {
@@ -227,7 +238,8 @@
                         100
                     ],
                     "hide": false,
-                    "uuid": "ca582866-4d61-43ac-85bc-45f0ee111a77"
+                    "uuid": "ca582866-4d61-43ac-85bc-45f0ee111a77",
+                    "target": "Pictures"
 
                 },
                 {
@@ -244,7 +256,8 @@
                         100
                     ],
                     "hide": false,
-                    "uuid": "42a50f84-9549-4ab3-838b-8920ebcde010"
+                    "uuid": "42a50f84-9549-4ab3-838b-8920ebcde010",
+                    "target": "Videos"
 
                 },
                 {
@@ -261,7 +274,8 @@
                         100
                     ],
                     "hide": false,
-                    "uuid": "ad5ce03c-5886-423e-bf1b-f3545190867b"
+                    "uuid": "ad5ce03c-5886-423e-bf1b-f3545190867b",
+                    "target": "Favourites"
 
                 },
                 {
@@ -278,7 +292,8 @@
                         100
                     ],
                     "hide": false,
-                    "uuid": "751fe07d-3d49-4a58-8d8b-aead93ea01e4"
+                    "uuid": "751fe07d-3d49-4a58-8d8b-aead93ea01e4",
+                    "target": "Weather"
 
                 }
             ],

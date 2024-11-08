@@ -14,6 +14,11 @@ SFMLGraphic::Graphic::~Graphic() {
         _window.close();
 }
 
+void SFMLGraphic::Graphic::loop() {
+    draw();
+    manageEvents();
+}
+
 void SFMLGraphic::Graphic::draw() {
     _window.clear();
     for (std::size_t i = 0; i < _box.size(); i++) {
@@ -22,8 +27,48 @@ void SFMLGraphic::Graphic::draw() {
     _window.display();
 }
 
+void SFMLGraphic::Graphic::manageEvents() {
+    sf::Event event;
+    while (_window.pollEvent(event)) {
+        if (event.type == sf::Event::Closed) {
+            _eventQueue.push(GraphicEvent::QUIT);
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up) {
+            _eventQueue.push(GraphicEvent::KEY_UP);
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
+            _eventQueue.push(GraphicEvent::KEY_RIGHT);
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Down) {
+            _eventQueue.push(GraphicEvent::KEY_DOWN);
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
+            _eventQueue.push(GraphicEvent::KEY_LEFT);
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
+            _eventQueue.push(GraphicEvent::KEY_ENTER);
+        }
+        if (event.type == sf::Event::MouseButtonPressed) {
+            _eventQueue.push(GraphicEvent::MOUSE_CLICK);
+        }
+        if (event.type == sf::Event::MouseWheelScrolled && event.mouseWheelScroll.delta > 0) {
+            _eventQueue.push(GraphicEvent::MOUSE_WHEEL_UP);
+        }
+        if (event.type == sf::Event::MouseWheelScrolled && event.mouseWheelScroll.delta < 0) {
+            _eventQueue.push(GraphicEvent::MOUSE_WHEEL_DOWN);
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+            _eventQueue.push(GraphicEvent::GO_BACK);
+        }
+    }
+}
+
 void SFMLGraphic::Graphic::addBox(const JsonBox &jsonBox) {
     _box.push_back(std::make_shared<GraphicBox>(jsonBox));
+}
+
+void SFMLGraphic::Graphic::addPage(const JsonPage &jsonPage) {
+    _pages.push_back(std::make_shared<GraphicPage>(jsonPage));
 }
 
 void SFMLGraphic::Graphic::addButton(const Uuid &boxId, const JsonButton &jsonButton) {
@@ -72,15 +117,42 @@ void SFMLGraphic::Graphic::setButtonState(const Uuid buttonId, const bool state)
     }
 }
 
+const GraphicEvent SFMLGraphic::Graphic::getLastEvent() {
+    if (_eventQueue.empty())
+        return GraphicEvent::NONE;
+    GraphicEvent event = _eventQueue.front();
+    _eventQueue.pop();
+    return event;
+}
+
+const void SFMLGraphic::Graphic::changePage(const std::string &pageName) {
+    for (const auto &page : _pages) {
+        if (page->getName() == pageName) {
+            _box.clear();
+            for (const auto &box : page->getBoxes()) {
+                _box.push_back(box);
+            }
+            return;
+        }
+    }
+}
+
 void SFMLGraphic::Graphic::debug(std::size_t i) {
     if (_appName.empty()) {
         printDebug("Graphic {", i);
     } else {
         printDebug(_appName + " {", i);
     }
+    printDebug("Boxes {", i + 1);
     for (const auto &box : _box) {
-        box->debug(i + 1);
+        box->debug(i + 2);
     }
+    printDebug("},", i + 1);
+    printDebug("Pages {", i + 1);
+    for (const auto &page : _pages) {
+        page->debug(i + 2);
+    }
+    printDebug("}", i + 1);
     printDebug("}", i);
 }
 
