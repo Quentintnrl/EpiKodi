@@ -11,6 +11,8 @@ target_sources(Parser
   JsonImage.hpp
   JsonPage.cpp
   JsonPage.hpp
+  JsonProgressBar.cpp
+  JsonProgressBar.hpp
   JsonText.cpp
   JsonText.hpp
 )
@@ -27,6 +29,8 @@ JsonImage.cpp
 JsonImage.hpp
 JsonPage.cpp
 JsonPage.hpp
+JsonProgressBar.cpp
+JsonProgressBar.hpp
 JsonText.cpp
 JsonText.hpp
 )
