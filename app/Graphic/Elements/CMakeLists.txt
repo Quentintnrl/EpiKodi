@@ -8,6 +8,8 @@ target_sources(Graphic
   GraphicImage.hpp
   GraphicPage.cpp
   GraphicPage.hpp
+  GraphicProgressBar.cpp
+  GraphicProgressBar.hpp
   GraphicText.cpp
   GraphicText.hpp
 )
