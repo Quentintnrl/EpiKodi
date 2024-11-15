@@ -79,7 +79,8 @@
                 }
             ],
             "images": [
-            ]
+            ],
+            "name": "first_part"
         },
         {
             "type": "static",
@@ -159,7 +160,8 @@
                 }
             ],
             "images": [
-            ]
+            ],
+            "name": "second_part"
         },
         {
             "type": "static",
@@ -239,7 +241,8 @@
                 }
             ],
             "images": [
-            ]
+            ],
+            "name": "third_part"
         }
     ]
 }
