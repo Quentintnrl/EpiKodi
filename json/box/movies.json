@@ -8,11 +8,11 @@
             "imagePath": "assets/home/movies/recently_added.png",
             "hoverImagePath": "assets/home/movies/hover_recently_added.png",
             "position": [
-                0,
-                0
+                545,
+                165
             ],
             "size": [
-                115,
+                280,
                 120
             ],
             "hide": false,
@@ -25,11 +25,11 @@
             "imagePath": "assets/home/movies/genres.png",
             "hoverImagePath": "assets/home/movies/hover_genres.png",
             "position": [
-                0,
-                0
+                860,
+                165
             ],
             "size": [
-                115,
+                280,
                 120
             ],
             "hide": false,
@@ -42,11 +42,11 @@
             "imagePath": "assets/home/movies/titles.png",
             "hoverImagePath": "assets/home/movies/hover_titles.png",
             "position": [
-                0,
-                0
+                1175,
+                165
             ],
             "size": [
-                115,
+                280,
                 120
             ],
             "hide": false,
@@ -59,11 +59,11 @@
             "imagePath": "assets/home/movies/years.png",
             "hoverImagePath": "assets/home/movies/hover_years.png",
             "position": [
-                0,
-                0
+                1490,
+                165
             ],
             "size": [
-                115,
+                280,
                 120
             ],
             "hide": false,
@@ -76,11 +76,11 @@
             "imagePath": "assets/home/movies/actors.png",
             "hoverImagePath": "assets/home/movies/hover_actors.png",
             "position": [
-                0,
-                0
+                1805,
+                165
             ],
             "size": [
-                115,
+                280,
                 120
             ],
             "hide": false,
@@ -93,11 +93,11 @@
             "imagePath": "assets/home/movies/directors.png",
             "hoverImagePath": "assets/home/movies/hover_directors.png",
             "position": [
-                0,
-                0
+                2120,
+                165
             ],
             "size": [
-                115,
+                280,
                 120
             ],
             "hide": false,
@@ -110,11 +110,11 @@
             "imagePath": "assets/home/movies/studios.png",
             "hoverImagePath": "assets/home/movies/hover_studios.png",
             "position": [
-                0,
-                0
+                2435,
+                165
             ],
             "size": [
-                115,
+                280,
                 120
             ],
             "hide": false,
@@ -127,11 +127,11 @@
             "imagePath": "assets/home/movies/countries.png",
             "hoverImagePath": "assets/home/movies/hover_countries.png",
             "position": [
-                0,
-                0
+                2750,
+                165
             ],
             "size": [
-                115,
+                280,
                 120
             ],
             "hide": false,
@@ -144,11 +144,11 @@
             "imagePath": "assets/home/movies/tags.png",
             "hoverImagePath": "assets/home/movies/hover_tags.png",
             "position": [
-                0,
-                0
+                3065,
+                165
             ],
             "size": [
-                115,
+                280,
                 120
             ],
             "hide": false,
@@ -161,11 +161,11 @@
             "imagePath": "assets/home/movies/versions.png",
             "hoverImagePath": "assets/home/movies/hover_versions.png",
             "position": [
-                0,
-                0
+                3380,
+                165
             ],
             "size": [
-                115,
+                280,
                 120
             ],
             "hide": false,
