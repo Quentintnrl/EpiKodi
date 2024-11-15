@@ -130,6 +130,7 @@ void App::addBox(const std::shared_ptr<Button> button) {
     if (DEBUG_ENABLED()) {
         std::cout << "Adding box: " << button->getTarget() << std::endl;
     }
+    graphic->loadTempBox(button->getTarget());
     return;
 }
 

@@ -142,6 +142,7 @@ const void SFMLGraphic::Graphic::addTempBox(const JsonBox &box) {
 }
 
 const void SFMLGraphic::Graphic::loadTempBox(const std::string &boxName) {
+    std::cout << "Loading temp box: " << boxName << std::endl;
     for (const auto &box : _tempBox) {
         if (box->getName() == boxName) {
             _box.push_back(box);

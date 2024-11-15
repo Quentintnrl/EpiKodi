@@ -41,6 +41,11 @@ void SFMLGraphic::GraphicBox::addText(const JsonText &text)
     _texts.push_back(std::make_shared<GraphicText>(text));
 }
 
+const std::string SFMLGraphic::GraphicBox::getName() const
+{
+    return _name;
+}
+
 void SFMLGraphic::GraphicBox::setButtonState(const Uuid buttonId, const bool state)
 {
     for (const auto &button : _buttons) {
