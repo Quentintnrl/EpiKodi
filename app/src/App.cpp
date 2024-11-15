@@ -116,14 +116,23 @@ void App::handleBack() {
 }
 
 void App::addPopUp(const std::shared_ptr<Button> button) {
+    if (DEBUG_ENABLED()) {
+        std::cout << "Adding pop-up: " << button->getTarget() << std::endl;
+    }
     return;
 }
 
 void App::addBox(const std::shared_ptr<Button> button) {
+    if (DEBUG_ENABLED()) {
+        std::cout << "Adding box: " << button->getTarget() << std::endl;
+    }
     return;
 }
 
 void App::addPage(const std::shared_ptr<Button> button) {
+    if (DEBUG_ENABLED()) {
+        std::cout << "Changing page: " << button->getTarget() << std::endl;
+    }
     for (auto &page : _pagesList) {
         if (page->getName() == button->getTarget()) {
             _pages.push_back(page);

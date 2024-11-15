@@ -35,12 +35,16 @@ namespace SFMLGraphic {
             void setButtonState(const Uuid buttonId, const bool state) override;
             const GraphicEvent getLastEvent() override;
             const void changePage(const std::string &pageName) override;
+            const void addTempBox(const JsonBox &box) override;
+            const void loadTempBox(const std::string &boxName) override;
+            const void removeTempBox(const std::string &boxName) override;
             void debug(std::size_t i) override;
         private:
             void draw() override;
             void manageEvents() override;
             std::vector<std::shared_ptr<GraphicBox>> _box;
             std::vector<std::shared_ptr<GraphicPage>> _pages;
+            std::vector<std::shared_ptr<GraphicBox>> _tempBox;
             sf::RenderWindow _window;
             std::string _appName;
             std::mutex _mutex;

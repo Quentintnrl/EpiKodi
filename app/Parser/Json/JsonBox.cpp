@@ -38,6 +38,10 @@ const std::vector<JsonImage> JsonBox::getImages() const {
     return _images;
 }
 
+const std::string JsonBox::getName() const {
+    return _name;
+}
+
 const void JsonBox::debug(const std::size_t i) {
     printDebug("Box: {", i);
     printDebug("Type: " + boxTypeStringMap.at(_type), i + 1);
@@ -91,4 +95,8 @@ const std::vector<JsonImage> JsonBox::findImages(const nlohmann::json &json) con
         }
     }
     return images;
+}
+
+const std::string JsonBox::findName(const nlohmann::json &json) const {
+    return json["name"];
 }

@@ -34,4 +34,5 @@ class App {
         std::shared_ptr<IGraphic> graphic;
         std::vector<std::shared_ptr<Page>> _pages;
         std::vector<std::shared_ptr<Page>> _pagesList;
+        std::vector<std::shared_ptr<Box>> _boxes;
 };

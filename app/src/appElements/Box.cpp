@@ -1,6 +1,7 @@
 #include "Box.hpp"
 
 Box::Box(const JsonBox &jsonBox) : AppElement() {
+    _type = jsonBox.getType();
     for (auto& jsonElement : jsonBox.getButtons()) {
         _buttons.push_back(std::make_shared<Button>(jsonElement));
     }
@@ -10,6 +11,7 @@ Box::Box(const JsonBox &jsonBox) : AppElement() {
     for (auto& jsonElement : jsonBox.getTexts()) {
         _texts.push_back(std::make_shared<Text>(jsonElement));
     }
+    _name = jsonBox.getName();
 }
 
 void Box::addButton(const Button& button) {
@@ -27,6 +29,10 @@ void Box::addText(const Text& text) {
     _texts.push_back(std::make_shared<Text>(text));
 }
 
+const std::string& Box::getType() const {
+    return _type;
+}
+
 const std::vector<std::shared_ptr<Button>>& Box::getButtons() const {
     std::lock_guard<std::mutex> lock(_mutex);
     return _buttons;
@@ -40,4 +46,8 @@ const std::vector<std::shared_ptr<Image>>& Box::getImages() const {
 const std::vector<std::shared_ptr<Text>>& Box::getTexts() const {
     std::lock_guard<std::mutex> lock(_mutex);
     return _texts;
+}
+
+const std::string& Box::getName() const {
+    return _name;
 }

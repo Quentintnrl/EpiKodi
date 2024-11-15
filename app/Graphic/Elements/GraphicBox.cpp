@@ -23,6 +23,7 @@ SFMLGraphic::GraphicBox::GraphicBox(const JsonBox &jsonBox)
         addButton(button);
     for (const auto &image : jsonBox.getImages())
         addImage(image);
+    _name = jsonBox.getName();
 }
 
 void SFMLGraphic::GraphicBox::addButton(const JsonButton &button)
