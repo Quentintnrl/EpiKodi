@@ -47,6 +47,7 @@ void App::run() {
         for (auto &box : _pages.back()->getBoxes()) {
             for (auto &button : box.getButtons()) {
                 if (button->isHover(pos, windowSize, std::make_tuple(APP_WIDTH, APP_HEIGHT))) {
+                    std::cout << "Hovering over button: " << button->getUuid().toString() << std::endl;
                     graphic->setButtonState(button->getUuid(), true);
                 } else {
                     graphic->setButtonState(button->getUuid(), false);
@@ -127,11 +128,16 @@ void App::addPopUp(const std::shared_ptr<Button> button) {
 }
 
 void App::addBox(const std::shared_ptr<Button> button) {
-    if (DEBUG_ENABLED()) {
-        std::cout << "Adding box: " << button->getTarget() << std::endl;
+    for (auto &box : _boxes) {
+        if (box->getName() == button->getTarget() && _pages.back()->getBoxes().back().getName() != button->getTarget()) {
+            if (DEBUG_ENABLED()) {
+                std::cout << "Adding box: " << button->getTarget() << std::endl;
+            }
+            graphic->loadTempBox(button->getTarget());
+            _pages.back()->addBox(*box);
+            break;
+        }
     }
-    graphic->loadTempBox(button->getTarget());
-    return;
 }
 
 void App::addPage(const std::shared_ptr<Button> button) {
