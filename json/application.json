@@ -8,5 +8,10 @@
         {
             "path": "/json/pages/settings.json"
         }
+    ],
+    "boxes": [
+        {
+            "path": "/json/boxes/movies.json"
+        }
     ]
 }
