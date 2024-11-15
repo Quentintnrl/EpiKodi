@@ -21,6 +21,10 @@ App::App(JsonApp jsonApp) {
         _pagesList.push_back(std::make_shared<Page>(page));
         graphic->addPage(page);
     }
+    for (auto &box : jsonApp.getBoxes()) {
+        _boxes.push_back(std::make_shared<Box>(box));
+        graphic->addTempBox(box);
+    }
     graphic->changePage(jsonApp.getPage().getName());
     if (DEBUG_ENABLED()) {
         graphic->debug(0);

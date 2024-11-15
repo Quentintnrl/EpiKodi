@@ -66,6 +66,7 @@ void SFMLGraphic::GraphicBox::debug(const std::size_t i) {
     for (const auto &text : _texts)
         text->debug(i + 2);
     printDebug("}", i + 1);
+    printDebug("Name: " + _name, i + 1);
     printDebug("}", i);
 }
 

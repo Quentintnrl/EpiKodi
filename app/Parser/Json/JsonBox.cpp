@@ -20,6 +20,7 @@ JsonBox::JsonBox(const nlohmann::json &json) : AbstractJsonElem() {
     _texts = findTexts(json);
     _buttons = findButtons(json);
     _images = findImages(json);
+    _name = findName(json);
 }
 
 const BoxType JsonBox::getType() const {
@@ -60,6 +61,7 @@ const void JsonBox::debug(const std::size_t i) {
         image.debug(i + 2);
     }
     printDebug("}", i + 1);
+    printDebug("Name: " + _name, i + 1);
     printDebug("}", i);
 }
 

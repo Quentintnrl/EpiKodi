@@ -175,6 +175,11 @@ void SFMLGraphic::Graphic::debug(std::size_t i) {
         page->debug(i + 2);
     }
     printDebug("}", i + 1);
+    printDebug("TempBoxes {", i + 1);
+    for (const auto &box : _tempBox) {
+        box->debug(i + 2);
+    }
+    printDebug("}", i + 1);
     printDebug("}", i);
 }
 
