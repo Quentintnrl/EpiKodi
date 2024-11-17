@@ -13,5 +13,10 @@
         {
             "path": "/json/boxes/movies.json"
         }
+    ],
+    "medias": [
+        {
+            "path": "/json/movies"
+        }
     ]
 }
