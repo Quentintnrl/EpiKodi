@@ -14,6 +14,7 @@ class JsonApp : public AbstractJsonElem {
         const JsonPage getPage() const;
         const std::vector<JsonPage> getPages() const;
         const std::vector<JsonBox> getBoxes() const;
+        const std::vector<std::string> getMediasDirPath() const;
 
         const void debug(const std::size_t i) override;
     private:
@@ -24,6 +25,7 @@ class JsonApp : public AbstractJsonElem {
         const JsonPage findPage(const nlohmann::json& json) const;
         const std::vector<JsonPage> findPages(const nlohmann::json& json) const;
         const std::vector<JsonBox> findBoxes(const nlohmann::json& json) const;
+        const std::vector<std::string> findMediasDirPath(const nlohmann::json& json) const;
 
         std::string _name;
         std::string _graphicPath;
@@ -31,4 +33,5 @@ class JsonApp : public AbstractJsonElem {
         JsonPage _page;
         std::vector<JsonPage> _pages;
         std::vector<JsonBox> _boxes;
+        std::vector<std::string> _mediasDirPath;
 };

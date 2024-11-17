@@ -27,8 +27,20 @@ App::App(JsonApp jsonApp) {
     }
     graphic->changePage(jsonApp.getPage().getName());
     if (DEBUG_ENABLED()) {
-        graphic->debug(0);
+        // graphic->debug(0);
     }
+    for (const auto &mediaPagesManager : jsonApp.getMediasDirPath()) {
+        try {
+            _mediaPagesManagers.push_back(std::make_shared<MediaPagesManager>(mediaPagesManager));
+            _mediaPagesManagers.back()->lock();
+            _mediaPagesManagers.back()->unlock();
+        } catch (const std::exception &e) {
+            std::cerr << "Exception caught: " << e.what() << std::endl;
+        } catch (...) {
+            std::cerr << "Unknown exception caught!" << std::endl;
+        }
+    }
+    std::cout << "App created" << std::endl;
 }
 
 App::~App() {

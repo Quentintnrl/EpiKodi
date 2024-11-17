@@ -2,6 +2,7 @@
 #include "JsonApp.hpp"
 #include "IGraphic.hpp"
 #include "Page.hpp"
+#include "mediaPagesManager.hpp"
 #include <memory>
 
 #define CONFIG_PATH "/json/application.json"
@@ -35,4 +36,5 @@ class App {
         std::vector<std::shared_ptr<Page>> _pages;
         std::vector<std::shared_ptr<Page>> _pagesList;
         std::vector<std::shared_ptr<Box>> _boxes;
+        std::vector<std::shared_ptr<MediaPagesManager>> _mediaPagesManagers;
 };
