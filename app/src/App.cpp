@@ -69,7 +69,6 @@ void App::run() {
         for (auto &box : _pages.back()->getBoxes()) {
             for (auto &button : box.getButtons()) {
                 if (button->isHover(pos, windowSize, std::make_tuple(APP_WIDTH, APP_HEIGHT))) {
-                    std::cout << "Hovering over button: " << button->getUuid().toString() << std::endl;
                     graphic->setButtonState(button->getUuid(), true);
                 } else {
                     graphic->setButtonState(button->getUuid(), false);
