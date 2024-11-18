@@ -118,6 +118,7 @@ MediaPagesManager::MediaPagesManager(const std::string &path) : _running(true), 
                     removePage(mediaFile->getFileName());
                 }
                 createJsonPage(mediaFile->getFileName(), configPath);
+                _change = true;
                 file["has_changed"] = false;
                 std::fstream File(mediaFile->getPath(), std::ios::out);
                 File << file.dump(4);

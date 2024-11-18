@@ -6,12 +6,14 @@
 
 const std::unordered_map<std::string, BoxType> boxTypeMap = {
     {"static", BoxType::Static},
-    {"hor_scroll", BoxType::Horizontal_Scroll}
+    {"hor_scroll", BoxType::Horizontal_Scroll},
+    {"ver_scroll", BoxType::Vertical_Scroll}
 };
 
 const std::unordered_map<BoxType, std::string> boxTypeStringMap = {
     {BoxType::Static, "static"},
-    {BoxType::Horizontal_Scroll, "hor_scroll"}
+    {BoxType::Horizontal_Scroll, "hor_scroll"},
+    {BoxType::Vertical_Scroll, "ver_scroll"}
 };
 
 SFMLGraphic::GraphicBox::GraphicBox(const JsonBox &jsonBox)

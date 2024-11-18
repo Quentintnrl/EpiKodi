@@ -14,20 +14,28 @@ App::App(JsonApp jsonApp) {
     if (DEBUG_ENABLED()) {
         std::cout << "Loading graphic library: " << graphicPath << std::endl;
     }
+    DlLoader dlLoader;
+    graphic = dlLoader.getInstance<IGraphic>(graphicPath, GRAPHIC_LOAD);
     for (const auto &mediaPagesManager : jsonApp.getMediasDirPath()) {
         try {
             _mediaPagesManagers.push_back(std::make_shared<MediaPagesManager>(mediaPagesManager));
             sleep(1);
             _mediaPagesManagers.back()->lock();
             _mediaPagesManagers.back()->unlock();
+            if (_mediaPagesManagers.back()->hasChange()) {
+                _mediaPagesManagers.back()->lock();
+                for (const auto &page : _mediaPagesManagers.back()->getPages()) {
+                    _pagesList.push_back(std::make_shared<Page>(page));
+                    graphic->addPage(page);
+                }
+                _mediaPagesManagers.back()->unlock();
+            }
         } catch (const std::exception &e) {
             std::cerr << "Exception caught: " << e.what() << std::endl;
         } catch (...) {
             std::cerr << "Unknown exception caught!" << std::endl;
         }
     }
-    DlLoader dlLoader;
-    graphic = dlLoader.getInstance<IGraphic>(graphicPath, GRAPHIC_LOAD);
     _pages.push_back(std::make_shared<Page>(jsonApp.getPage()));
     graphic->addPage(jsonApp.getPage());
     for (auto &page : jsonApp.getPages()) {
