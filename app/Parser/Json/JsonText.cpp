@@ -42,6 +42,10 @@ const void JsonText::debug(const std::size_t i) {
     printDebug("}", i);
 }
 
+bool JsonText::operator==(const JsonText& other) const {
+    return _text == other._text && _fontPath == other._fontPath && _position == other._position && _size == other._size && hide == other.hide;
+}
+
 const std::string JsonText::findText(const nlohmann::json& json) const {
     return json.at("text").get<std::string>();
 }

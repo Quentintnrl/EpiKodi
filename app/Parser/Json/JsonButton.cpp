@@ -83,6 +83,10 @@ const void JsonButton::debug(const std::size_t i) {
     printDebug("}", i);
 }
 
+bool JsonButton::operator==(const JsonButton& other) const {
+    return _type == other._type && _name == other._name && _ImagePath == other._ImagePath && _hoverImagePath == other._hoverImagePath && _position == other._position && _size == other._size && hide == other.hide && _uuid == other._uuid && _target == other._target;
+}
+
 const ButtonType JsonButton::findButtonType(const nlohmann::json& json) const {
     std::string type = json.at("type").get<std::string>();
     return buttonTypeMap.at(type);

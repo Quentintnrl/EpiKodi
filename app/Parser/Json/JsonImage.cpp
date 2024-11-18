@@ -37,6 +37,10 @@ const void JsonImage::debug(const std::size_t i) {
     printDebug("}", i);
 }
 
+bool JsonImage::operator==(const JsonImage& other) const {
+    return _ImagePath == other._ImagePath && _position == other._position && _size == other._size && hide == other.hide;
+}
+
 const std::string JsonImage::findImagePath(const nlohmann::json& json) const {
     return json.at("path").get<std::string>();
 }

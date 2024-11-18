@@ -16,6 +16,8 @@ class JsonImage : public AbstractJsonElem {
 
         const void debug(const std::size_t i) override;
 
+        bool operator==(const JsonImage& other) const;
+
     private:
         //parse methods
         const std::string findImagePath(const nlohmann::json& json) const;

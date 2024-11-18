@@ -29,6 +29,8 @@ class JsonButton : public AbstractJsonElem {
 
         const void debug(const std::size_t i) override;
 
+        bool operator==(const JsonButton& other) const;
+
     private:
         //parse methods
         const ButtonType findButtonType(const nlohmann::json& json) const;

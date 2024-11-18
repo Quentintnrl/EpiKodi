@@ -65,6 +65,14 @@ const void JsonBox::debug(const std::size_t i) {
     printDebug("}", i);
 }
 
+bool JsonBox::operator==(const JsonBox &rhs) const {
+    return _type == rhs._type &&
+           _texts == rhs._texts &&
+           _buttons == rhs._buttons &&
+           _images == rhs._images &&
+           _name == rhs._name;
+}
+
 const BoxType JsonBox::findType(const nlohmann::json &json) const {
     return boxTypeMap.at(json["type"]);
 }

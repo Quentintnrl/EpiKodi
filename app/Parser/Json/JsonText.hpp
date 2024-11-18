@@ -17,6 +17,8 @@ class JsonText : AbstractJsonElem {
 
         const void debug(const std::size_t i) override;
 
+        bool operator==(const JsonText& other) const;
+
     private:
         //parse methods
         const std::string findText(const nlohmann::json& json) const;

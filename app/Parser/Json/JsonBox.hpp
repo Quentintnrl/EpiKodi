@@ -21,6 +21,8 @@ class JsonBox : public AbstractJsonElem {
         const std::string getName() const;
 
         const void debug(const std::size_t i) override;
+
+        bool operator==(const JsonBox &rhs) const;
     private:
         //find methods
         const BoxType findType(const nlohmann::json &json) const;
