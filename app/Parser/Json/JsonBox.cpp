@@ -4,17 +4,19 @@
 
 const std::unordered_map<std::string, BoxType> boxTypeMap = {
     {"static", BoxType::Static},
-    {"hor_scroll", BoxType::Horizontal_Scroll}
+    {"hor_scroll", BoxType::Horizontal_Scroll},
+    {"ver_scroll", BoxType::Vertical_Scroll}
 };
 
 const std::unordered_map<BoxType, std::string> boxTypeStringMap = {
     {BoxType::Static, "static"},
-    {BoxType::Horizontal_Scroll, "hor_scroll"}
+    {BoxType::Horizontal_Scroll, "hor_scroll"},
+    {BoxType::Vertical_Scroll, "ver_scroll"}
 };
 
 JsonBox::JsonBox(const nlohmann::json &json) : AbstractJsonElem() {
     if (DEBUG_ENABLED()) {
-        std::cout << "JsonBox: " << json << std::endl;
+        std::cout << "JsonBox: " << json.dump(4) << std::endl;
     }
     _type = findType(json);
     _texts = findTexts(json);

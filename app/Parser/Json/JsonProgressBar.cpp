@@ -1,6 +1,10 @@
 #include "JsonProgressBar.hpp"
+#include <iostream>
 
 JsonProgressBar::JsonProgressBar(const nlohmann::json& json) {
+    if (DEBUG_ENABLED()) {
+        std::cout << "JsonProgressBar: " << json.dump(4) << std::endl;
+    }
     _position = findPosition(json);
     _size = findSize(json);
     _progress = findProgress(json);

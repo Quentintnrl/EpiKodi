@@ -4,7 +4,7 @@
 
 JsonText::JsonText(const nlohmann::json& json) {
     if (DEBUG_ENABLED()) {
-        std::cout << "JsonText: " << json << std::endl;
+        std::cout << "JsonText: " << json.dump(4) << std::endl;
     }
     _text = findText(json);
     _fontPath = findFontPath(json);

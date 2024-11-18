@@ -97,7 +97,12 @@ MediaPagesManager::MediaPagesManager(const std::string &path) : _running(true), 
                 if (DEBUG_ENABLED()) {
                     printDebug("File: " + mediaFile->getFileName(), 0);
                 }
-                if (mediaFile != nullptr && file["has_changed"]) {
+                bool change = file["has_changed"];
+                std::string configPath = std::filesystem::current_path().string() + file["file_path"].get<std::string>() + mediaFile->getFileName();
+                if (DEBUG_ENABLED()) {
+                    printDebug("Config path: " + configPath, 0);
+                }
+                if (mediaFile != nullptr && change) {
                     if (DEBUG_ENABLED()) {
                         printDebug("Media file: " + mediaFile->getFileName() + " has changed", 0);
                     }
@@ -106,10 +111,16 @@ MediaPagesManager::MediaPagesManager(const std::string &path) : _running(true), 
                     }
                     editPage(mediaFile, file);
                     _change = true;
-                    file["has_changed"] = false;
-                    std::fstream File(mediaFile->getPath(), std::ios::out);
-                    File << file.dump(4);
                 }
+                if (pageExist(mediaFile->getFileName()) && !change) {
+                    continue;
+                } else if (pageExist(mediaFile->getFileName()) && change) {
+                    removePage(mediaFile->getFileName());
+                }
+                createJsonPage(mediaFile->getFileName(), configPath);
+                file["has_changed"] = false;
+                std::fstream File(mediaFile->getPath(), std::ios::out);
+                File << file.dump(4);
             }
             _mutex.unlock();
             std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -267,9 +278,10 @@ void MediaPagesManager::createPage(const std::shared_ptr<MediaPageFile> file, nl
         jsonElem["hide"] = false;
         jsonElem["uuid"] = Uuid().toString();
         jsonElem["target"] = contentElement["name"];
-        if (contentElement["type"] != "movies") {
+        if (contentElement["type"] != "to_movie") {
             //add new page
         }
+        jsonElem["type"] = contentElement["type"];
         jsonBox["buttons"].push_back(jsonElem);
         i++;
     }
@@ -280,4 +292,46 @@ void MediaPagesManager::createPage(const std::shared_ptr<MediaPageFile> file, nl
     }
     //write newJson to file
     File << newJson.dump(4);
+}
+
+const bool MediaPagesManager::pageExist(const std::string &name) const {
+    for (auto &page : _pages) {
+        if (page.getName() + ".json" == name) {
+            return true;
+        }
+    }
+    return false;
+}
+
+const void MediaPagesManager::removePage(const std::string &name) {
+    for (auto &page : _pages) {
+        if (page.getName() + ".json" == name) {
+
+            if (DEBUG_ENABLED()) {
+                printDebug("Removing page: " + name, 0);
+            }
+            _pages.erase(std::remove(_pages.begin(), _pages.end(), page), _pages.end());
+        }
+    }
+}
+
+const void MediaPagesManager::createJsonPage(const std::string &name, const std::string &jsonPath) {
+    if (DEBUG_ENABLED()) {
+        printDebug("Creating JSON page: " + name, 0);
+        printDebug("JSON path: " + jsonPath, 0);
+    }
+    std::fstream File(jsonPath, std::ios::in);
+    if (File.is_open()) {
+        nlohmann::json_abi_v3_11_3::json json = nlohmann::json::parse(File);
+        File.close();
+        if (DEBUG_ENABLED()) {
+            printDebug("JSON: " + json.dump(4), 0);
+        }
+        JsonPage page(json);
+        _pages.push_back(page);
+    } else {
+        if (DEBUG_ENABLED()) {
+            printDebug("Error opening file: " + jsonPath, 1);
+        }
+    }
 }

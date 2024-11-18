@@ -7,7 +7,8 @@
 enum ButtonType {
     ToPopUp,
     AddBox,
-    ToPage
+    ToPage,
+    ToMovie,
 };
 
 class JsonButton : public AbstractJsonElem {

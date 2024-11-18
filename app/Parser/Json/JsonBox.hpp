@@ -7,6 +7,7 @@
 enum BoxType {
     Static,
     Horizontal_Scroll,
+    Vertical_Scroll,
 };
 
 class JsonBox : public AbstractJsonElem {

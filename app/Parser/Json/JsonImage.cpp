@@ -4,7 +4,7 @@
 
 JsonImage::JsonImage(const nlohmann::json& json) {
     if (DEBUG_ENABLED()) {
-        std::cout << "JsonImage: " << json << std::endl;
+        std::cout << "JsonImage: " << json.dump(4) << std::endl;
     }
     _ImagePath = findImagePath(json);
     _position = findPosition(json);

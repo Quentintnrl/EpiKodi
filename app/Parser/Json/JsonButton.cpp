@@ -5,13 +5,15 @@
 const std::unordered_map<std::string, ButtonType> buttonTypeMap = {
     {"ToPopUp", ButtonType::ToPopUp},
     {"AddBox", ButtonType::AddBox},
-    {"ToPage", ButtonType::ToPage}
+    {"ToPage", ButtonType::ToPage},
+    {"ToMovie", ButtonType::ToMovie}
 };
 
 const std::unordered_map<ButtonType, std::string> buttonTypeStringMap = {
     {ButtonType::ToPopUp, "ToPopUp"},
     {ButtonType::AddBox, "AddBox"},
-    {ButtonType::ToPage, "ToPage"}
+    {ButtonType::ToPage, "ToPage"},
+    {ButtonType::ToMovie, "ToMovie"}
 };
 
 JsonButton::JsonButton(const nlohmann::json& json) {
