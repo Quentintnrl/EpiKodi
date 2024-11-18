@@ -284,6 +284,17 @@ void MediaPagesManager::createPage(const std::shared_ptr<MediaPageFile> file, nl
         }
         jsonElem["type"] = contentElement["type"];
         jsonBox["buttons"].push_back(jsonElem);
+        auto jsonMediaName = nlohmann::json();
+        jsonMediaName["text"] = contentElement["name"];
+        jsonMediaName["fontPath"] = "/fonts/Viagram.otf";
+        auto textPosition = nlohmann::json::array();
+        textPosition.push_back(position[0].get<int>() + 60);
+        textPosition.push_back(i + 1 * 20);
+        jsonMediaName["position"] = textPosition;
+        jsonMediaName["size"] = 30;
+        jsonMediaName["hide"] = false;
+        jsonMediaName["uuid"] = Uuid().toString();
+        jsonBox["texts"].push_back(jsonMediaName);
         i++;
     }
     jsonBoxes.push_back(jsonBox);

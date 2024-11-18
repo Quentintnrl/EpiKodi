@@ -22,5 +22,6 @@ namespace SFMLGraphic {
         private:
             sf::Text _text;
             sf::Font _font;
+            sf::Vector2f _position;
     };
 }

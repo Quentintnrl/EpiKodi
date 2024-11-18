@@ -1,12 +1,15 @@
 #include "GraphicText.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <iostream>
 
 SFMLGraphic::GraphicText::GraphicText(const JsonText& jsonText) : AText(jsonText.getText(), jsonText.getFontPath(), jsonText.getSize()) {
     if (!jsonText.getFontPath().empty()) {
-        _font.loadFromFile(jsonText.getFontPath());
+        std::string fontPath = getenv("PWD") + jsonText.getFontPath();
+        _font.loadFromFile(fontPath);
         _text.setFont(_font);
     }
     _text.setString(jsonText.getText());
+    _position = sf::Vector2f(std::get<0>(jsonText.getPosition()), std::get<1>(jsonText.getPosition()));
 }
 
 void SFMLGraphic::GraphicText::setFont(const std::string &font) {
@@ -40,5 +43,9 @@ void SFMLGraphic::GraphicText::debug(std::size_t i) {
 }
 
 void SFMLGraphic::GraphicText::draw(sf::RenderWindow &window) {
-    // window.draw(_text);
+    _text.setCharacterSize(_size);
+    _text.setFont(_font);
+    _text.setPosition(_position);
+    _text.setFillColor(sf::Color::White);
+    window.draw(_text);
 }
