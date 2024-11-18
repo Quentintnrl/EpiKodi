@@ -124,6 +124,9 @@ void App::handleSelect() {
                 if (button->getType() == ToPage) {
                     addPage(button);
                 }
+                if (button->getType() == ToMedia) {
+                    addMedia(button);
+                }
             }
         }
     }
@@ -172,5 +175,9 @@ void App::addPage(const std::shared_ptr<Button> button) {
             break;
         }
     }
+    return;
+}
+
+void App::addMedia(const std::shared_ptr<Button> button) {
     return;
 }
