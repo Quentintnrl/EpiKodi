@@ -278,7 +278,7 @@ void MediaPagesManager::createPage(const std::shared_ptr<MediaPageFile> file, nl
         jsonElem["size"] = contentElement["size"];
         jsonElem["hide"] = false;
         jsonElem["uuid"] = Uuid().toString();
-        jsonElem["target"] = contentElement["name"];
+        jsonElem["target"] = contentElement["path"];
         if (contentElement["type"] != "to_movie") {
             //add new page
         }

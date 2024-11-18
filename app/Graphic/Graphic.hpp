@@ -38,10 +38,13 @@ namespace SFMLGraphic {
             const void addTempBox(const JsonBox &box) override;
             const void loadTempBox(const std::string &boxName) override;
             const void removeTempBox(const std::string &boxName) override;
+            const void displayMedia(const std::string &mediaPath) override;
+
             void debug(std::size_t i) override;
         private:
             void draw() override;
             void manageEvents() override;
+            void displayVideo(const std::string &mediaPath);
             std::vector<std::shared_ptr<GraphicBox>> _box;
             std::vector<std::shared_ptr<GraphicPage>> _pages;
             std::vector<std::shared_ptr<GraphicBox>> _tempBox;

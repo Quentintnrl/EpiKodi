@@ -179,5 +179,6 @@ void App::addPage(const std::shared_ptr<Button> button) {
 }
 
 void App::addMedia(const std::shared_ptr<Button> button) {
+    graphic->displayMedia(button->getTarget());
     return;
 }

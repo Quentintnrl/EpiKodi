@@ -3,6 +3,18 @@
 #include "GraphicButton.hpp"
 #include <iostream>
 
+enum MediaType {
+    IMAGE,
+    VIDEO,
+    SOUND
+};
+
+const std::vector<std::tuple<std::vector<std::string>, MediaType>> mediaType {
+    { {".png", ".jpg", ".jpeg", ".gif", ".bmp"}, IMAGE },
+    { {".mp4", ".avi", ".mkv", ".mov", ".wmv"}, VIDEO },
+    { {".mp3", ".wav", ".flac", ".ogg", ".m4a"}, SOUND }
+};
+
 SFMLGraphic::Graphic::Graphic(const std::string &appName) {
     _window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), appName, sf::Style::Fullscreen);
     _window.setFramerateLimit(DEFAULT_FRAME_RATE);
@@ -157,6 +169,35 @@ const void SFMLGraphic::Graphic::removeTempBox(const std::string &boxName) {
             return;
         }
     }
+}
+
+const void SFMLGraphic::Graphic::displayMedia(const std::string &mediaPath) {
+    std::cout << "Display media: " << mediaPath << std::endl;
+    std::string format = mediaPath.substr(mediaPath.find_last_of('.'));
+    std::cout << "Media format: " << format << std::endl;
+    for (const auto &type : mediaType) {
+        for (const auto &ext : std::get<0>(type)) {
+            if (ext == format) {
+                switch (std::get<1>(type)) {
+                    case IMAGE:
+                        std::cout << "Displaying image" << std::endl;
+                        break;
+                    case VIDEO:
+                        std::cout << "Displaying video" << std::endl;
+                        break;
+                    case SOUND:
+                        std::cout << "Playing sound" << std::endl;
+                        break;
+                }
+                return;
+            }
+        }
+    }
+}
+
+void SFMLGraphic::Graphic::displayVideo(const std::string &mediaPath) {
+    std::cout << "Displaying video: " << mediaPath << std::endl;
+    
 }
 
 void SFMLGraphic::Graphic::debug(std::size_t i) {
