@@ -1,5 +1,6 @@
 #include "mediaPagesManager.hpp"
 #include "Debug.hpp"
+#include "Uuid.hpp"
 #include <iostream>
 
 MediaPageFile::MediaPageFile(const std::string &path) : _path(path), _fileName(path.substr(path.find_last_of("/") + 1)) {
@@ -77,6 +78,11 @@ MediaPagesManager::MediaPagesManager(const std::string &path) : _running(true), 
                     if (DEBUG_ENABLED()) {
                         printDebug("Media file: " + mediaFile->getFileName() + " has changed", 0);
                     }
+                    nlohmann::json_abi_v3_11_3::json file = nlohmann::json::parse(mediaFile->getContent());
+                    if (DEBUG_ENABLED()) {
+                        printDebug("Parsed JSON: " + file.dump(4), 0);
+                    }
+                    editPage(mediaFile, file);
                     _change = true;
                 }
             }
@@ -134,4 +140,120 @@ const bool MediaPagesManager::isRunning() const {
 
 const bool MediaPagesManager::hasChange() const {
     return _change;
+}
+
+void MediaPagesManager::editPage(const std::shared_ptr<MediaPageFile> file, nlohmann::json_abi_v3_11_3::json &json) {
+    if (DEBUG_ENABLED()) {
+        printDebug("Editing page: " + file->getFileName(), 0);
+    }
+    if (_pages.empty()) {
+        if (DEBUG_ENABLED()) {
+            printDebug("Pages empty", 0);
+        }
+        createPage(file, json);
+    }
+    for (auto &page : _pages) {
+        if (page.getName() == file->getFileName()) {
+            if (DEBUG_ENABLED()) {
+                printDebug("Page found: " + file->getFileName(), 0);
+            }
+        } else {
+            if (DEBUG_ENABLED()) {
+                printDebug("Page not found: " + file->getFileName(), 0);
+            }
+        }
+    }
+}
+
+void MediaPagesManager::createPage(const std::shared_ptr<MediaPageFile> file, nlohmann::json_abi_v3_11_3::json &json) {
+    if (DEBUG_ENABLED()) {
+        printDebug("Creating page: " + file->getFileName(), 0);
+    }
+    if (json["ignore"] == true) {
+        return;
+    }
+    auto content = json["content"];
+    if (DEBUG_ENABLED()) {
+        printDebug("Content: " + content.dump(4), 0);
+    }
+    //create a new file
+    std::string newFilePath = std::filesystem::current_path().string() + std::string(json["file_path"]);
+    if (DEBUG_ENABLED()) {
+        printDebug("New file path: " + newFilePath, 0);
+    }
+    //if file doesn't exist
+    if (!std::filesystem ::exists(newFilePath)) {
+        if (DEBUG_ENABLED()) {
+            printDebug("File doesn't exist", 0);
+        }
+        //create file
+        std::ofstream newFile(newFilePath);
+        //close file
+        newFile.close();
+    } else {
+        if (DEBUG_ENABLED()) {
+            printDebug("File exists", 0);
+        }
+    }
+    //open file
+    std::fstream File(newFilePath, std::ios::out);
+    //reset file
+    File.seekp(0);
+    nlohmann::json newJson;
+    //get file name without the .json
+    newJson["name"] = file->getFileName().substr(0, file->getFileName().find(".json"));
+    //create an array "texts" in the newJson
+    auto jsonBoxes = nlohmann::json::array();
+    auto jsonBox = nlohmann::json();
+    jsonBox["texts"] = nlohmann::json::array();
+    jsonBox["type"] = "ver_scroll";
+    jsonBox["buttons"] = nlohmann::json::array();
+    jsonBox["images"] = nlohmann::json::array();
+    auto jsonLeftImage = nlohmann::json();
+    jsonLeftImage["path"] = json["left_border"];
+    jsonLeftImage["position"] = nlohmann::json::array({0, 0});
+    jsonLeftImage["size"] = json["left_border_size"];
+    jsonLeftImage["hide"] = false;
+    jsonLeftImage["uuid"] = Uuid().toString();
+    auto jsonCenterImage = nlohmann::json();
+    jsonCenterImage["path"] = json["middle_part"];
+    jsonCenterImage["position"] = nlohmann::json::array({jsonLeftImage["size"][0].get<int>(), 0});
+    jsonCenterImage["size"] = json["middle_part_size"];
+    jsonCenterImage["hide"] = false;
+    jsonCenterImage["uuid"] = Uuid().toString();
+    auto jsonRightImage = nlohmann::json();
+    jsonRightImage["path"] = json["right_border"];
+    jsonRightImage["position"] = nlohmann::json::array({jsonCenterImage["size"][0].get<int>() + jsonLeftImage["size"][0].get<int>(), 0});
+    jsonRightImage["size"] = json["right_border_size"];
+    jsonRightImage["hide"] = false;
+    jsonRightImage["uuid"] = Uuid().toString();
+    jsonBox["images"].push_back(jsonLeftImage);
+    jsonBox["images"].push_back(jsonCenterImage);
+    jsonBox["images"].push_back(jsonRightImage);
+    jsonBox["name"] = "core";
+    std::size_t i = 0;
+    for (auto &contentElement : content) {
+        auto jsonElem = nlohmann::json();
+        jsonElem["name"] = contentElement["name"];
+        jsonElem["imagePath"] = contentElement["button"];
+        jsonElem["hoverImagePath"] = contentElement["hover_button"];
+        auto position = nlohmann::json::array();
+        position.push_back(jsonLeftImage["size"][0].get<int>());
+        position.push_back(i * contentElement["size"][1].get<int>());
+        jsonElem["position"] = position;
+        jsonElem["size"] = contentElement["size"];
+        jsonElem["hide"] = false;
+        jsonElem["uuid"] = Uuid().toString();
+        jsonElem["target"] = contentElement["name"];
+        if (contentElement["type"] != "movies") {
+            //add new page
+        }
+        jsonBox["buttons"].push_back(jsonElem);
+        i++;
+    }
+    jsonBoxes.push_back(jsonBox);
+    newJson["boxes"] = jsonBoxes;
+    if (DEBUG_ENABLED()) {
+        printDebug("New JSON: " + newJson.dump(4), 0);
+    }
 }

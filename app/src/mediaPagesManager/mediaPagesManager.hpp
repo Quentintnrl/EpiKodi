@@ -43,4 +43,6 @@ class MediaPagesManager {
         bool _change;
         std::vector<JsonPage> _pages;
         std::vector<std::string> _differentPages;
+        void editPage(const std::shared_ptr<MediaPageFile> file, nlohmann::json_abi_v3_11_3::json &json);
+        void createPage(const std::shared_ptr<MediaPageFile> file, nlohmann::json_abi_v3_11_3::json &json);
 };
