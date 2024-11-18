@@ -1,6 +1,8 @@
 #include "mediaPagesManager.hpp"
 #include "Debug.hpp"
 #include "Uuid.hpp"
+#include <filesystem>
+#include <chrono>
 #include <iostream>
 
 MediaPageFile::MediaPageFile(const std::string &path) : _path(path), _fileName(path.substr(path.find_last_of("/") + 1)) {
@@ -57,6 +59,20 @@ const bool MediaPageFile::hasChange() {
     return false;
 }
 
+void MediaPageFile::setLastChauge(const std::filesystem::file_time_type lastChange) {
+    _lastWriteTime = lastChange;
+}
+
+const std::size_t MediaPageFile::getLastChange() const {
+    auto system_time = std::chrono::time_point_cast<std::chrono::system_clock::duration>(_lastWriteTime);
+    auto duration_since_epoch = system_time.time_since_epoch();
+    std::size_t timestamp = std::chrono::duration_cast<std::chrono::nanoseconds>(duration_since_epoch).count();
+    if (DEBUG_ENABLED()) {
+        printDebug("Last change: " + std::to_string(timestamp), 0);
+    }
+    return timestamp;
+}
+
 MediaPagesManager::MediaPagesManager(const std::string &path) : _running(true), _change(false) {
     if (DEBUG_ENABLED()) {
         printDebug("Media path: " + path, 0);
@@ -74,16 +90,32 @@ MediaPagesManager::MediaPagesManager(const std::string &path) : _running(true), 
         while (_running) {
             _mutex.lock();
             for (auto &mediaFile : mediaFiles) {
+                nlohmann::json_abi_v3_11_3::json file = nlohmann::json::parse(mediaFile->getContent());
+                if (file["ignore"] == true) {
+                    continue;
+                }
+                if (DEBUG_ENABLED()) {
+                    printDebug("File: " + mediaFile->getFileName(), 0);
+                }
+                auto lastUpdate = file["last_update"];
+                if (DEBUG_ENABLED()) {
+                    printDebug("Last update: " + lastUpdate.dump(), 0);
+                }
+                std::chrono::system_clock::time_point system_time = std::chrono::system_clock::from_time_t(lastUpdate.get<int>());
+                auto file_time = std::filesystem::file_time_type(system_time.time_since_epoch());
+                mediaFile->setLastChauge(file_time);
                 if (mediaFile != nullptr && mediaFile->hasChange()) {
+                    file["last_update"] = mediaFile->getLastChange();
                     if (DEBUG_ENABLED()) {
                         printDebug("Media file: " + mediaFile->getFileName() + " has changed", 0);
                     }
-                    nlohmann::json_abi_v3_11_3::json file = nlohmann::json::parse(mediaFile->getContent());
                     if (DEBUG_ENABLED()) {
                         printDebug("Parsed JSON: " + file.dump(4), 0);
                     }
-                    editPage(mediaFile, file);
+                    // editPage(mediaFile, file);
                     _change = true;
+                    std::fstream File(mediaFile->getPath(), std::ios::out);
+                    File << file.dump(4);
                 }
             }
             _mutex.unlock();
@@ -168,9 +200,6 @@ void MediaPagesManager::editPage(const std::shared_ptr<MediaPageFile> file, nloh
 void MediaPagesManager::createPage(const std::shared_ptr<MediaPageFile> file, nlohmann::json_abi_v3_11_3::json &json) {
     if (DEBUG_ENABLED()) {
         printDebug("Creating page: " + file->getFileName(), 0);
-    }
-    if (json["ignore"] == true) {
-        return;
     }
     auto content = json["content"];
     if (DEBUG_ENABLED()) {
