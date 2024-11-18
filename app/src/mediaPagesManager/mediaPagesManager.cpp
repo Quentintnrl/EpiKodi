@@ -177,7 +177,7 @@ void MediaPagesManager::createPage(const std::shared_ptr<MediaPageFile> file, nl
         printDebug("Content: " + content.dump(4), 0);
     }
     //create a new file
-    std::string newFilePath = std::filesystem::current_path().string() + std::string(json["file_path"]);
+    std::string newFilePath = std::filesystem::current_path().string() + std::string(json["file_path"]) + file->getFileName();
     if (DEBUG_ENABLED()) {
         printDebug("New file path: " + newFilePath, 0);
     }
@@ -256,4 +256,6 @@ void MediaPagesManager::createPage(const std::shared_ptr<MediaPageFile> file, nl
     if (DEBUG_ENABLED()) {
         printDebug("New JSON: " + newJson.dump(4), 0);
     }
+    //write newJson to file
+    File << newJson.dump(4);
 }
