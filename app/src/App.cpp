@@ -2,6 +2,7 @@
 #include "dlLoader.hpp"
 #include "GraphicEvent.hpp"
 #include <iostream>
+#include <unistd.h>
 
 App::App(JsonApp jsonApp) {
     _Running = false;
@@ -12,6 +13,18 @@ App::App(JsonApp jsonApp) {
     std::string graphicPath = LIBS_PATH + jsonApp.getGraphicPath();
     if (DEBUG_ENABLED()) {
         std::cout << "Loading graphic library: " << graphicPath << std::endl;
+    }
+    for (const auto &mediaPagesManager : jsonApp.getMediasDirPath()) {
+        try {
+            _mediaPagesManagers.push_back(std::make_shared<MediaPagesManager>(mediaPagesManager));
+            sleep(1);
+            _mediaPagesManagers.back()->lock();
+            _mediaPagesManagers.back()->unlock();
+        } catch (const std::exception &e) {
+            std::cerr << "Exception caught: " << e.what() << std::endl;
+        } catch (...) {
+            std::cerr << "Unknown exception caught!" << std::endl;
+        }
     }
     DlLoader dlLoader;
     graphic = dlLoader.getInstance<IGraphic>(graphicPath, GRAPHIC_LOAD);
@@ -27,18 +40,7 @@ App::App(JsonApp jsonApp) {
     }
     graphic->changePage(jsonApp.getPage().getName());
     if (DEBUG_ENABLED()) {
-        // graphic->debug(0);
-    }
-    for (const auto &mediaPagesManager : jsonApp.getMediasDirPath()) {
-        try {
-            _mediaPagesManagers.push_back(std::make_shared<MediaPagesManager>(mediaPagesManager));
-            _mediaPagesManagers.back()->lock();
-            _mediaPagesManagers.back()->unlock();
-        } catch (const std::exception &e) {
-            std::cerr << "Exception caught: " << e.what() << std::endl;
-        } catch (...) {
-            std::cerr << "Unknown exception caught!" << std::endl;
-        }
+        graphic->debug(0);
     }
     std::cout << "App created" << std::endl;
 }

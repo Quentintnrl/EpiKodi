@@ -17,6 +17,8 @@ class MediaPageFile {
         const std::string &getFileName() const;
         const std::string getContent();
         const bool hasChange();
+        void setLastChauge(const std::filesystem::file_time_type lastChange);
+        const std::size_t getLastChange() const;
     protected:
         std::string _path;
         std::string _fileName;

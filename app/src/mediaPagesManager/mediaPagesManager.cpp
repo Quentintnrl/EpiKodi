@@ -97,23 +97,16 @@ MediaPagesManager::MediaPagesManager(const std::string &path) : _running(true), 
                 if (DEBUG_ENABLED()) {
                     printDebug("File: " + mediaFile->getFileName(), 0);
                 }
-                auto lastUpdate = file["last_update"];
-                if (DEBUG_ENABLED()) {
-                    printDebug("Last update: " + lastUpdate.dump(), 0);
-                }
-                std::chrono::system_clock::time_point system_time = std::chrono::system_clock::from_time_t(lastUpdate.get<int>());
-                auto file_time = std::filesystem::file_time_type(system_time.time_since_epoch());
-                mediaFile->setLastChauge(file_time);
-                if (mediaFile != nullptr && mediaFile->hasChange()) {
-                    file["last_update"] = mediaFile->getLastChange();
+                if (mediaFile != nullptr && file["has_changed"]) {
                     if (DEBUG_ENABLED()) {
                         printDebug("Media file: " + mediaFile->getFileName() + " has changed", 0);
                     }
                     if (DEBUG_ENABLED()) {
                         printDebug("Parsed JSON: " + file.dump(4), 0);
                     }
-                    // editPage(mediaFile, file);
+                    editPage(mediaFile, file);
                     _change = true;
+                    file["has_changed"] = false;
                     std::fstream File(mediaFile->getPath(), std::ios::out);
                     File << file.dump(4);
                 }
