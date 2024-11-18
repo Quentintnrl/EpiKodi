@@ -7,3 +7,4 @@ build/
 EpiKodi
 medias
 !assets/medias
+json/movies/*.json
