@@ -2,6 +2,8 @@
 #include "GraphicBox.hpp"
 #include "GraphicButton.hpp"
 #include <iostream>
+#include <vlc/vlc.h>
+#include <thread>
 
 enum MediaType {
     IMAGE,
@@ -184,6 +186,8 @@ const void SFMLGraphic::Graphic::displayMedia(const std::string &mediaPath) {
                         break;
                     case VIDEO:
                         std::cout << "Displaying video" << std::endl;
+                        //get pwd
+                        displayVideo(getenv("PWD") + std::string("/medias") + mediaPath);
                         break;
                     case SOUND:
                         std::cout << "Playing sound" << std::endl;
@@ -196,8 +200,12 @@ const void SFMLGraphic::Graphic::displayMedia(const std::string &mediaPath) {
 }
 
 void SFMLGraphic::Graphic::displayVideo(const std::string &mediaPath) {
-    std::cout << "Displaying video: " << mediaPath << std::endl;
-    
+    std::cout << "Running mo: " << mediaPath << std::endl;
+    std::string command = "cvlc --no-xlib --log-verbose=2 --logfile=vlc_log.txt --demux=mp4 \"" + mediaPath + "\"";
+    std::thread t([command] {
+        std::system(command.c_str());
+    });
+    t.detach();
 }
 
 void SFMLGraphic::Graphic::debug(std::size_t i) {

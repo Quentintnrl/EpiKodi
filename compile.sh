@@ -4,6 +4,7 @@ app_binary="EpiKodi"
 
 clean_app() {
     rm -f $app_binary
+    rm -f libs/*
 }
 
 clean_tests() {
