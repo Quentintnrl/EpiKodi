@@ -170,6 +170,9 @@ void App::addPage(const std::shared_ptr<Button> button) {
     }
     for (auto &page : _pagesList) {
         if (page->getName() == button->getTarget()) {
+            if (_pages.back()->getNbBoxes() < _pages.back()->getBoxes().size()) {
+                _pages.back()->removeLastBox();
+            }
             _pages.push_back(page);
             graphic->changePage(page->getName());
             break;
