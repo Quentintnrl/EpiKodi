@@ -32,6 +32,7 @@ class App {
         void addPage(const std::shared_ptr<Button> button);
         void addMedia(const std::shared_ptr<Button> button);
         bool _Running;
+        bool _isMedia;
         std::string name;
         std::shared_ptr<IGraphic> graphic;
         std::vector<std::shared_ptr<Page>> _pages;

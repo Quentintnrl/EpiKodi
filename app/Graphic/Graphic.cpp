@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vlc/vlc.h>
 #include <thread>
+#include <signal.h>
+#include <sys/wait.h>
 
 enum MediaType {
     IMAGE,
@@ -200,15 +202,31 @@ const void SFMLGraphic::Graphic::displayMedia(const std::string &mediaPath) {
 }
 
 void SFMLGraphic::Graphic::displayVideo(const std::string &mediaPath) {
-    std::cout << "Running mo: " << mediaPath << std::endl;
+    std::cout << "Running movie: " << mediaPath << std::endl;
     std::size_t width = _window.getSize().x;
     std::size_t height = _window.getSize().y;
     std::string command = "cvlc --fullscreen" + std::string(" --width=") + std::to_string(width) + std::string(" --height=") + std::to_string(height) + std::string(" --video-x=") + std::to_string(width) + std::string(" --video-y=") + std::to_string(height) + std::string(" \"") + mediaPath + std::string("\"");
-    std::cout << "command: " << command << std::endl;
-    std::thread t([command] {
-        std::system(command.c_str());
+    _stopThread = false; // Reset the stop flag
+
+    _mediaThread = std::thread([this, command]() {
+        pid_t pid = fork();
+        if (pid == 0) {
+            // Child process: Start VLC
+            execl("/bin/sh", "sh", "-c", command.c_str(), (char *)nullptr);
+            exit(EXIT_FAILURE); // If execl fails
+        } else if (pid > 0) {
+            // Parent process: Monitor VLC
+            _vlcProcessHandle = pid;
+            while (!_stopThread) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            }
+            // Signal VLC to terminate
+            kill(pid, SIGTERM);
+            waitpid(pid, nullptr, 0);
+        } else {
+            std::cerr << "Failed to start VLC process" << std::endl;
+        }
     });
-    t.detach();
 }
 
 void SFMLGraphic::Graphic::debug(std::size_t i) {
@@ -233,6 +251,17 @@ void SFMLGraphic::Graphic::debug(std::size_t i) {
     }
     printDebug("}", i + 1);
     printDebug("}", i);
+}
+
+const void SFMLGraphic::Graphic::stopMedia() {
+    std::cout << "Stop media" << std::endl;
+    if (_mediaThread.joinable()) {
+        _stopThread = true; // Signal the thread to stop
+        _mediaThread.join(); // Wait for the thread to finish
+        std::cout << "Media thread stopped" << std::endl;
+    } else {
+        std::cerr << "No media thread to stop" << std::endl;
+    }
 }
 
 extern "C" {

@@ -6,6 +6,7 @@
 
 App::App(JsonApp jsonApp) {
     _Running = false;
+    _isMedia = false;
     if (DEBUG_ENABLED()) {
         jsonApp.debug(0);
     }
@@ -138,6 +139,12 @@ void App::handleWheel(const GraphicEvent &event) {
 }
 
 void App::handleBack() {
+    if (_isMedia) {
+        std::cout << "Stop media" << std::endl;
+        graphic->stopMedia();
+        _isMedia = false;
+        return;
+    }
     if (_pages.size() > 1) {
         _pages.pop_back();
         graphic->changePage(_pages.back()->getName());
@@ -183,5 +190,6 @@ void App::addPage(const std::shared_ptr<Button> button) {
 
 void App::addMedia(const std::shared_ptr<Button> button) {
     graphic->displayMedia(button->getTarget());
+    _isMedia = true;
     return;
 }
