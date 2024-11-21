@@ -5,13 +5,15 @@
 const std::unordered_map<std::string, ButtonType> buttonTypeMap = {
     {"ToPopUp", ButtonType::ToPopUp},
     {"AddBox", ButtonType::AddBox},
-    {"ToPage", ButtonType::ToPage}
+    {"ToPage", ButtonType::ToPage},
+    {"ToMedia", ButtonType::ToMedia}
 };
 
 const std::unordered_map<ButtonType, std::string> buttonTypeStringMap = {
     {ButtonType::ToPopUp, "ToPopUp"},
     {ButtonType::AddBox, "AddBox"},
-    {ButtonType::ToPage, "ToPage"}
+    {ButtonType::ToPage, "ToPage"},
+    {ButtonType::ToMedia, "ToMedia"}
 };
 
 JsonButton::JsonButton(const nlohmann::json& json) {
@@ -81,6 +83,10 @@ const void JsonButton::debug(const std::size_t i) {
     printDebug("uuid: " + _uuid, i + 1);
     printDebug("target: " + _target, i + 1);
     printDebug("}", i);
+}
+
+bool JsonButton::operator==(const JsonButton& other) const {
+    return _type == other._type && _name == other._name && _ImagePath == other._ImagePath && _hoverImagePath == other._hoverImagePath && _position == other._position && _size == other._size && hide == other.hide && _uuid == other._uuid && _target == other._target;
 }
 
 const ButtonType JsonButton::findButtonType(const nlohmann::json& json) const {

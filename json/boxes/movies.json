@@ -1,0 +1,178 @@
+{
+    "type": "hor_scroll",
+    "texts": [],
+    "buttons": [
+        {
+            "type": "ToPage",
+            "name": "recently_added",
+            "imagePath": "assets/home/movies/recently_added.png",
+            "hoverImagePath": "assets/home/movies/recently_added_hover.png",
+            "position": [
+                545,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "67c0025a-b14a-4bbc-907e-a1f006802f64",
+            "target": "RecentlyAdded"
+        },
+        {
+            "type": "ToPage",
+            "name": "genres",
+            "imagePath": "assets/home/movies/genres.png",
+            "hoverImagePath": "assets/home/movies/genres_hover.png",
+            "position": [
+                860,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "ede4c7c4-8129-426e-b79b-f6a669e5ac83",
+            "target": "genres"
+        },
+        {
+            "type": "ToPage",
+            "name": "titles",
+            "imagePath": "assets/home/movies/titles.png",
+            "hoverImagePath": "assets/home/movies/titles_hover.png",
+            "position": [
+                1175,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "23a42957-32d7-46b3-8bbc-2fba0684a378",
+            "target": "titles"
+        },
+        {
+            "type": "ToPage",
+            "name": "years",
+            "imagePath": "assets/home/movies/years.png",
+            "hoverImagePath": "assets/home/movies/years_hover.png",
+            "position": [
+                1490,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "60a9285a-82ef-4903-a428-3bdea5e77a5e",
+            "target": "years"
+        },
+        {
+            "type": "ToPage",
+            "name": "actors",
+            "imagePath": "assets/home/movies/actors.png",
+            "hoverImagePath": "assets/home/movies/actors_hover.png",
+            "position": [
+                1805,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "d875fb07-5bec-4948-91ea-2c90cc37996a",
+            "target": "actors"
+        },
+        {
+            "type": "ToPage",
+            "name": "directors",
+            "imagePath": "assets/home/movies/directors.png",
+            "hoverImagePath": "assets/home/movies/directors_hover.png",
+            "position": [
+                2120,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "f0de4d47-4ef5-4e2c-88ab-44cc34e8b9e8",
+            "target": "directors"
+        },
+        {
+            "type": "ToPage",
+            "name": "studios",
+            "imagePath": "assets/home/movies/studios.png",
+            "hoverImagePath": "assets/home/movies/studios_hover.png",
+            "position": [
+                2435,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "4d3046a2-2404-444a-aa57-d3359624df71",
+            "target": "studios"
+        },
+        {
+            "type": "ToPage",
+            "name": "countries",
+            "imagePath": "assets/home/movies/countries.png",
+            "hoverImagePath": "assets/home/movies/countries_hover.png",
+            "position": [
+                2750,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "a8c94db7-f828-48c2-9216-9ee9df170d61",
+            "target": "countries"
+        },
+        {
+            "type": "ToPage",
+            "name": "tags",
+            "imagePath": "assets/home/movies/tags.png",
+            "hoverImagePath": "assets/home/movies/tags_hover.png",
+            "position": [
+                3065,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "a44e17a1-614c-4a0e-a829-6433f8648123",
+            "target": "tags"
+        },
+        {
+            "type": "ToPage",
+            "name": "versions",
+            "imagePath": "assets/home/movies/versions.png",
+            "hoverImagePath": "assets/home/movies/versions_hover.png",
+            "position": [
+                3380,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "8d33cd11-7678-4594-a41b-92460d184936",
+            "target": "versions"
+        }
+    ],
+    "images": [],
+    "name": "Movies"
+}

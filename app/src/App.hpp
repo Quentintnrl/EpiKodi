@@ -2,6 +2,7 @@
 #include "JsonApp.hpp"
 #include "IGraphic.hpp"
 #include "Page.hpp"
+#include "mediaPagesManager.hpp"
 #include <memory>
 
 #define CONFIG_PATH "/json/application.json"
@@ -29,9 +30,13 @@ class App {
         void addPopUp(const std::shared_ptr<Button> button);
         void addBox(const std::shared_ptr<Button> button);
         void addPage(const std::shared_ptr<Button> button);
+        void addMedia(const std::shared_ptr<Button> button);
         bool _Running;
+        bool _isMedia;
         std::string name;
         std::shared_ptr<IGraphic> graphic;
         std::vector<std::shared_ptr<Page>> _pages;
         std::vector<std::shared_ptr<Page>> _pagesList;
+        std::vector<std::shared_ptr<Box>> _boxes;
+        std::vector<std::shared_ptr<MediaPagesManager>> _mediaPagesManagers;
 };

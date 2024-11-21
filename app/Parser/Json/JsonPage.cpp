@@ -27,6 +27,10 @@ const void JsonPage::debug(const std::size_t i) {
     printDebug("}", i);
 }
 
+bool JsonPage::operator==(const JsonPage &other) const {
+    return _name == other._name && _boxes == other._boxes;
+}
+
 std::string JsonPage::findName(const nlohmann::json &json) {
     return json["name"];
 }

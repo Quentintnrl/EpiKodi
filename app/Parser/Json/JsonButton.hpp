@@ -7,7 +7,8 @@
 enum ButtonType {
     ToPopUp,
     AddBox,
-    ToPage
+    ToPage,
+    ToMedia,
 };
 
 class JsonButton : public AbstractJsonElem {
@@ -28,6 +29,8 @@ class JsonButton : public AbstractJsonElem {
         const std::string getTarget() const;
 
         const void debug(const std::size_t i) override;
+
+        bool operator==(const JsonButton& other) const;
 
     private:
         //parse methods

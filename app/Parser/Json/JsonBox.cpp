@@ -4,22 +4,25 @@
 
 const std::unordered_map<std::string, BoxType> boxTypeMap = {
     {"static", BoxType::Static},
-    {"hor_scroll", BoxType::Horizontal_Scroll}
+    {"hor_scroll", BoxType::Horizontal_Scroll},
+    {"ver_scroll", BoxType::Vertical_Scroll}
 };
 
 const std::unordered_map<BoxType, std::string> boxTypeStringMap = {
     {BoxType::Static, "static"},
-    {BoxType::Horizontal_Scroll, "hor_scroll"}
+    {BoxType::Horizontal_Scroll, "hor_scroll"},
+    {BoxType::Vertical_Scroll, "ver_scroll"}
 };
 
 JsonBox::JsonBox(const nlohmann::json &json) : AbstractJsonElem() {
     if (DEBUG_ENABLED()) {
-        std::cout << "JsonBox: " << json << std::endl;
+        std::cout << "JsonBox: " << json.dump(4) << std::endl;
     }
     _type = findType(json);
     _texts = findTexts(json);
     _buttons = findButtons(json);
     _images = findImages(json);
+    _name = findName(json);
 }
 
 const BoxType JsonBox::getType() const {
@@ -36,6 +39,10 @@ const std::vector<JsonButton> JsonBox::getButtons() const {
 
 const std::vector<JsonImage> JsonBox::getImages() const {
     return _images;
+}
+
+const std::string JsonBox::getName() const {
+    return _name;
 }
 
 const void JsonBox::debug(const std::size_t i) {
@@ -56,7 +63,16 @@ const void JsonBox::debug(const std::size_t i) {
         image.debug(i + 2);
     }
     printDebug("}", i + 1);
+    printDebug("Name: " + _name, i + 1);
     printDebug("}", i);
+}
+
+bool JsonBox::operator==(const JsonBox &rhs) const {
+    return _type == rhs._type &&
+           _texts == rhs._texts &&
+           _buttons == rhs._buttons &&
+           _images == rhs._images &&
+           _name == rhs._name;
 }
 
 const BoxType JsonBox::findType(const nlohmann::json &json) const {
@@ -91,4 +107,8 @@ const std::vector<JsonImage> JsonBox::findImages(const nlohmann::json &json) con
         }
     }
     return images;
+}
+
+const std::string JsonBox::findName(const nlohmann::json &json) const {
+    return json["name"];
 }

@@ -4,7 +4,7 @@
 
 JsonText::JsonText(const nlohmann::json& json) {
     if (DEBUG_ENABLED()) {
-        std::cout << "JsonText: " << json << std::endl;
+        std::cout << "JsonText: " << json.dump(4) << std::endl;
     }
     _text = findText(json);
     _fontPath = findFontPath(json);
@@ -40,6 +40,10 @@ const void JsonText::debug(const std::size_t i) {
     printDebug("size: " + std::to_string(_size) + ",", i + 1);
     printDebug("hide: " + std::to_string(hide) + ",", i + 1);
     printDebug("}", i);
+}
+
+bool JsonText::operator==(const JsonText& other) const {
+    return _text == other._text && _fontPath == other._fontPath && _position == other._position && _size == other._size && hide == other.hide;
 }
 
 const std::string JsonText::findText(const nlohmann::json& json) const {

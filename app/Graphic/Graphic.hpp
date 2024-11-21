@@ -11,7 +11,9 @@
 #include <SFML/Window.hpp>
 #include <queue>
 #include <mutex>
+#include <thread>
 #include <memory>
+#include <atomic>
 
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
@@ -35,15 +37,26 @@ namespace SFMLGraphic {
             void setButtonState(const Uuid buttonId, const bool state) override;
             const GraphicEvent getLastEvent() override;
             const void changePage(const std::string &pageName) override;
+            const void addTempBox(const JsonBox &box) override;
+            const void loadTempBox(const std::string &boxName) override;
+            const void removeTempBox(const std::string &boxName) override;
+            const void displayMedia(const std::string &mediaPath) override;
+            const void stopMedia() override;
+
             void debug(std::size_t i) override;
         private:
             void draw() override;
             void manageEvents() override;
+            void displayVideo(const std::string &mediaPath);
             std::vector<std::shared_ptr<GraphicBox>> _box;
             std::vector<std::shared_ptr<GraphicPage>> _pages;
+            std::vector<std::shared_ptr<GraphicBox>> _tempBox;
             sf::RenderWindow _window;
             std::string _appName;
             std::mutex _mutex;
+            std::atomic<bool> _stopThread{false}; // Stop signal for the thread
+            std::thread _mediaThread;            // Your media thread
+            pid_t _vlcProcessHandle = 0;        // Handle to the VLC process
             std::queue<GraphicEvent> _eventQueue;
     };
 }

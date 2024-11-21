@@ -2,6 +2,22 @@
 #include "GraphicBox.hpp"
 #include "GraphicButton.hpp"
 #include <iostream>
+#include <vlc/vlc.h>
+#include <thread>
+#include <signal.h>
+#include <sys/wait.h>
+
+enum MediaType {
+    IMAGE,
+    VIDEO,
+    SOUND
+};
+
+const std::vector<std::tuple<std::vector<std::string>, MediaType>> mediaType {
+    { {".png", ".jpg", ".jpeg", ".gif", ".bmp"}, IMAGE },
+    { {".mp4", ".avi", ".mkv", ".mov", ".wmv"}, VIDEO },
+    { {".mp3", ".wav", ".flac", ".ogg", ".m4a"}, SOUND }
+};
 
 SFMLGraphic::Graphic::Graphic(const std::string &appName) {
     _window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), appName, sf::Style::Fullscreen);
@@ -137,6 +153,82 @@ const void SFMLGraphic::Graphic::changePage(const std::string &pageName) {
     }
 }
 
+const void SFMLGraphic::Graphic::addTempBox(const JsonBox &box) {
+    _tempBox.push_back(std::make_shared<GraphicBox>(box));
+}
+
+const void SFMLGraphic::Graphic::loadTempBox(const std::string &boxName) {
+    for (const auto &box : _tempBox) {
+        if (box->getName() == boxName && _box.back()->getName() != boxName) {
+            _box.push_back(box);
+            return;
+        }
+    }
+}
+
+const void SFMLGraphic::Graphic::removeTempBox(const std::string &boxName) {
+    for (std::size_t i = 0; i < _box.size(); i++) {
+        if (_box[i]->getName() == boxName) {
+            _box.erase(_box.begin() + i);
+            return;
+        }
+    }
+}
+
+const void SFMLGraphic::Graphic::displayMedia(const std::string &mediaPath) {
+    std::cout << "Display media: " << mediaPath << std::endl;
+    std::string format = mediaPath.substr(mediaPath.find_last_of('.'));
+    std::cout << "Media format: " << format << std::endl;
+    for (const auto &type : mediaType) {
+        for (const auto &ext : std::get<0>(type)) {
+            if (ext == format) {
+                switch (std::get<1>(type)) {
+                    case IMAGE:
+                        std::cout << "Displaying image" << std::endl;
+                        break;
+                    case VIDEO:
+                        std::cout << "Displaying video" << std::endl;
+                        //get pwd
+                        displayVideo(getenv("PWD") + std::string("/medias") + mediaPath);
+                        break;
+                    case SOUND:
+                        std::cout << "Playing sound" << std::endl;
+                        break;
+                }
+                return;
+            }
+        }
+    }
+}
+
+void SFMLGraphic::Graphic::displayVideo(const std::string &mediaPath) {
+    std::cout << "Running movie: " << mediaPath << std::endl;
+    std::size_t width = _window.getSize().x;
+    std::size_t height = _window.getSize().y;
+    std::string command = "cvlc --fullscreen" + std::string(" --width=") + std::to_string(width) + std::string(" --height=") + std::to_string(height) + std::string(" --video-x=") + std::to_string(width) + std::string(" --video-y=") + std::to_string(height) + std::string(" \"") + mediaPath + std::string("\"");
+    _stopThread = false; // Reset the stop flag
+
+    _mediaThread = std::thread([this, command]() {
+        pid_t pid = fork();
+        if (pid == 0) {
+            // Child process: Start VLC
+            execl("/bin/sh", "sh", "-c", command.c_str(), (char *)nullptr);
+            exit(EXIT_FAILURE); // If execl fails
+        } else if (pid > 0) {
+            // Parent process: Monitor VLC
+            _vlcProcessHandle = pid;
+            while (!_stopThread) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            }
+            // Signal VLC to terminate
+            kill(pid, SIGTERM);
+            waitpid(pid, nullptr, 0);
+        } else {
+            std::cerr << "Failed to start VLC process" << std::endl;
+        }
+    });
+}
+
 void SFMLGraphic::Graphic::debug(std::size_t i) {
     if (_appName.empty()) {
         printDebug("Graphic {", i);
@@ -153,7 +245,23 @@ void SFMLGraphic::Graphic::debug(std::size_t i) {
         page->debug(i + 2);
     }
     printDebug("}", i + 1);
+    printDebug("TempBoxes {", i + 1);
+    for (const auto &box : _tempBox) {
+        box->debug(i + 2);
+    }
+    printDebug("}", i + 1);
     printDebug("}", i);
+}
+
+const void SFMLGraphic::Graphic::stopMedia() {
+    std::cout << "Stop media" << std::endl;
+    if (_mediaThread.joinable()) {
+        _stopThread = true; // Signal the thread to stop
+        _mediaThread.join(); // Wait for the thread to finish
+        std::cout << "Media thread stopped" << std::endl;
+    } else {
+        std::cerr << "No media thread to stop" << std::endl;
+    }
 }
 
 extern "C" {

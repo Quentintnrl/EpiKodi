@@ -74,7 +74,8 @@
                     "hide": false,
                     "uuid": "097d92f4-a993-43b4-a22e-32f115aed524"
                 }
-            ]
+            ],
+            "name": "top"
         },
         {
             "type": "hor_scroll",
@@ -297,7 +298,8 @@
 
                 }
             ],
-            "images": []
+            "images": [],
+            "name": "core"
         }
     ]
 }

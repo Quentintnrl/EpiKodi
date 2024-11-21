@@ -6,12 +6,14 @@
 
 const std::unordered_map<std::string, BoxType> boxTypeMap = {
     {"static", BoxType::Static},
-    {"hor_scroll", BoxType::Horizontal_Scroll}
+    {"hor_scroll", BoxType::Horizontal_Scroll},
+    {"ver_scroll", BoxType::Vertical_Scroll}
 };
 
 const std::unordered_map<BoxType, std::string> boxTypeStringMap = {
     {BoxType::Static, "static"},
-    {BoxType::Horizontal_Scroll, "hor_scroll"}
+    {BoxType::Horizontal_Scroll, "hor_scroll"},
+    {BoxType::Vertical_Scroll, "ver_scroll"}
 };
 
 SFMLGraphic::GraphicBox::GraphicBox(const JsonBox &jsonBox)
@@ -23,6 +25,7 @@ SFMLGraphic::GraphicBox::GraphicBox(const JsonBox &jsonBox)
         addButton(button);
     for (const auto &image : jsonBox.getImages())
         addImage(image);
+    _name = jsonBox.getName();
 }
 
 void SFMLGraphic::GraphicBox::addButton(const JsonButton &button)
@@ -38,6 +41,11 @@ void SFMLGraphic::GraphicBox::addImage(const JsonImage &image)
 void SFMLGraphic::GraphicBox::addText(const JsonText &text)
 {
     _texts.push_back(std::make_shared<GraphicText>(text));
+}
+
+const std::string SFMLGraphic::GraphicBox::getName() const
+{
+    return _name;
 }
 
 void SFMLGraphic::GraphicBox::setButtonState(const Uuid buttonId, const bool state)
@@ -65,16 +73,17 @@ void SFMLGraphic::GraphicBox::debug(const std::size_t i) {
     for (const auto &text : _texts)
         text->debug(i + 2);
     printDebug("}", i + 1);
+    printDebug("Name: " + _name, i + 1);
     printDebug("}", i);
 }
 
 void SFMLGraphic::GraphicBox::draw(sf::RenderWindow &window) const
 {
-    for (const auto &button : _buttons) {
-        std::dynamic_pointer_cast<GraphicButton>(button)->draw(window);
-    }
     for (const auto &image : _images) {
         std::dynamic_pointer_cast<GraphicImage>(image)->draw(window);
+    }
+    for (const auto &button : _buttons) {
+        std::dynamic_pointer_cast<GraphicButton>(button)->draw(window);
     }
     for (const auto &text : _texts) {
         std::dynamic_pointer_cast<GraphicText>(text)->draw(window);

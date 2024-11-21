@@ -9,6 +9,8 @@ class JsonPage : public AbstractJsonElem {
         const std::vector<JsonBox> getBoxes() const;
 
         const void debug(const std::size_t i) override;
+
+        bool operator==(const JsonPage &other) const;
     private:
         std::string findName(const nlohmann::json &json);
         std::vector<JsonBox> findBoxes(const nlohmann::json &json);

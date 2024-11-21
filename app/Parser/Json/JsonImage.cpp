@@ -4,7 +4,7 @@
 
 JsonImage::JsonImage(const nlohmann::json& json) {
     if (DEBUG_ENABLED()) {
-        std::cout << "JsonImage: " << json << std::endl;
+        std::cout << "JsonImage: " << json.dump(4) << std::endl;
     }
     _ImagePath = findImagePath(json);
     _position = findPosition(json);
@@ -35,6 +35,10 @@ const void JsonImage::debug(const std::size_t i) {
     printDebug("Size: (" + std::to_string(std::get<0>(_size)) + ", " + std::to_string(std::get<1>(_size)) + ")", i + 1);
     printDebug("Hide: " + std::to_string(hide), i + 1);
     printDebug("}", i);
+}
+
+bool JsonImage::operator==(const JsonImage& other) const {
+    return _ImagePath == other._ImagePath && _position == other._position && _size == other._size && hide == other.hide;
 }
 
 const std::string JsonImage::findImagePath(const nlohmann::json& json) const {

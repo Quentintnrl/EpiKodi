@@ -2,9 +2,11 @@
 #include "dlLoader.hpp"
 #include "GraphicEvent.hpp"
 #include <iostream>
+#include <unistd.h>
 
 App::App(JsonApp jsonApp) {
     _Running = false;
+    _isMedia = false;
     if (DEBUG_ENABLED()) {
         jsonApp.debug(0);
     }
@@ -15,16 +17,41 @@ App::App(JsonApp jsonApp) {
     }
     DlLoader dlLoader;
     graphic = dlLoader.getInstance<IGraphic>(graphicPath, GRAPHIC_LOAD);
+    for (const auto &mediaPagesManager : jsonApp.getMediasDirPath()) {
+        try {
+            _mediaPagesManagers.push_back(std::make_shared<MediaPagesManager>(mediaPagesManager));
+            sleep(1);
+            _mediaPagesManagers.back()->lock();
+            _mediaPagesManagers.back()->unlock();
+            if (_mediaPagesManagers.back()->hasChange()) {
+                _mediaPagesManagers.back()->lock();
+                for (const auto &page : _mediaPagesManagers.back()->getPages()) {
+                    _pagesList.push_back(std::make_shared<Page>(page));
+                    graphic->addPage(page);
+                }
+                _mediaPagesManagers.back()->unlock();
+            }
+        } catch (const std::exception &e) {
+            std::cerr << "Exception caught: " << e.what() << std::endl;
+        } catch (...) {
+            std::cerr << "Unknown exception caught!" << std::endl;
+        }
+    }
     _pages.push_back(std::make_shared<Page>(jsonApp.getPage()));
     graphic->addPage(jsonApp.getPage());
     for (auto &page : jsonApp.getPages()) {
         _pagesList.push_back(std::make_shared<Page>(page));
         graphic->addPage(page);
     }
+    for (auto &box : jsonApp.getBoxes()) {
+        _boxes.push_back(std::make_shared<Box>(box));
+        graphic->addTempBox(box);
+    }
     graphic->changePage(jsonApp.getPage().getName());
     if (DEBUG_ENABLED()) {
         graphic->debug(0);
     }
+    std::cout << "App created" << std::endl;
 }
 
 App::~App() {
@@ -98,6 +125,9 @@ void App::handleSelect() {
                 if (button->getType() == ToPage) {
                     addPage(button);
                 }
+                if (button->getType() == ToMedia) {
+                    addMedia(button);
+                }
             }
         }
     }
@@ -109,6 +139,12 @@ void App::handleWheel(const GraphicEvent &event) {
 }
 
 void App::handleBack() {
+    if (_isMedia) {
+        std::cout << "Stop media" << std::endl;
+        graphic->stopMedia();
+        _isMedia = false;
+        return;
+    }
     if (_pages.size() > 1) {
         _pages.pop_back();
         graphic->changePage(_pages.back()->getName());
@@ -116,20 +152,44 @@ void App::handleBack() {
 }
 
 void App::addPopUp(const std::shared_ptr<Button> button) {
+    if (DEBUG_ENABLED()) {
+        std::cout << "Adding pop-up: " << button->getTarget() << std::endl;
+    }
     return;
 }
 
 void App::addBox(const std::shared_ptr<Button> button) {
-    return;
+    for (auto &box : _boxes) {
+        if (box->getName() == button->getTarget() && _pages.back()->getBoxes().back().getName() != button->getTarget()) {
+            if (DEBUG_ENABLED()) {
+                std::cout << "Adding box: " << button->getTarget() << std::endl;
+            }
+            graphic->loadTempBox(button->getTarget());
+            _pages.back()->addBox(*box);
+            break;
+        }
+    }
 }
 
 void App::addPage(const std::shared_ptr<Button> button) {
+    if (DEBUG_ENABLED()) {
+        std::cout << "Changing page: " << button->getTarget() << std::endl;
+    }
     for (auto &page : _pagesList) {
         if (page->getName() == button->getTarget()) {
+            if (_pages.back()->getNbBoxes() < _pages.back()->getBoxes().size()) {
+                _pages.back()->removeLastBox();
+            }
             _pages.push_back(page);
             graphic->changePage(page->getName());
             break;
         }
     }
+    return;
+}
+
+void App::addMedia(const std::shared_ptr<Button> button) {
+    graphic->displayMedia(button->getTarget());
+    _isMedia = true;
     return;
 }

@@ -12,7 +12,11 @@ class Page : public AppElement {
 
         const std::vector<Box> getBoxes() const;
         const std::string getName() const;
+        const std::size_t getNbBoxes() const;
+
+        const void removeLastBox();
     private:
         std::vector<Box> _boxes;
         std::string name;
+        std::size_t _nbBoxes;
 };

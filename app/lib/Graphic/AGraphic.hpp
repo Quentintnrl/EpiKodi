@@ -19,6 +19,11 @@ class AGraphic : public IGraphic
         virtual void setButtonState(const Uuid buttonId, const bool state) = 0;
         virtual const GraphicEvent getLastEvent() = 0;
         virtual const void changePage(const std::string &pageName) = 0;
+        virtual const void addTempBox(const JsonBox &box) = 0;
+        virtual const void loadTempBox(const std::string &boxName) = 0;
+        virtual const void removeTempBox(const std::string &boxName) = 0;
+        virtual const void displayMedia(const std::string &mediaPath) = 0;
+        virtual const void stopMedia() = 0;
     protected:
         virtual void draw() = 0;
         virtual void manageEvents() = 0;

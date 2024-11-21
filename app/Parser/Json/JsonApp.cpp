@@ -12,6 +12,8 @@ JsonApp::JsonApp(const nlohmann::json& json) {
     _graphicPath = findGraphicPath(json);
     _page = findPage(json);
     _pages = findPages(json);
+    _boxes = findBoxes(json);
+    _mediasDirPath = findMediasDirPath(json);
 }
 
 const std::string JsonApp::getName() const {
@@ -34,6 +36,14 @@ const std::vector<JsonPage> JsonApp::getPages() const {
     return _pages;
 }
 
+const std::vector<JsonBox> JsonApp::getBoxes() const {
+    return _boxes;
+}
+
+const std::vector<std::string> JsonApp::getMediasDirPath() const {
+    return _mediasDirPath;
+}
+
 const void JsonApp::debug(const std::size_t i) {
     printDebug("App: {", i);
     printDebug("name: " + getName(), i + 1);
@@ -47,6 +57,16 @@ const void JsonApp::debug(const std::size_t i) {
     printDebug("pages: [", i + 1);
     for (auto& page : _pages) {
         page.debug(i + 2);
+    }
+    printDebug("]", i + 1);
+    printDebug("boxes: [", i + 1);
+    for (auto& box : _boxes) {
+        box.debug(i + 2);
+    }
+    printDebug("]", i + 1);
+    printDebug("medias: [", i + 1);
+    for (const auto& mediaDir : getMediasDirPath()) {
+        printDebug(mediaDir, i + 2);
     }
     printDebug("]", i + 1);
     printDebug("}", i);
@@ -105,4 +125,36 @@ const std::vector<JsonPage> JsonApp::findPages(const nlohmann::json& json) const
         pages.push_back(JsonPage(jsonPage));
     }
     return pages;
+}
+
+const std::vector<JsonBox> JsonApp::findBoxes(const nlohmann::json& json) const {
+    std::vector<JsonBox> boxes;
+    for (const auto& box : json["boxes"]) {
+        std::string path = box["path"];
+        const std::string completePath = getenv("PWD") + path;
+        if (DEBUG_ENABLED()) {
+            std::cout << "Parsing file: " << completePath << std::endl;
+        }
+        std::ifstream file(completePath);
+        if (!file.is_open()) {
+            throw std::runtime_error("Could not open file: " + completePath);
+        }
+
+        // Read the file content into a string
+        std::stringstream buffer;
+        buffer << file.rdbuf();
+
+        // Parse the JSON from the string
+        nlohmann::json jsonBox = nlohmann::json::parse(buffer.str());
+        boxes.push_back(JsonBox(jsonBox));
+    }
+    return boxes;
+}
+
+const std::vector<std::string> JsonApp::findMediasDirPath(const nlohmann::json& json) const {
+    std::vector<std::string> mediasDirPath;
+    for (const auto& mediaDir : json["medias"]) {
+        mediasDirPath.push_back(mediaDir["path"]);
+    }
+    return mediasDirPath;
 }
