@@ -21,5 +21,10 @@
         {
             "path": "/json/movies"
         }
+    ],
+    "settings": [
+        {
+            "path": "/json/settings"
+        }
     ]
 }
