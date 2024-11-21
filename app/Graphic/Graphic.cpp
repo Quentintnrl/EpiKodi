@@ -201,7 +201,10 @@ const void SFMLGraphic::Graphic::displayMedia(const std::string &mediaPath) {
 
 void SFMLGraphic::Graphic::displayVideo(const std::string &mediaPath) {
     std::cout << "Running mo: " << mediaPath << std::endl;
-    std::string command = "cvlc --no-xlib --log-verbose=2 --logfile=vlc_log.txt --demux=mp4 \"" + mediaPath + "\"";
+    std::size_t width = _window.getSize().x;
+    std::size_t height = _window.getSize().y;
+    std::string command = "cvlc --fullscreen" + std::string(" --width=") + std::to_string(width) + std::string(" --height=") + std::to_string(height) + std::string(" --video-x=") + std::to_string(width) + std::string(" --video-y=") + std::to_string(height) + std::string(" \"") + mediaPath + std::string("\"");
+    std::cout << "command: " << command << std::endl;
     std::thread t([command] {
         std::system(command.c_str());
     });
