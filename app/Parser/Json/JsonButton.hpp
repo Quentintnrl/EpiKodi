@@ -9,6 +9,7 @@ enum ButtonType {
     AddBox,
     ToPage,
     ToMedia,
+    ToParam,
 };
 
 class JsonButton : public AbstractJsonElem {

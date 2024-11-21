@@ -14,6 +14,7 @@ JsonApp::JsonApp(const nlohmann::json& json) {
     _pages = findPages(json);
     _boxes = findBoxes(json);
     _mediasDirPath = findMediasDirPath(json);
+    _settingsPath = findSettingsPath(json);
 }
 
 const std::string JsonApp::getName() const {
@@ -44,6 +45,10 @@ const std::vector<std::string> JsonApp::getMediasDirPath() const {
     return _mediasDirPath;
 }
 
+const std::vector<std::string> JsonApp::getSettingsPath() const {
+    return _settingsPath;
+}
+
 const void JsonApp::debug(const std::size_t i) {
     printDebug("App: {", i);
     printDebug("name: " + getName(), i + 1);
@@ -67,6 +72,11 @@ const void JsonApp::debug(const std::size_t i) {
     printDebug("medias: [", i + 1);
     for (const auto& mediaDir : getMediasDirPath()) {
         printDebug(mediaDir, i + 2);
+    }
+    printDebug("]", i + 1);
+    printDebug("settings: [", i + 1);
+    for (const auto& setting : getSettingsPath()) {
+        printDebug(setting, i + 2);
     }
     printDebug("]", i + 1);
     printDebug("}", i);
@@ -157,4 +167,12 @@ const std::vector<std::string> JsonApp::findMediasDirPath(const nlohmann::json& 
         mediasDirPath.push_back(mediaDir["path"]);
     }
     return mediasDirPath;
+}
+
+const std::vector<std::string> JsonApp::findSettingsPath(const nlohmann::json& json) const {
+    std::vector<std::string> settingsPath;
+    for (const auto& setting : json["settings"]) {
+        settingsPath.push_back(setting["path"]);
+    }
+    return settingsPath;
 }

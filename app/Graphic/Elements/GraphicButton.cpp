@@ -7,14 +7,16 @@ const std::unordered_map<std::string, ButtonType> buttonTypeMap = {
     {"ToPopUp", ButtonType::ToPopUp},
     {"AddBox", ButtonType::AddBox},
     {"ToPage", ButtonType::ToPage},
-    {"ToMedia", ButtonType::ToMedia}
+    {"ToMedia", ButtonType::ToMedia},
+    {"ToParam", ButtonType::ToParam}
 };
 
 const std::unordered_map<ButtonType, std::string> buttonTypeStringMap = {
     {ButtonType::ToPopUp, "ToPopUp"},
     {ButtonType::AddBox, "AddBox"},
     {ButtonType::ToPage, "ToPage"},
-    {ButtonType::ToMedia, "ToMedia"}
+    {ButtonType::ToMedia, "ToMedia"},
+    {ButtonType::ToParam, "ToParam"}
 };
 
 SFMLGraphic::GraphicButton::GraphicButton(const JsonButton &jsonButton)

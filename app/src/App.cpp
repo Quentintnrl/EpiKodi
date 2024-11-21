@@ -8,7 +8,7 @@ App::App(JsonApp jsonApp) {
     _Running = false;
     _isMedia = false;
     if (DEBUG_ENABLED()) {
-        jsonApp.debug(0);
+        // jsonApp.debug(0);
     }
     name = jsonApp.getName();
     std::string graphicPath = LIBS_PATH + jsonApp.getGraphicPath();
@@ -17,19 +17,39 @@ App::App(JsonApp jsonApp) {
     }
     DlLoader dlLoader;
     graphic = dlLoader.getInstance<IGraphic>(graphicPath, GRAPHIC_LOAD);
-    for (const auto &mediaPagesManager : jsonApp.getMediasDirPath()) {
+    // for (const auto &mediaPagesManager : jsonApp.getMediasDirPath()) {
+    //     try {
+    //         _mediaPagesManagers.push_back(std::make_shared<MediaPagesManager>(mediaPagesManager));
+    //         sleep(1);
+    //         _mediaPagesManagers.back()->lock();
+    //         _mediaPagesManagers.back()->unlock();
+    //         if (_mediaPagesManagers.back()->hasChange()) {
+    //             _mediaPagesManagers.back()->lock();
+    //             for (const auto &page : _mediaPagesManagers.back()->getPages()) {
+    //                 _pagesList.push_back(std::make_shared<Page>(page));
+    //                 graphic->addPage(page);
+    //             }
+    //             _mediaPagesManagers.back()->unlock();
+    //         }
+    //     } catch (const std::exception &e) {
+    //         std::cerr << "Exception caught: " << e.what() << std::endl;
+    //     } catch (...) {
+    //         std::cerr << "Unknown exception caught!" << std::endl;
+    //     }
+    // }
+    for (const auto &settingsPath : jsonApp.getSettingsPath()) {
         try {
-            _mediaPagesManagers.push_back(std::make_shared<MediaPagesManager>(mediaPagesManager));
+            _settingsBoxesManagers.push_back(std::make_shared<SettingsBoxesManager>(settingsPath));
             sleep(1);
-            _mediaPagesManagers.back()->lock();
-            _mediaPagesManagers.back()->unlock();
-            if (_mediaPagesManagers.back()->hasChange()) {
-                _mediaPagesManagers.back()->lock();
-                for (const auto &page : _mediaPagesManagers.back()->getPages()) {
-                    _pagesList.push_back(std::make_shared<Page>(page));
-                    graphic->addPage(page);
-                }
-                _mediaPagesManagers.back()->unlock();
+            _settingsBoxesManagers.back()->lock();
+            _settingsBoxesManagers.back()->unlock();
+            if (_settingsBoxesManagers.back()->hasChange()) {
+                _settingsBoxesManagers.back()->lock();
+                // for (const auto &box : _settingsBoxesManagers.back()->getBoxes()) {
+                //     _boxes.push_back(std::make_shared<Box>(box));
+                //     graphic->addTempBox(box);
+                // }
+                _settingsBoxesManagers.back()->unlock();
             }
         } catch (const std::exception &e) {
             std::cerr << "Exception caught: " << e.what() << std::endl;
@@ -37,6 +57,7 @@ App::App(JsonApp jsonApp) {
             std::cerr << "Unknown exception caught!" << std::endl;
         }
     }
+    while (true);
     _pages.push_back(std::make_shared<Page>(jsonApp.getPage()));
     graphic->addPage(jsonApp.getPage());
     for (auto &page : jsonApp.getPages()) {
@@ -49,7 +70,7 @@ App::App(JsonApp jsonApp) {
     }
     graphic->changePage(jsonApp.getPage().getName());
     if (DEBUG_ENABLED()) {
-        graphic->debug(0);
+        // graphic->debug(0);
     }
     std::cout << "App created" << std::endl;
 }
