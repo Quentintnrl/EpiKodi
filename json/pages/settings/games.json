@@ -20,7 +20,7 @@
                     ],
                     "hide": false,
                     "uuid": "2288760e-f2ca-44b7-9217-5bfdb9f57b81",
-                    "target": "Settings/Games/General"
+                    "target": "settings/games/general"
 
                 },
                 {
@@ -38,7 +38,7 @@
                     ],
                     "hide": false,
                     "uuid": "fe689295-e25e-42ec-8666-417b78839b36",
-                    "target": "Settings/Games/Achievements"
+                    "target": "settings/games/achievements"
 
                 }
             ],

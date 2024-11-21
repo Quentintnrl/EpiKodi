@@ -244,12 +244,12 @@ void SettingsBoxesManager::createBox(const std::shared_ptr<SettingsBoxFile> file
         //reset file
         File.seekp(0);
         nlohmann::json newJson;
-        newJson["name"] = content["name"];
+        newJson["name"] = std::string("settings/") + file->getFileName().substr(0, file->getFileName().find_last_of(".")) + "/" + content["name"].get<std::string>();
         newJson["type"] = json["type"];
         auto jsonTexts = nlohmann::json::array();
         auto jsonImages = nlohmann::json::array();
         auto jsonButtons = nlohmann::json::array();
-        std::size_t i = 1;
+        std::size_t i = 0;
         for (auto &param : content["params"]) {
             if (param["type"].get<std::string>() == "reset") {
                 continue;
@@ -265,12 +265,13 @@ void SettingsBoxesManager::createBox(const std::shared_ptr<SettingsBoxFile> file
             jsonButton["size"] = buttonSize;
             auto buttonPosition = nlohmann::json::array();
             buttonPosition.push_back(470);
-            buttonPosition.push_back(i * 180);
+            buttonPosition.push_back(i * json["button_size"][1].get<std::size_t>() + 180);
             jsonButton["position"] = buttonPosition;
             jsonButton["hide"] = false;
             jsonButton["uuid"] = Uuid().toString();
             jsonButton["target"] = std::string("settings/") + file->getFileName().substr(0, file->getFileName().find_last_of(".")) + "/" + content["name"].get<std::string>() + "/" + param["name"].get<std::string>();
             jsonButtons.push_back(jsonButton);
+            i++;
         }
         newJson["texts"] = jsonTexts;
         newJson["images"] = jsonImages;
