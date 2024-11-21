@@ -39,7 +39,7 @@
         }
     ],
     "file_path": "/json/boxes/settings/",
-    "has_changed": true,
+    "has_changed": false,
     "ignore": false,
     "type": "static"
 }
