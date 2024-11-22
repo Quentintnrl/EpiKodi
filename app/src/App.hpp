@@ -4,6 +4,7 @@
 #include "Page.hpp"
 #include "mediaPagesManager.hpp"
 #include "settingsBoxesManager.hpp"
+#include "settingsManager.hpp"
 #include <memory>
 
 #define CONFIG_PATH "/json/application.json"
@@ -32,6 +33,7 @@ class App {
         void addBox(const std::shared_ptr<Button> button);
         void addPage(const std::shared_ptr<Button> button);
         void addMedia(const std::shared_ptr<Button> button);
+        const void changeParam(const std::shared_ptr<Button> button) const;
         bool _Running;
         bool _isMedia;
         std::string name;
@@ -41,4 +43,5 @@ class App {
         std::vector<std::shared_ptr<Box>> _boxes;
         std::vector<std::shared_ptr<MediaPagesManager>> _mediaPagesManagers;
         std::vector<std::shared_ptr<SettingsBoxesManager>> _settingsBoxesManagers;
+        std::shared_ptr<SettingsManager> _settingsManager;
 };

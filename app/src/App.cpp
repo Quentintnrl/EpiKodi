@@ -7,6 +7,7 @@
 App::App(JsonApp jsonApp) {
     _Running = false;
     _isMedia = false;
+    _settingsManager = std::make_shared<SettingsManager>();
     if (DEBUG_ENABLED()) {
         // jsonApp.debug(0);
     }
@@ -148,6 +149,9 @@ void App::handleSelect() {
                 if (button->getType() == ToMedia) {
                     addMedia(button);
                 }
+                if (button->getType() == ToParam) {
+                    changeParam(button);
+                }
             }
         }
     }
@@ -211,5 +215,17 @@ void App::addPage(const std::shared_ptr<Button> button) {
 void App::addMedia(const std::shared_ptr<Button> button) {
     graphic->displayMedia(button->getTarget());
     _isMedia = true;
+    return;
+}
+
+const void App::changeParam(const std::shared_ptr<Button> button) const {
+    if (DEBUG_ENABLED()) {
+        std::cout << "Changing param: " << button->getTarget() << std::endl;
+    }
+    std::string path = button->getTarget().substr(0, button->getTarget().find_last_of("/"));
+    std::string param = path.substr(path.find_last_of("/") + 1);
+    path = path.substr(0, path.find_last_of("/"));
+    std::string target = button->getTarget().substr(button->getTarget().find_last_of("/") + 1);
+    _settingsManager->changeSettings(path, target, param);
     return;
 }
