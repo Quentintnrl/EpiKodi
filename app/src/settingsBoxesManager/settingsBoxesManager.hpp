@@ -48,4 +48,5 @@ class SettingsBoxesManager {
         const bool boxExist(const std::string &name) const;
         const void removeBox(const std::string &name);
         const void createJsonBox(const std::string &name, const std::string &jsonPath);
+        const nlohmann::json addParamImage(const std::string &type, const nlohmann::json &position, const nlohmann::json &value) const;
 };

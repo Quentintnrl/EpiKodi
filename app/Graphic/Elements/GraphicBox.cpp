@@ -79,11 +79,11 @@ void SFMLGraphic::GraphicBox::debug(const std::size_t i) {
 
 void SFMLGraphic::GraphicBox::draw(sf::RenderWindow &window) const
 {
-    for (const auto &image : _images) {
-        std::dynamic_pointer_cast<GraphicImage>(image)->draw(window);
-    }
     for (const auto &button : _buttons) {
         std::dynamic_pointer_cast<GraphicButton>(button)->draw(window);
+    }
+    for (const auto &image : _images) {
+        std::dynamic_pointer_cast<GraphicImage>(image)->draw(window);
     }
     for (const auto &text : _texts) {
         std::dynamic_pointer_cast<GraphicText>(text)->draw(window);

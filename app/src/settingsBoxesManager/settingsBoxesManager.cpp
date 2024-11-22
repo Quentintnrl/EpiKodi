@@ -267,6 +267,9 @@ void SettingsBoxesManager::createBox(const std::shared_ptr<SettingsBoxFile> file
             buttonPosition.push_back(470);
             buttonPosition.push_back(i * json["button_size"][1].get<std::size_t>() + 180);
             jsonButton["position"] = buttonPosition;
+            if (param["type"].get<std::string>() == "boolean") {
+                jsonImages.push_back(std::move(addParamImage(param["type"], buttonPosition, param["value"])));
+            }
             jsonButton["hide"] = false;
             jsonButton["uuid"] = Uuid().toString();
             jsonButton["target"] = std::string("settings/") + file->getFileName().substr(0, file->getFileName().find_last_of(".")) + "/" + content["name"].get<std::string>() + "/" + param["name"].get<std::string>();
@@ -327,4 +330,22 @@ const void SettingsBoxesManager::createJsonBox(const std::string &name, const st
             printDebug("Error opening file: " + jsonPath, 1);
         }
     }
+}
+
+const nlohmann::json SettingsBoxesManager::addParamImage(const std::string &type, const nlohmann::json &position, const nlohmann::json &value) const {
+    nlohmann::json image;
+    image["hide"] = false;
+    image["uuid"] = Uuid().toString();
+    if (type == "boolean") {
+        image["position"].push_back(1920 - 135);
+        image["position"].push_back(position[1].get<std::size_t>());
+        image["size"].push_back(105);
+        image["size"].push_back(70);
+        if (value.get<bool>()) {
+            image["path"] = "assets/settings/settings_true_button.png";
+        } else {
+            image["path"] = "assets/settings/settings_false_button.png";
+        }
+    }
+    return image;
 }
