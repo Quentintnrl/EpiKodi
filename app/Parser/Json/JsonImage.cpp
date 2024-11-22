@@ -28,7 +28,7 @@ const bool JsonImage::getHide() const {
     return hide;
 }
 
-const void JsonImage::debug(const std::size_t i) {
+const void JsonImage::debug(const std::size_t i) const {
     printDebug("Image: {", i);
     printDebug("Path: " + _ImagePath, i + 1);
     printDebug("Position: (" + std::to_string(std::get<0>(_position)) + ", " + std::to_string(std::get<1>(_position)) + ")", i + 1);

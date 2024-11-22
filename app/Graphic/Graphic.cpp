@@ -154,12 +154,20 @@ const void SFMLGraphic::Graphic::changePage(const std::string &pageName) {
 }
 
 const void SFMLGraphic::Graphic::addTempBox(const JsonBox &box) {
+    removeTempBox(box.getName());
+    for (std::size_t i = 0; i < _tempBox.size(); i++) {
+        if (_tempBox[i]->getName() == box.getName()) {
+            _tempBox.erase(_tempBox.begin() + i);
+            i--;
+        }
+    }
     _tempBox.push_back(std::make_shared<GraphicBox>(box));
 }
 
 const void SFMLGraphic::Graphic::loadTempBox(const std::string &boxName) {
     for (const auto &box : _tempBox) {
         if (box->getName() == boxName && _box.back()->getName() != boxName) {
+            // box->debug();
             _box.push_back(box);
             return;
         }
@@ -170,7 +178,7 @@ const void SFMLGraphic::Graphic::removeTempBox(const std::string &boxName) {
     for (std::size_t i = 0; i < _box.size(); i++) {
         if (_box[i]->getName() == boxName) {
             _box.erase(_box.begin() + i);
-            return;
+            i--;
         }
     }
 }

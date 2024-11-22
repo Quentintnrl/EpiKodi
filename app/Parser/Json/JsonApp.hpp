@@ -17,7 +17,7 @@ class JsonApp : public AbstractJsonElem {
         const std::vector<std::string> getMediasDirPath() const;
         const std::vector<std::string> getSettingsPath() const;
 
-        const void debug(const std::size_t i) override;
+        const void debug(const std::size_t i) const override;
     private:
         //find methods
         const std::string findName(const nlohmann::json& json) const;

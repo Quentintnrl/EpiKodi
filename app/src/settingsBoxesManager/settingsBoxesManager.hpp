@@ -36,6 +36,7 @@ class SettingsBoxesManager {
         const bool isLocked();
         const bool isRunning() const;
         const bool hasChange() const;
+        const void resetChange();
     protected:
         std::mutex _mutex;
         std::thread _thread;
@@ -48,5 +49,5 @@ class SettingsBoxesManager {
         const bool boxExist(const std::string &name) const;
         const void removeBox(const std::string &name);
         const void createJsonBox(const std::string &name, const std::string &jsonPath);
-        const nlohmann::json addParamImage(const std::string &type, const nlohmann::json &position, const nlohmann::json &value) const;
+        const nlohmann::json addParamImage(const std::string &type, const nlohmann::json &position, const nlohmann::json &value, const std::string path) const;
 };

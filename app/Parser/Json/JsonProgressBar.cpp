@@ -37,7 +37,7 @@ const bool JsonProgressBar::getHide() const {
     return _hide;
 }
 
-const void JsonProgressBar::debug(const std::size_t i) {
+const void JsonProgressBar::debug(const std::size_t i) const {
     printDebug("ProgressBar: {", i);
     printDebug("position: (" + std::to_string(std::get<0>(_position)) + ", " + std::to_string(std::get<1>(_position)) + "),", i + 1);
     printDebug("size: (" + std::to_string(std::get<0>(_size)) + ", " + std::to_string(std::get<1>(_size)) + "),", i + 1);

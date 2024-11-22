@@ -50,6 +50,7 @@ App::App(JsonApp jsonApp) {
                     _boxes.push_back(std::make_shared<Box>(box));
                     graphic->addTempBox(box);
                 }
+                _settingsBoxesManagers.back()->resetChange();
                 _settingsBoxesManagers.back()->unlock();
             }
         } catch (const std::exception &e) {
@@ -85,6 +86,27 @@ void App::start() {
 
 void App::run() {
     while (_Running) {
+        if (_settingsBoxesManagers.back()->hasChange() && !_settingsBoxesManagers.back()->isLocked()) {
+                _settingsBoxesManagers.back()->lock();
+                for (const auto &box : _settingsBoxesManagers.back()->getBoxes()) {
+                    if (_pages.back()->getBoxes().back().getName() == box.getName()) {
+                        _pages.back()->removeLastBox();
+                        for (std::size_t i = 0; i < _boxes.size(); i++) {
+                            if (_boxes[i]->getName() == box.getName()) {
+                                _boxes.erase(_boxes.begin() + i);
+                                break;
+                            }
+                        }
+                    }
+                    _boxes.push_back(std::make_shared<Box>(box));
+                    _pages.back()->addBox(*_boxes.back());
+                    graphic->removeTempBox(box.getName());
+                    graphic->addTempBox(box);
+                    graphic->loadTempBox(box.getName());
+                }
+                _settingsBoxesManagers.back()->resetChange();
+                _settingsBoxesManagers.back()->unlock();
+        }
         graphic->loop();
         std::tuple<std::size_t , std::size_t> pos = graphic->getCursorPosition();
         std::tuple<std::size_t , std::size_t> windowSize = graphic->getWindowSize();
@@ -227,5 +249,4 @@ const void App::changeParam(const std::shared_ptr<Button> button) const {
     path = path.substr(0, path.find_last_of("/"));
     std::string target = button->getTarget().substr(button->getTarget().find_last_of("/") + 1);
     _settingsManager->changeSettings(path, target, param);
-    return;
 }

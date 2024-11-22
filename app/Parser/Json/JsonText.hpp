@@ -15,7 +15,7 @@ class JsonText : AbstractJsonElem {
         const std::size_t getSize() const;
         const bool getHide() const;
 
-        const void debug(const std::size_t i) override;
+        const void debug(const std::size_t i) const override;
 
         bool operator==(const JsonText& other) const;
 

@@ -73,7 +73,7 @@ const std::string JsonButton::getTarget() const {
     return _target;
 }
 
-const void JsonButton::debug(const std::size_t i) {
+const void JsonButton::debug(const std::size_t i) const {
     printDebug("Button: {", i);
     printDebug("type: " + getTypeString(), i + 1);
     printDebug("name: " + _name, i + 1);

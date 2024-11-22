@@ -49,7 +49,7 @@ const std::vector<std::string> JsonApp::getSettingsPath() const {
     return _settingsPath;
 }
 
-const void JsonApp::debug(const std::size_t i) {
+const void JsonApp::debug(const std::size_t i) const {
     printDebug("App: {", i);
     printDebug("name: " + getName(), i + 1);
     printDebug("components: [", i + 1);

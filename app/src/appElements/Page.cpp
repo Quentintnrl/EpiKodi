@@ -1,4 +1,5 @@
 #include "Page.hpp"
+#include <iostream>
 
 Page::Page(const JsonPage &jsonPage) : AppElement() {
     for (const auto &jsonBox : jsonPage.getBoxes()) {

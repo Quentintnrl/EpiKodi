@@ -39,11 +39,17 @@ const void SettingsManager::changeSettings(const std::string filePath, const std
                 }
                 if (param["type"] == "boolean") {
                     param["value"] = !param["value"].get<bool>();
+                    if (param["value"].get<bool>()) {
+                        param["asset"] = "assets/settings/settings_true_button.png";
+                    } else {
+                        param["asset"] = "assets/settings/settings_false_button.png";
+                    }
                     break;
                 }
             }
         }
     }
+    j["has_changed"] = true;
     //delete file
     std::remove(completePath.c_str());
     //create new file

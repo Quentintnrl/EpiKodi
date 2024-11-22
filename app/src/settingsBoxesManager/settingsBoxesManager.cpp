@@ -99,7 +99,7 @@ SettingsBoxesManager::SettingsBoxesManager(const std::string &path) : _running(t
                 if (DEBUG_ENABLED()) {
                     printDebug("File: " + settingsFile->getFileName(), 0);
                 }
-                bool change = file["has_changed"];
+                bool change = file["has_changed"].get<bool>();
                 std::string configPath = std::filesystem::current_path().string() + file["file_path"].get<std::string>() + settingsFile->getFileName();
                 if (DEBUG_ENABLED()) {
                     printDebug("Config path: " + configPath, 0);
@@ -184,6 +184,10 @@ const bool SettingsBoxesManager::hasChange() const {
     return _change;
 }
 
+const void SettingsBoxesManager::resetChange() {
+    _change = false;
+}
+
 void SettingsBoxesManager::editBox(const std::shared_ptr<SettingsBoxFile> file, nlohmann::json &json) {
     if (DEBUG_ENABLED()) {
         printDebug("Editing box: " + file->getFileName(), 0);
@@ -203,6 +207,7 @@ void SettingsBoxesManager::editBox(const std::shared_ptr<SettingsBoxFile> file, 
             if (DEBUG_ENABLED()) {
                 printDebug("Box not found: " + file->getFileName(), 0);
             }
+            createBox(file, json);
         }
     }
 }
@@ -268,7 +273,7 @@ void SettingsBoxesManager::createBox(const std::shared_ptr<SettingsBoxFile> file
             buttonPosition.push_back(i * json["button_size"][1].get<std::size_t>() + 180);
             jsonButton["position"] = buttonPosition;
             if (param["type"].get<std::string>() == "boolean") {
-                jsonImages.push_back(std::move(addParamImage(param["type"], buttonPosition, param["value"])));
+                jsonImages.push_back(std::move(addParamImage(param["type"], buttonPosition, param["value"], param["asset"])));
             }
             jsonButton["hide"] = false;
             jsonButton["uuid"] = Uuid().toString();
@@ -299,7 +304,8 @@ void SettingsBoxesManager::createBox(const std::shared_ptr<SettingsBoxFile> file
 
 const bool SettingsBoxesManager::boxExist(const std::string &name) const {
     for (const auto &box : _boxes) {
-        if (box.getName() == name) {
+        std::string boxName = box.getName().substr(box.getName().find_last_of("/") + 1);
+        if (boxName == name) {
             return true;
         }
     }
@@ -318,6 +324,7 @@ const void SettingsBoxesManager::createJsonBox(const std::string &name, const st
         printDebug("JSON path: " + jsonPath, 0);
     }
     std::fstream File(jsonPath, std::ios::in);
+    //get file content
     if (File.is_open()) {
         nlohmann::json json = nlohmann::json::parse(File);
         if (DEBUG_ENABLED()) {
@@ -332,7 +339,7 @@ const void SettingsBoxesManager::createJsonBox(const std::string &name, const st
     }
 }
 
-const nlohmann::json SettingsBoxesManager::addParamImage(const std::string &type, const nlohmann::json &position, const nlohmann::json &value) const {
+const nlohmann::json SettingsBoxesManager::addParamImage(const std::string &type, const nlohmann::json &position, const nlohmann::json &value, const std::string path) const {
     nlohmann::json image;
     image["hide"] = false;
     image["uuid"] = Uuid().toString();
@@ -341,11 +348,7 @@ const nlohmann::json SettingsBoxesManager::addParamImage(const std::string &type
         image["position"].push_back(position[1].get<std::size_t>());
         image["size"].push_back(105);
         image["size"].push_back(70);
-        if (value.get<bool>()) {
-            image["path"] = "assets/settings/settings_true_button.png";
-        } else {
-            image["path"] = "assets/settings/settings_false_button.png";
-        }
+        image["path"] = path;
     }
     return image;
 }

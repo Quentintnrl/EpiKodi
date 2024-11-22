@@ -45,7 +45,7 @@ const std::string JsonBox::getName() const {
     return _name;
 }
 
-const void JsonBox::debug(const std::size_t i) {
+const void JsonBox::debug(const std::size_t i) const {
     printDebug("Box: {", i);
     printDebug("Type: " + boxTypeStringMap.at(_type), i + 1);
     printDebug("Texts: {", i + 1);
