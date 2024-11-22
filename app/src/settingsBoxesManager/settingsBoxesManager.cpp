@@ -271,6 +271,16 @@ void SettingsBoxesManager::createBox(const std::shared_ptr<SettingsBoxFile> file
             jsonButton["uuid"] = Uuid().toString();
             jsonButton["target"] = std::string("settings/") + file->getFileName().substr(0, file->getFileName().find_last_of(".")) + "/" + content["name"].get<std::string>() + "/" + param["name"].get<std::string>();
             jsonButtons.push_back(jsonButton);
+            auto jsonText = nlohmann::json();
+            jsonText["fontPath"] = "/fonts/Viagram.otf";
+            jsonText["hide"] = false;
+            jsonText["position"];
+            jsonText["position"].push_back(buttonPosition[0].get<std::size_t>() + 30);
+            jsonText["position"].push_back(buttonPosition[1].get<std::size_t>() + 30);
+            jsonText["size"] = 30;
+            jsonText["text"] = param["text"];
+            jsonText["uuid"] = Uuid().toString();
+            jsonTexts.push_back(jsonText);
             i++;
         }
         newJson["texts"] = jsonTexts;
@@ -280,7 +290,6 @@ void SettingsBoxesManager::createBox(const std::shared_ptr<SettingsBoxFile> file
             printDebug("New JSON: " + newJson.dump(4), 0);
         }
         i++;
-        // continue;
         File << newJson.dump(4);
     }
 }
