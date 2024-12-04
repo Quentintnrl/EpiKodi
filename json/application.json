@@ -18,6 +18,9 @@
         },
         {
             "path": "/json/boxes/musics.json"
+        },
+        {
+            "path": "/json/boxes/music_videos.json"
         }
     ],
     "medias": [
