@@ -17,7 +17,7 @@
             ],
             "hide": false,
             "uuid": "67c0025a-b14a-4bbc-907e-a1f006802f64",
-            "target": "RecentlyAdded"
+            "target": "movies_RecentlyAdded"
         },
         {
             "type": "ToPage",
@@ -34,7 +34,7 @@
             ],
             "hide": false,
             "uuid": "ede4c7c4-8129-426e-b79b-f6a669e5ac83",
-            "target": "genres"
+            "target": "movies_genres"
         },
         {
             "type": "ToPage",
@@ -51,7 +51,7 @@
             ],
             "hide": false,
             "uuid": "23a42957-32d7-46b3-8bbc-2fba0684a378",
-            "target": "titles"
+            "target": "movies_titles"
         },
         {
             "type": "ToPage",
@@ -68,7 +68,7 @@
             ],
             "hide": false,
             "uuid": "60a9285a-82ef-4903-a428-3bdea5e77a5e",
-            "target": "years"
+            "target": "movies_years"
         },
         {
             "type": "ToPage",
@@ -85,7 +85,7 @@
             ],
             "hide": false,
             "uuid": "d875fb07-5bec-4948-91ea-2c90cc37996a",
-            "target": "actors"
+            "target": "movies_actors"
         },
         {
             "type": "ToPage",
@@ -102,7 +102,7 @@
             ],
             "hide": false,
             "uuid": "f0de4d47-4ef5-4e2c-88ab-44cc34e8b9e8",
-            "target": "directors"
+            "target": "movies_directors"
         },
         {
             "type": "ToPage",
@@ -119,7 +119,7 @@
             ],
             "hide": false,
             "uuid": "4d3046a2-2404-444a-aa57-d3359624df71",
-            "target": "studios"
+            "target": "movies_studios"
         },
         {
             "type": "ToPage",
@@ -136,7 +136,7 @@
             ],
             "hide": false,
             "uuid": "a8c94db7-f828-48c2-9216-9ee9df170d61",
-            "target": "countries"
+            "target": "movies_countries"
         },
         {
             "type": "ToPage",
@@ -153,7 +153,7 @@
             ],
             "hide": false,
             "uuid": "a44e17a1-614c-4a0e-a829-6433f8648123",
-            "target": "tags"
+            "target": "movies_tags"
         },
         {
             "type": "ToPage",
@@ -170,7 +170,7 @@
             ],
             "hide": false,
             "uuid": "8d33cd11-7678-4594-a41b-92460d184936",
-            "target": "versions"
+            "target": "movies_versions"
         }
     ],
     "images": [],

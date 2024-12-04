@@ -85,6 +85,9 @@ MediaPagesManager::MediaPagesManager(const std::string &path) : _running(true), 
         _running = true;
         std::vector<std::shared_ptr<MediaPageFile>> mediaFiles;
         for (const auto &entry : std::filesystem::directory_iterator(complete_path)) {
+            if (entry.path().extension() != ".json") {
+                continue;
+            }
             mediaFiles.push_back(std::make_shared<MediaPageFile>(entry.path().string()));
         }
         while (_running) {
@@ -212,6 +215,10 @@ void MediaPagesManager::createPage(const std::shared_ptr<MediaPageFile> file, nl
     }
     //create a new file
     std::string newFilePath = std::filesystem::current_path().string() + std::string(json["file_path"]) + file->getFileName();
+    //get the element between / and / in std::string(json["file_path"])
+    std::string newDir = newFilePath.substr(0, newFilePath.find_last_of("/"));
+    newDir = newDir.substr(newDir.find_last_of("/") + 1, newDir.size());
+    newDir += "_";
     if (DEBUG_ENABLED()) {
         printDebug("New file path: " + newFilePath, 0);
     }
@@ -235,7 +242,7 @@ void MediaPagesManager::createPage(const std::shared_ptr<MediaPageFile> file, nl
     File.seekp(0);
     nlohmann::json newJson;
     //get file name without the .json
-    newJson["name"] = file->getFileName().substr(0, file->getFileName().find(".json"));
+    newJson["name"] = newDir + file->getFileName().substr(0, file->getFileName().find(".json"));
     //create an array "texts" in the newJson
     auto jsonBoxes = nlohmann::json::array();
     auto jsonBox = nlohmann::json();

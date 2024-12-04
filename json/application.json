@@ -29,6 +29,9 @@
         },
         {
             "path": "/json/musics"
+        },
+        {
+            "path": "/json/music_videos"
         }
     ],
     "settings": [
