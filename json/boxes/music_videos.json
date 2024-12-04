@@ -1,0 +1,144 @@
+{
+    "type": "hor_scroll",
+    "texts": [],
+    "buttons": [
+        {
+            "type": "ToPage",
+            "name": "genres",
+            "imagePath": "assets/home/music_videos/genres.png",
+            "hoverImagePath": "assets/home/music_videos/genres_hover.png",
+            "position": [
+                545,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "fe9770e5-00c4-4f53-b8d8-e485273aad40",
+            "target": "music_videos_genres"
+        },
+        {
+            "type": "ToPage",
+            "name": "titles",
+            "imagePath": "assets/home/music_videos/titles.png",
+            "hoverImagePath": "assets/home/music_videos/titles_hover.png",
+            "position": [
+                860,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "bf6d3a4d-2f1f-4f72-a382-0a8690ef4ea5",
+            "target": "music_videos_titles"
+        },
+        {
+            "type": "ToPage",
+            "name": "years",
+            "imagePath": "assets/home/music_videos/years.png",
+            "hoverImagePath": "assets/home/music_videos/years_hover.png",
+            "position": [
+                1175,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "53e28627-1f16-4ada-ab4c-33218bed750b",
+            "target": "music_videos_years"
+        },
+        {
+            "type": "ToPage",
+            "name": "artists",
+            "imagePath": "assets/home/music_videos/artists.png",
+            "hoverImagePath": "assets/home/music_videos/artists_hover.png",
+            "position": [
+                1490,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "fbfe9d12-509f-43df-a49d-4790439124ac",
+            "target": "music_videos_artists"
+        },
+        {
+            "type": "ToPage",
+            "name": "albums",
+            "imagePath": "assets/home/music_videos/albums.png",
+            "hoverImagePath": "assets/home/music_videos/albums_hover.png",
+            "position": [
+                1805,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "9a02aa4c-475d-43d5-a96d-4c58896a9299",
+            "target": "music_videos_albums"
+        },
+        {
+            "type": "ToPage",
+            "name": "directors",
+            "imagePath": "assets/home/music_videos/directors.png",
+            "hoverImagePath": "assets/home/music_videos/directors_hover.png",
+            "position": [
+                2120,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "01ab7240-39f1-462c-8615-29f452aca84f",
+            "target": "music_videos_directors"
+        },
+        {
+            "type": "ToPage",
+            "name": "studios",
+            "imagePath": "assets/home/music_videos/studios.png",
+            "hoverImagePath": "assets/home/music_videos/studios_hover.png",
+            "position": [
+                2435,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "5d33d4f0-ea0c-4c94-a91c-4ddc29da70fe",
+            "target": "music_videos_studios"
+        },
+        {
+            "type": "ToPage",
+            "name": "tags",
+            "imagePath": "assets/home/music_videos/tags.png",
+            "hoverImagePath": "assets/home/music_videos/tags_hover.png",
+            "position": [
+                3065,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "6374c722-8351-46ba-87ee-68ac07695ec3",
+            "target": "music_videos_tags"
+        }
+    ],
+    "images": [],
+    "name": "Music_videos"
+}
