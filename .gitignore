@@ -8,6 +8,7 @@ EpiKodi
 medias
 !assets/medias
 json/pages/movies/*.json
+json/pages/musics/*.json
 json/movies
 json/musics
 json/boxes/settings
