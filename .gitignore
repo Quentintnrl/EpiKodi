@@ -9,4 +9,5 @@ medias
 !assets/medias
 json/pages/movies/*.json
 json/movies
+json/musics
 json/boxes/settings
