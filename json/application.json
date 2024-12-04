@@ -23,6 +23,9 @@
     "medias": [
         {
             "path": "/json/movies"
+        },
+        {
+            "path": "/json/musics"
         }
     ],
     "settings": [
