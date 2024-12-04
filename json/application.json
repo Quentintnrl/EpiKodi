@@ -15,6 +15,9 @@
     "boxes": [
         {
             "path": "/json/boxes/movies.json"
+        },
+        {
+            "path": "/json/boxes/musics.json"
         }
     ],
     "medias": [
