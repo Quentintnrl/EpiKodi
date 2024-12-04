@@ -184,7 +184,7 @@ const void SFMLGraphic::Graphic::removeTempBox(const std::string &boxName) {
 }
 
 const void SFMLGraphic::Graphic::displayMedia(const std::string &mediaPath) {
-    std::cout << "Display media: " << mediaPath << std::endl;
+    std::cout << "Playing media: " << mediaPath << std::endl;
     std::string format = mediaPath.substr(mediaPath.find_last_of('.'));
     std::cout << "Media format: " << format << std::endl;
     for (const auto &type : mediaType) {
@@ -201,6 +201,7 @@ const void SFMLGraphic::Graphic::displayMedia(const std::string &mediaPath) {
                         break;
                     case SOUND:
                         std::cout << "Playing sound" << std::endl;
+                        playSound(getenv("PWD") + std::string("/medias") + mediaPath);
                         break;
                 }
                 return;
@@ -235,6 +236,21 @@ void SFMLGraphic::Graphic::displayVideo(const std::string &mediaPath) {
             std::cerr << "Failed to start VLC process" << std::endl;
         }
     });
+}
+
+void SFMLGraphic::Graphic::playSound(const std::string &soundPath) {
+    std::cout << "Playing sound: " << soundPath << std::endl;
+    sf::SoundBuffer buffer;
+    if (!buffer.loadFromFile(soundPath)) {
+        std::cerr << "Failed to load sound: " << soundPath << std::endl;
+        return;
+    }
+    sf::Sound sound;
+    sound.setBuffer(buffer);
+    sound.play();
+    while (sound.getStatus() == sf::Sound::Playing) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
 }
 
 void SFMLGraphic::Graphic::debug(std::size_t i) {
