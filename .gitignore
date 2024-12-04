@@ -5,7 +5,6 @@
 *.so
 build/
 EpiKodi
-medias
 !assets/medias
 json/pages/movies/*.json
 json/pages/musics/*.json
@@ -13,3 +12,7 @@ json/music_videos/*.json
 json/movies
 json/musics
 json/boxes/settings
+*.mp4
+*.mp3
+*.avi
+*.wav
