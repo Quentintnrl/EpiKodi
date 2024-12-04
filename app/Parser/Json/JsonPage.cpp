@@ -18,7 +18,7 @@ const std::vector<JsonBox> JsonPage::getBoxes() const {
     return _boxes;
 }
 
-const void JsonPage::debug(const std::size_t i) {
+const void JsonPage::debug(const std::size_t i) const {
     printDebug("Page: {", i);
     printDebug("_name: " + _name, i + 1);
     for (auto& box : _boxes) {

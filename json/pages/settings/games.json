@@ -1,0 +1,49 @@
+{
+    "name": "Settings/Games",
+    "boxes": [
+        {
+            "type": "static",
+            "texts": [],
+            "buttons": [
+                {
+                    "type": "AddBox",
+                    "name": "general",
+                    "imagePath": "assets/settings/games/general.png",
+                    "hoverImagePath": "assets/settings/games/general_hover.png",
+                    "position": [
+                        0,
+                        130
+                    ],
+                    "size": [
+                        470,
+                        90
+                    ],
+                    "hide": false,
+                    "uuid": "2288760e-f2ca-44b7-9217-5bfdb9f57b81",
+                    "target": "settings/games/general"
+
+                },
+                {
+                    "type": "AddBox",
+                    "name": "achievements",
+                    "imagePath": "assets/settings/games/achievements.png",
+                    "hoverImagePath": "assets/settings/games/achievements_hover.png",
+                    "position": [
+                        0,
+                        220
+                    ],
+                    "size": [
+                        470,
+                        90
+                    ],
+                    "hide": false,
+                    "uuid": "fe689295-e25e-42ec-8666-417b78839b36",
+                    "target": "settings/games/achievements"
+
+                }
+            ],
+            "images": [],
+            "name": "core"
+        }
+    ]
+}

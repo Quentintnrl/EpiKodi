@@ -9,6 +9,7 @@ enum ButtonType {
     AddBox,
     ToPage,
     ToMedia,
+    ToParam,
 };
 
 class JsonButton : public AbstractJsonElem {
@@ -28,7 +29,7 @@ class JsonButton : public AbstractJsonElem {
         const std::string getUuid() const;
         const std::string getTarget() const;
 
-        const void debug(const std::size_t i) override;
+        const void debug(const std::size_t i) const override;
 
         bool operator==(const JsonButton& other) const;
 

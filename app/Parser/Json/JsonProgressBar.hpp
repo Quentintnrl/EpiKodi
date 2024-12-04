@@ -16,7 +16,7 @@ class JsonProgressBar : public AbstractJsonElem {
         const std::tuple<short, short, short, short> getProgressColor() const;
         const bool getHide() const;
 
-        const void debug(const std::size_t i) override;
+        const void debug(const std::size_t i) const override;
 
     private:
         //parse methods

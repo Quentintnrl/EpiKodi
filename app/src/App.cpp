@@ -7,8 +7,9 @@
 App::App(JsonApp jsonApp) {
     _Running = false;
     _isMedia = false;
+    _settingsManager = std::make_shared<SettingsManager>();
     if (DEBUG_ENABLED()) {
-        jsonApp.debug(0);
+        // jsonApp.debug(0);
     }
     name = jsonApp.getName();
     std::string graphicPath = LIBS_PATH + jsonApp.getGraphicPath();
@@ -37,6 +38,27 @@ App::App(JsonApp jsonApp) {
             std::cerr << "Unknown exception caught!" << std::endl;
         }
     }
+    for (const auto &settingsPath : jsonApp.getSettingsPath()) {
+        try {
+            _settingsBoxesManagers.push_back(std::make_shared<SettingsBoxesManager>(settingsPath));
+            sleep(1);
+            _settingsBoxesManagers.back()->lock();
+            _settingsBoxesManagers.back()->unlock();
+            if (_settingsBoxesManagers.back()->hasChange()) {
+                _settingsBoxesManagers.back()->lock();
+                for (const auto &box : _settingsBoxesManagers.back()->getBoxes()) {
+                    _boxes.push_back(std::make_shared<Box>(box));
+                    graphic->addTempBox(box);
+                }
+                _settingsBoxesManagers.back()->resetChange();
+                _settingsBoxesManagers.back()->unlock();
+            }
+        } catch (const std::exception &e) {
+            std::cerr << "Exception caught: " << e.what() << std::endl;
+        } catch (...) {
+            std::cerr << "Unknown exception caught!" << std::endl;
+        }
+    }
     _pages.push_back(std::make_shared<Page>(jsonApp.getPage()));
     graphic->addPage(jsonApp.getPage());
     for (auto &page : jsonApp.getPages()) {
@@ -49,7 +71,7 @@ App::App(JsonApp jsonApp) {
     }
     graphic->changePage(jsonApp.getPage().getName());
     if (DEBUG_ENABLED()) {
-        graphic->debug(0);
+        // graphic->debug(0);
     }
     std::cout << "App created" << std::endl;
 }
@@ -64,6 +86,27 @@ void App::start() {
 
 void App::run() {
     while (_Running) {
+        if (_settingsBoxesManagers.back()->hasChange() && !_settingsBoxesManagers.back()->isLocked()) {
+                _settingsBoxesManagers.back()->lock();
+                for (const auto &box : _settingsBoxesManagers.back()->getBoxes()) {
+                    if (_pages.back()->getBoxes().back().getName() == box.getName()) {
+                        _pages.back()->removeLastBox();
+                        for (std::size_t i = 0; i < _boxes.size(); i++) {
+                            if (_boxes[i]->getName() == box.getName()) {
+                                _boxes.erase(_boxes.begin() + i);
+                                break;
+                            }
+                        }
+                    }
+                    _boxes.push_back(std::make_shared<Box>(box));
+                    _pages.back()->addBox(*_boxes.back());
+                    graphic->removeTempBox(box.getName());
+                    graphic->addTempBox(box);
+                    graphic->loadTempBox(box.getName());
+                }
+                _settingsBoxesManagers.back()->resetChange();
+                _settingsBoxesManagers.back()->unlock();
+        }
         graphic->loop();
         std::tuple<std::size_t , std::size_t> pos = graphic->getCursorPosition();
         std::tuple<std::size_t , std::size_t> windowSize = graphic->getWindowSize();
@@ -127,6 +170,9 @@ void App::handleSelect() {
                 }
                 if (button->getType() == ToMedia) {
                     addMedia(button);
+                }
+                if (button->getType() == ToParam) {
+                    changeParam(button);
                 }
             }
         }
@@ -192,4 +238,15 @@ void App::addMedia(const std::shared_ptr<Button> button) {
     graphic->displayMedia(button->getTarget());
     _isMedia = true;
     return;
+}
+
+const void App::changeParam(const std::shared_ptr<Button> button) const {
+    if (DEBUG_ENABLED()) {
+        std::cout << "Changing param: " << button->getTarget() << std::endl;
+    }
+    std::string path = button->getTarget().substr(0, button->getTarget().find_last_of("/"));
+    std::string param = path.substr(path.find_last_of("/") + 1);
+    path = path.substr(0, path.find_last_of("/"));
+    std::string target = button->getTarget().substr(button->getTarget().find_last_of("/") + 1);
+    _settingsManager->changeSettings(path, target, param);
 }

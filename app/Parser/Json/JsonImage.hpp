@@ -14,7 +14,7 @@ class JsonImage : public AbstractJsonElem {
         const std::tuple<int, int> getSize() const;
         const bool getHide() const;
 
-        const void debug(const std::size_t i) override;
+        const void debug(const std::size_t i) const override;
 
         bool operator==(const JsonImage& other) const;
 

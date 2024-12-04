@@ -1,0 +1,48 @@
+{
+    "button": "assets/settings/setting_button.png",
+    "button_hover": "assets/settings/setting_button_hover.png",
+    "button_size": [
+        720,
+        75
+    ],
+    "content": [
+        {
+            "name": "general",
+            "params": [
+                {
+                    "asset": "assets/settings/settings_true_button.png",
+                    "default": true,
+                    "name": "autosave",
+                    "text": "Enable autosave (if supported)",
+                    "type": "boolean",
+                    "value": true
+                },
+                {
+                    "asset": "assets/settings/settings_true_button.png",
+                    "default": true,
+                    "name": "rewind",
+                    "text": "Enable rewind (if supported)",
+                    "type": "boolean",
+                    "value": true
+                },
+                {
+                    "asset": "",
+                    "default": 60,
+                    "name": "Max_rewind_time",
+                    "text": "Maximum rewind time",
+                    "type": "value",
+                    "value": 60
+                },
+                {
+                    "name": "settings/game/reset",
+                    "text": "Reset above settings to default",
+                    "type": "reset"
+                }
+            ]
+        }
+    ],
+    "file_path": "/json/boxes/settings/",
+    "has_changed": false,
+    "ignore": false,
+    "type": "static"
+}

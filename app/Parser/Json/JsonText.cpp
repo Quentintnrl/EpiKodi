@@ -32,7 +32,7 @@ const std::size_t JsonText::getSize() const {
 const bool JsonText::getHide() const {
     return hide;
 }
-const void JsonText::debug(const std::size_t i) {
+const void JsonText::debug(const std::size_t i) const {
     printDebug("Text: {", i);
     printDebug("text: " + _text + ",", i + 1);
     printDebug("fontPath: " + _fontPath + ",", i + 1);

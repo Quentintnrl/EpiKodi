@@ -7,6 +7,9 @@
     "pages": [
         {
             "path": "/json/pages/settings.json"
+        },
+        {
+            "path": "/json/pages/settings/games.json"
         }
     ],
     "boxes": [
@@ -17,6 +20,11 @@
     "medias": [
         {
             "path": "/json/movies"
+        }
+    ],
+    "settings": [
+        {
+            "path": "/json/settings"
         }
     ]
 }

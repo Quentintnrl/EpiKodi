@@ -21,7 +21,7 @@ class JsonBox : public AbstractJsonElem {
         const std::vector<JsonImage> getImages() const;
         const std::string getName() const;
 
-        const void debug(const std::size_t i) override;
+        const void debug(const std::size_t i) const override;
 
         bool operator==(const JsonBox &rhs) const;
     private:
