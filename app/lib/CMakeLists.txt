@@ -1,3 +1,4 @@
+add_subdirectory(Add-ons)
 add_subdirectory(dlLoader)
 add_subdirectory(Graphic)
 add_subdirectory(Parser)

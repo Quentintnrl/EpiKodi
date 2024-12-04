@@ -42,6 +42,7 @@ target_link_libraries(EpiKodi GraphicLib)
 target_link_libraries(EpiKodi ParserLib)
 target_link_libraries(EpiKodi ParserJsonLib)
 target_link_libraries(EpiKodi Debug)
+target_link_libraries(EpiKodi Add-ons)
 
 target_link_libraries(Graphic Debug)
 target_link_libraries(Graphic UuidLib)
