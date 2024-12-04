@@ -1,0 +1,229 @@
+{
+    "type": "hor_scroll",
+    "texts": [],
+    "buttons": [
+        {
+            "type": "ToPage",
+            "name": "genres",
+            "imagePath": "assets/home/musics/genres.png",
+            "hoverImagePath": "assets/home/musics/genres_hover.png",
+            "position": [
+                545,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "18172725-23a3-45a7-bb92-50f416327c5a",
+            "target": "genres"
+        },
+        {
+            "type": "ToPage",
+            "name": "artists",
+            "imagePath": "assets/home/musics/artists.png",
+            "hoverImagePath": "assets/home/musics/artists_hover.png",
+            "position": [
+                860,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "7f8fa6f8-8f70-4a32-81ca-493ffacba6b6",
+            "target": "artists"
+        },
+        {
+            "type": "ToPage",
+            "name": "albums",
+            "imagePath": "assets/home/musics/albums.png",
+            "hoverImagePath": "assets/home/musics/albums_hover.png",
+            "position": [
+                1175,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "168e73b2-5dd1-4a16-87ab-5e585067213a",
+            "target": "albums"
+        },
+        {
+            "type": "ToPage",
+            "name": "songs",
+            "imagePath": "assets/home/musics/songs.png",
+            "hoverImagePath": "assets/home/musics/songs_hover.png",
+            "position": [
+                1490,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "bbe2b155-5625-4702-a2b8-708476e78f7f",
+            "target": "songs"
+        },
+        {
+            "type": "ToPage",
+            "name": "years",
+            "imagePath": "assets/home/musics/years.png",
+            "hoverImagePath": "assets/home/musics/years_hover.png",
+            "position": [
+                1805,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "a8fdf944-9c39-409d-9e49-9666dd70b124",
+            "target": "years"
+        },
+        {
+            "type": "ToPage",
+            "name": "top100",
+            "imagePath": "assets/home/musics/top100.png",
+            "hoverImagePath": "assets/home/musics/top100_hover.png",
+            "position": [
+                2120,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "801eba0d-4975-416c-8665-07ba8377a7ce",
+            "target": "top100"
+        },
+        {
+            "type": "ToPage",
+            "name": "recently_added_albums",
+            "imagePath": "assets/home/musics/recently_added_albums.png",
+            "hoverImagePath": "assets/home/musics/recently_added_albums_hover.png",
+            "position": [
+                2435,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "9d5d209b-1606-4c08-a5d9-6157f80c939a",
+            "target": "recently_added_albums"
+        },
+        {
+            "type": "ToPage",
+            "name": "recently_played_albums",
+            "imagePath": "assets/home/musics/recently_played_albums.png",
+            "hoverImagePath": "assets/home/musics/recently_played_albums_hover.png",
+            "position": [
+                2750,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "241a30c3-0f0e-4baa-8896-23d160709564",
+            "target": "recently_played_albums"
+        },
+        {
+            "type": "ToPage",
+            "name": "playlists",
+            "imagePath": "assets/home/musics/playlists.png",
+            "hoverImagePath": "assets/home/musics/playlists_hover.png",
+            "position": [
+                3065,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "18dfcc59-73f3-423b-a710-4d6eed00473f",
+            "target": "playlists"
+        },
+        {
+            "type": "ToPage",
+            "name": "roles",
+            "imagePath": "assets/home/musics/roles.png",
+            "hoverImagePath": "assets/home/musics/roles_hover.png",
+            "position": [
+                3380,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "8af9f0ea-6d16-4bb8-b4dd-69493e20a65d",
+            "target": "roles"
+        },
+        {
+            "type": "ToPage",
+            "name": "sources",
+            "imagePath": "assets/home/musics/sources.png",
+            "hoverImagePath": "assets/home/musics/sources_hover.png",
+            "position": [
+                3695,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "3ff09995-1601-47c7-aa6b-075be80fae82",
+            "target": "sources"
+        },
+        {
+            "type": "ToPage",
+            "name": "files",
+            "imagePath": "assets/home/musics/files.png",
+            "hoverImagePath": "assets/home/musics/files_hover.png",
+            "position": [
+                4010,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "c283a090-6e1a-4ece-ac56-c99bc1e987e4",
+            "target": "files"
+        },
+        {
+            "type": "ToPage",
+            "name": "music_add-ons",
+            "imagePath": "assets/home/musics/music_add-ons.png",
+            "hoverImagePath": "assets/home/musics/music_add-ons_hover.png",
+            "position": [
+                4325,
+                165
+            ],
+            "size": [
+                280,
+                120
+            ],
+            "hide": false,
+            "uuid": "33dc7da1-71b3-4678-9399-c9c248bfaf6c",
+            "target": "music_add-ons"
+        }
+    ],
+    "images": [],
+    "name": "Music"
+}

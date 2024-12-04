@@ -15,11 +15,17 @@
     "boxes": [
         {
             "path": "/json/boxes/movies.json"
+        },
+        {
+            "path": "/json/boxes/musics.json"
         }
     ],
     "medias": [
         {
             "path": "/json/movies"
+        },
+        {
+            "path": "/json/musics"
         }
     ],
     "settings": [
