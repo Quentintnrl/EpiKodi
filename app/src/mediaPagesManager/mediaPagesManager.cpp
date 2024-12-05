@@ -214,6 +214,7 @@ void MediaPagesManager::createPage(const std::shared_ptr<MediaPageFile> file, nl
         printDebug("Content: " + content.dump(4), 0);
     }
     //create a new file
+    // std::cout << content.dump(4) << std::endl;
     std::string newFilePath = std::filesystem::current_path().string() + std::string(json["file_path"]) + file->getFileName();
     //get the element between / and / in std::string(json["file_path"])
     std::string newDir = newFilePath.substr(0, newFilePath.find_last_of("/"));
@@ -242,7 +243,12 @@ void MediaPagesManager::createPage(const std::shared_ptr<MediaPageFile> file, nl
     File.seekp(0);
     nlohmann::json newJson;
     //get file name without the .json
-    newJson["name"] = newDir + file->getFileName().substr(0, file->getFileName().find(".json"));
+    std::cout << file->getFileName() << std::endl;
+    if (file->getFileName().find(newDir) == std::string::npos) {
+        newJson["name"] = newDir + file->getFileName().substr(0, file->getFileName().find(".json"));
+    } else {
+        newJson["name"] = file->getFileName().substr(0, file->getFileName().find(".json"));
+    }
     //create an array "texts" in the newJson
     auto jsonBoxes = nlohmann::json::array();
     auto jsonBox = nlohmann::json();
@@ -285,9 +291,21 @@ void MediaPagesManager::createPage(const std::shared_ptr<MediaPageFile> file, nl
         jsonElem["size"] = contentElement["size"];
         jsonElem["hide"] = false;
         jsonElem["uuid"] = Uuid().toString();
-        jsonElem["target"] = contentElement["path"];
-        if (contentElement["type"] != "to_movie") {
-            //add new page
+        // std::cout << contentElement["type"] << std::endl;
+        if (contentElement["type"] != "ToMedia") {
+            jsonElem["target"] = newDir + contentElement["name"].get<std::string>();
+            std::shared_ptr<MediaPageFile> newFile = std::make_shared<MediaPageFile>(newDir + contentElement["name"].get<std::string>() + ".json");
+            contentElement["left_border"] = json["left_border"];
+            contentElement["middle_part"] = json["middle_part"];
+            contentElement["right_border"] = json["right_border"];
+            contentElement["left_border_size"] = json["left_border_size"];
+            contentElement["middle_part_size"] = json["middle_part_size"];
+            contentElement["right_border_size"] = json["right_border_size"];
+            createPage(newFile, contentElement);
+            std::string jsonPath = std::filesystem::current_path().string() + "/json/pages/" + newDir.substr(0, newDir.size() - 1) + "/" + newDir + contentElement["name"].get<std::string>() + ".json";
+            createJsonPage(newFile->getFileName(), jsonPath);
+        } else {
+            jsonElem["target"] = contentElement["path"];
         }
         jsonElem["type"] = contentElement["type"];
         jsonBox["buttons"].push_back(jsonElem);

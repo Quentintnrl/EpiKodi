@@ -41,8 +41,8 @@
     ],
     "add-ons": [
         {
-            "path": "libTemplate.so",
-            "name": "Template"
+            "path": "libMovieAddOn.so",
+            "name": "TMDB"
         }
     ]
 }

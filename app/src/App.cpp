@@ -17,17 +17,15 @@ App::App(JsonApp jsonApp) {
         std::cout << "Loading graphic library: " << graphicPath << std::endl;
     }
     DlLoader dlLoader;
-    graphic = dlLoader.getInstance<IGraphic>(graphicPath, GRAPHIC_LOAD);
-    std::cout << jsonApp.getAddOns().size() << std::endl;
     for (const auto &addOn : jsonApp.getAddOns()) {
         std::string addOnPath = LIBS_PATH + addOn.getPath();
-        std::cout << "Loading add-on library: " << addOnPath << std::endl;
         if (DEBUG_ENABLED()) {
             std::cout << "Loading add-on library: " << addOnPath << std::endl;
         }
         _addOns.push_back(dlLoader.getInstance<AddOn>(addOnPath, ADD_ON_LOAD));
-        _addOns.back()->start(); // This is a virtual function
+        _addOns.back()->start();
     }
+    graphic = dlLoader.getInstance<IGraphic>(graphicPath, GRAPHIC_LOAD);
     for (const auto &mediaPagesManager : jsonApp.getMediasDirPath()) {
         try {
             _mediaPagesManagers.push_back(std::make_shared<MediaPagesManager>(mediaPagesManager));
