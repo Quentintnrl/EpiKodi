@@ -18,10 +18,8 @@ App::App(JsonApp jsonApp) {
     }
     DlLoader dlLoader;
     graphic = dlLoader.getInstance<IGraphic>(graphicPath, GRAPHIC_LOAD);
-    std::cout << jsonApp.getAddOns().size() << std::endl;
     for (const auto &addOn : jsonApp.getAddOns()) {
         std::string addOnPath = LIBS_PATH + addOn.getPath();
-        std::cout << "Loading add-on library: " << addOnPath << std::endl;
         if (DEBUG_ENABLED()) {
             std::cout << "Loading add-on library: " << addOnPath << std::endl;
         }
