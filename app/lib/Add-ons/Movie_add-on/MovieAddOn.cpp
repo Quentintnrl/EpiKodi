@@ -59,7 +59,6 @@ void MovieAddOn::fetchMovieDetailsByName(const std::string& api_key, const std::
 
         // Check if any results are returned
         if (search_data["results"].empty()) {
-            std::cout << "No movies found with the name: " << movie_name << std::endl;
             return;
         }
 
@@ -80,42 +79,42 @@ void MovieAddOn::fetchMovieDetailsByName(const std::string& api_key, const std::
         json details_data = json::parse(details_response);
 
         // Print movie details
-        std::cout << "Title: " << details_data["title"].get<std::string>() << std::endl;
-        std::cout << "Year: " << details_data["release_date"].get<std::string>().substr(0, 4) << std::endl;
+        // std::cout << "Title: " << details_data["title"].get<std::string>() << std::endl;
+        // std::cout << "Year: " << details_data["release_date"].get<std::string>().substr(0, 4) << std::endl;
         fill_config(std::filesystem::current_path().string() + MOVIES_CONFIG_PATH + "years.json", details_data["release_date"].get<std::string>().substr(0, 4), movie_name, moviePath);
         return;
 
-        std::cout << "Genre: ";
+        // std::cout << "Genre: ";
         for (const auto& genre : details_data["genres"]) {
-            std::cout << genre["name"].get<std::string>() << ", ";
+            // std::cout << genre["name"].get<std::string>() << ", ";
         }
-        std::cout << std::endl;
+        // std::cout << std::endl;
 
-        std::cout << "Actors: ";
+        // std::cout << "Actors: ";
         for (const auto& cast : details_data["credits"]["cast"]) {
-            std::cout << cast["name"].get<std::string>() << ", ";
+            // std::cout << cast["name"].get<std::string>() << ", ";
         }
-        std::cout << std::endl;
+        // std::cout << std::endl;
 
-        std::cout << "Directors: ";
+        // std::cout << "Directors: ";
         for (const auto& crew : details_data["credits"]["crew"]) {
             if (crew["job"] == "Director") {
-                std::cout << crew["name"].get<std::string>() << ", ";
+                // std::cout << crew["name"].get<std::string>() << ", ";
             }
         }
-        std::cout << std::endl;
+        // std::cout << std::endl;
 
-        std::cout << "Studios: ";
+        // std::cout << "Studios: ";
         for (const auto& company : details_data["production_companies"]) {
-            std::cout << company["name"].get<std::string>() << ", ";
+            // std::cout << company["name"].get<std::string>() << ", ";
         }
-        std::cout << std::endl;
+        // std::cout << std::endl;
 
-        std::cout << "Countries: ";
+        // std::cout << "Countries: ";
         for (const auto& country : details_data["production_countries"]) {
-            std::cout << country["name"].get<std::string>() << ", ";
+            // std::cout << country["name"].get<std::string>() << ", ";
         }
-        std::cout << std::endl;
+        // std::cout << std::endl;
 
     } catch (const std::exception& e) {
         std::cerr << "Error parsing JSON: " << e.what() << std::endl;
@@ -129,7 +128,6 @@ void MovieAddOn::run() {
     std::vector<std::string> movies;
     std::vector<std::string> moviesFilesPath;
     for (const auto &entry : std::filesystem::directory_iterator(moviesPath)) {
-        std::cout << entry.path() << std::endl;
         //add it if the name doesn't start with a .
         if (entry.path().filename().string()[0] != '.') {
             movies.push_back(entry.path().filename().string().substr(0, entry.path().filename().string().find_last_of('.')));
@@ -137,8 +135,6 @@ void MovieAddOn::run() {
         }
     }
     for (std::size_t i = 0; i < movies.size(); i++) {
-        std::cout << movies.at(i) << std::endl;
-        std::cout << moviesFilesPath.at(i) << std::endl;
         fetchMovieDetailsByName(API_KEY, movies.at(i), moviesFilesPath.at(i));
     }
     while (_run) {
@@ -163,7 +159,6 @@ void MovieAddOn::fill_config(const std::string configPath, const std::string tar
         }
     }
     if (!targetExists) {
-        std::cout << "haven't found the year in the config file, adding it" << std::endl;
         auto element = json::object();
         element["name"] = target;
         element["type"] = "ToPage";
@@ -192,7 +187,6 @@ void MovieAddOn::fill_config(const std::string configPath, const std::string tar
         }
     }
     if (movieExists) {
-        std::cout << "The movie already exists in the config file" << std::endl;
         return;
     }
     auto movieElement = json::object();
