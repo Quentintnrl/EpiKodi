@@ -1,5 +1,6 @@
 #pragma once
 #include "JsonPage.hpp"
+#include "JsonAdd_on.hpp"
 
 class JsonApp : public AbstractJsonElem {
     public:
@@ -16,6 +17,7 @@ class JsonApp : public AbstractJsonElem {
         const std::vector<JsonBox> getBoxes() const;
         const std::vector<std::string> getMediasDirPath() const;
         const std::vector<std::string> getSettingsPath() const;
+        const std::vector<JsonAddOn> getAddOns() const;
 
         const void debug(const std::size_t i) const override;
     private:
@@ -28,6 +30,7 @@ class JsonApp : public AbstractJsonElem {
         const std::vector<JsonBox> findBoxes(const nlohmann::json& json) const;
         const std::vector<std::string> findMediasDirPath(const nlohmann::json& json) const;
         const std::vector<std::string> findSettingsPath(const nlohmann::json& json) const;
+        const std::vector<JsonAddOn> findAddOns(const nlohmann::json& json) const;
 
         std::string _name;
         std::string _graphicPath;
@@ -37,4 +40,5 @@ class JsonApp : public AbstractJsonElem {
         std::vector<JsonBox> _boxes;
         std::vector<std::string> _mediasDirPath;
         std::vector<std::string> _settingsPath;
+        std::vector<JsonAddOn> _addOns;
 };

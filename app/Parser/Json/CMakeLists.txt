@@ -1,6 +1,8 @@
 target_sources(Parser
   PRIVATE
   AbstractJsonElem.hpp
+  JsonAdd_on.cpp
+  JsonAdd_on.hpp
   JsonApp.cpp
   JsonApp.hpp
   JsonBox.cpp
@@ -18,21 +20,23 @@ target_sources(Parser
 )
 
 add_library(ParserJsonLib STATIC
-AbstractJsonElem.hpp
-JsonApp.cpp
-JsonApp.hpp
-JsonBox.cpp
-JsonBox.hpp
-JsonButton.cpp
-JsonButton.hpp
-JsonImage.cpp
-JsonImage.hpp
-JsonPage.cpp
-JsonPage.hpp
-JsonProgressBar.cpp
-JsonProgressBar.hpp
-JsonText.cpp
-JsonText.hpp
+  AbstractJsonElem.hpp
+  JsonAdd_on.cpp
+  JsonAdd_on.hpp
+  JsonApp.cpp
+  JsonApp.hpp
+  JsonBox.cpp
+  JsonBox.hpp
+  JsonButton.cpp
+  JsonButton.hpp
+  JsonImage.cpp
+  JsonImage.hpp
+  JsonPage.cpp
+  JsonPage.hpp
+  JsonProgressBar.cpp
+  JsonProgressBar.hpp
+  JsonText.cpp
+  JsonText.hpp
 )
 
 set_target_properties(ParserJsonLib PROPERTIES POSITION_INDEPENDENT_CODE ON)
