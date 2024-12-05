@@ -145,6 +145,7 @@ const void SFMLGraphic::Graphic::changePage(const std::string &pageName) {
     for (const auto &page : _pages) {
         if (page->getName() == pageName) {
             _box.clear();
+            // page->debug(0);
             for (const auto &box : page->getBoxes()) {
                 _box.push_back(box);
             }

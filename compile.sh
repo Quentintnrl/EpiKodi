@@ -30,7 +30,7 @@ compile() {
     mkdir components
     cmake -S . -B build -DTESTS=OFF -DBUILD=ON
     cd build
-    make
+    make -j20
     cd ..
 }
 

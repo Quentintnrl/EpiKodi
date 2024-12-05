@@ -199,11 +199,13 @@ void MovieAddOn::fill_config(const std::string configPath, const std::string tar
     size.push_back(720);
     size.push_back(75);
     movieElement["size"] = size;
-    movieElement["path"] = moviePath;
+    movieElement["path"] = "/movies/" + moviePath;
+    // movieElement["file_path"] = "/json/pages/movies/";
     year.push_back(movieElement);
     for (auto &element : content) {
         if (element["name"] == target) {
             element["content"] = year;
+            element["file_path"] = "/json/pages/movies/";
             break;
         }
     }
@@ -215,6 +217,7 @@ void MovieAddOn::fill_config(const std::string configPath, const std::string tar
         return;
     }
     fileOut << config.dump(4);
+    std::cout << config.dump(4) << std::endl;
     fileOut.close();
 }
 
