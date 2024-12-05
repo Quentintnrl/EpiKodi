@@ -38,5 +38,11 @@
         {
             "path": "/json/settings"
         }
+    ],
+    "add-ons": [
+        {
+            "path": "libTemplate.so",
+            "name": "Template"
+        }
     ]
 }

@@ -5,12 +5,14 @@
 #include "mediaPagesManager.hpp"
 #include "settingsBoxesManager.hpp"
 #include "settingsManager.hpp"
+#include "Add-ons.hpp"
 #include <memory>
 
 #define CONFIG_PATH "/json/application.json"
 #define LIBS_PATH "libs/"
 #define PARSER_LOAD "createParser"
 #define GRAPHIC_LOAD "createGraphic"
+#define ADD_ON_LOAD "createAddOn"
 
 #define APP_WIDTH 1920
 #define APP_HEIGHT 1080
@@ -44,4 +46,5 @@ class App {
         std::vector<std::shared_ptr<MediaPagesManager>> _mediaPagesManagers;
         std::vector<std::shared_ptr<SettingsBoxesManager>> _settingsBoxesManagers;
         std::shared_ptr<SettingsManager> _settingsManager;
+        std::vector<std::shared_ptr<AddOn>> _addOns;
 };

@@ -12,6 +12,7 @@ class AddOn {
         virtual ~AddOn() = default;
         const std::string getName() const;
         const bool isRunning() const;
+        void start();
         void stop();
 
     protected:

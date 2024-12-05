@@ -15,6 +15,7 @@ JsonApp::JsonApp(const nlohmann::json& json) {
     _boxes = findBoxes(json);
     _mediasDirPath = findMediasDirPath(json);
     _settingsPath = findSettingsPath(json);
+    _addOns = findAddOns(json);
 }
 
 const std::string JsonApp::getName() const {
@@ -49,6 +50,10 @@ const std::vector<std::string> JsonApp::getSettingsPath() const {
     return _settingsPath;
 }
 
+const std::vector<JsonAddOn> JsonApp::getAddOns() const {
+    return _addOns;
+}
+
 const void JsonApp::debug(const std::size_t i) const {
     printDebug("App: {", i);
     printDebug("name: " + getName(), i + 1);
@@ -77,6 +82,11 @@ const void JsonApp::debug(const std::size_t i) const {
     printDebug("settings: [", i + 1);
     for (const auto& setting : getSettingsPath()) {
         printDebug(setting, i + 2);
+    }
+    printDebug("]", i + 1);
+    printDebug("add-ons: [", i + 1);
+    for (auto& addOn : getAddOns()) {
+        addOn.debug(i + 2);
     }
     printDebug("]", i + 1);
     printDebug("}", i);
@@ -175,4 +185,12 @@ const std::vector<std::string> JsonApp::findSettingsPath(const nlohmann::json& j
         settingsPath.push_back(setting["path"]);
     }
     return settingsPath;
+}
+
+const std::vector<JsonAddOn> JsonApp::findAddOns(const nlohmann::json& json) const {
+    std::vector<JsonAddOn> addOns;
+    for (const auto& addOn : json["add-ons"]) {
+        addOns.push_back(JsonAddOn(addOn));
+    }
+    return addOns;
 }
