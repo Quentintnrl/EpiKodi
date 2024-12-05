@@ -229,10 +229,8 @@ void App::addPage(const std::shared_ptr<Button> button) {
     if (DEBUG_ENABLED()) {
         std::cout << "Changing page: " << button->getTarget() << std::endl;
     }
-    std::cout << "Changing page: " << button->getTarget() << std::endl;
     for (auto &page : _pagesList) {
         if (page->getName() == button->getTarget()) {
-            std::cout << "Page found" << std::endl;
             if (_pages.back()->getNbBoxes() < _pages.back()->getBoxes().size()) {
                 _pages.back()->removeLastBox();
             }
