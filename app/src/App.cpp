@@ -218,6 +218,10 @@ void App::addBox(const std::shared_ptr<Button> button) {
             if (DEBUG_ENABLED()) {
                 std::cout << "Adding box: " << button->getTarget() << std::endl;
             }
+            if (_pages.back()->getNbBoxes() < _pages.back()->getBoxes().size()) {
+                graphic->removeTempBox(_pages.back()->getBoxes().back().getName());
+                _pages.back()->removeLastBox();
+            }
             graphic->loadTempBox(button->getTarget());
             _pages.back()->addBox(*box);
             break;
