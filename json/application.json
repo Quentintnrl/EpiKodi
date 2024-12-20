@@ -43,6 +43,10 @@
         {
             "path": "libMovieAddOn.so",
             "name": "TMDB"
+        },
+        {
+            "path": "libMusicAddOn.so",
+            "name": "musicbrainz"
         }
     ]
 }
