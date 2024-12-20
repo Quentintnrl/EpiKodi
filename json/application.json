@@ -24,6 +24,9 @@
         },
         {
             "path": "/json/boxes/music_videos.json"
+        },
+        {
+            "path": "/json/boxes/radios.json"
         }
     ],
     "medias": [
