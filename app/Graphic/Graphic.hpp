@@ -49,6 +49,7 @@ namespace SFMLGraphic {
             void manageEvents() override;
             void displayVideo(const std::string &mediaPath);
             void playSound(const std::string &soundPath);
+            void playRadio(const std::string &radioPath);
             std::vector<std::shared_ptr<GraphicBox>> _box;
             std::vector<std::shared_ptr<GraphicPage>> _pages;
             std::vector<std::shared_ptr<GraphicBox>> _tempBox;

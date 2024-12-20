@@ -10,13 +10,15 @@
 enum MediaType {
     IMAGE,
     VIDEO,
-    SOUND
+    SOUND,
+    RADIO
 };
 
 const std::vector<std::tuple<std::vector<std::string>, MediaType>> mediaType {
     { {".png", ".jpg", ".jpeg", ".gif", ".bmp"}, IMAGE },
     { {".mp4", ".avi", ".mkv", ".mov", ".wmv"}, VIDEO },
-    { {".mp3", ".wav", ".flac", ".ogg", ".m4a"}, SOUND }
+    { {".wav", ".flac", ".ogg", ".m4a"}, SOUND },
+    { {".pls", ".m3u", ".m3u8", ".mp3"}, RADIO }
 };
 
 SFMLGraphic::Graphic::Graphic(const std::string &appName) {
@@ -203,6 +205,10 @@ const void SFMLGraphic::Graphic::displayMedia(const std::string &mediaPath) {
                         std::cout << "Playing sound" << std::endl;
                         playSound(getenv("PWD") + std::string("/medias") + mediaPath);
                         break;
+                    case RADIO:
+                        std::cout << "Playing radio" << std::endl;
+                        playRadio(mediaPath);
+                        break;
                 }
                 return;
             }
@@ -250,6 +256,49 @@ void SFMLGraphic::Graphic::playSound(const std::string &soundPath) {
     while (sound.getStatus() == sf::Sound::Playing) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
+}
+
+void SFMLGraphic::Graphic::playRadio(const std::string &radioPath) {
+    // Initialize libVLC
+    const char* const vlc_args[] = {
+        "-I", "dummy", // Don't need the VLC interface
+        "--no-xlib"    // Disable X11 (X Window System) if on Linux
+    };
+    libvlc_instance_t* inst = libvlc_new(2, vlc_args);
+    if (!inst) {
+        std::cerr << "Failed to initialize libVLC instance" << std::endl;
+    }
+
+    // Create a media player
+    libvlc_media_player_t* mp = libvlc_media_player_new(inst);
+    if (!mp) {
+        std::cerr << "Failed to create media player" << std::endl;
+        libvlc_release(inst);
+    }
+
+    // Create a media object from the radio stream URL
+    std::cout << "Loading radio stream: " << radioPath << std::endl;
+    libvlc_media_t* m = libvlc_media_new_location(inst, radioPath.c_str());
+    if (!m) {
+        std::cerr << "Failed to load media" << std::endl;
+        libvlc_media_player_release(mp);
+        libvlc_release(inst);
+    }
+
+    // Set the media to the player and play it
+    libvlc_media_player_set_media(mp, m);
+    libvlc_media_player_play(mp);
+
+    std::cout << "Playing NRJ radio stream..." << std::endl;
+
+    // Keep the program running for a while to let the stream play
+    std::this_thread::sleep_for(std::chrono::minutes(5));
+
+    // Cleanup
+    libvlc_media_player_stop(mp);
+    libvlc_media_player_release(mp);
+    libvlc_media_release(m);
+    libvlc_release(inst);
 }
 
 void SFMLGraphic::Graphic::debug(std::size_t i) {
