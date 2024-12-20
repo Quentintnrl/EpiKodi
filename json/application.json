@@ -10,6 +10,9 @@
         },
         {
             "path": "/json/pages/settings/games.json"
+        },
+        {
+            "path": "/json/pages/musics/musics_1963.json"
         }
     ],
     "boxes": [
@@ -43,6 +46,10 @@
         {
             "path": "libMovieAddOn.so",
             "name": "TMDB"
+        },
+        {
+            "path": "libMusicAddOn.so",
+            "name": "musicbrainz"
         }
     ]
 }

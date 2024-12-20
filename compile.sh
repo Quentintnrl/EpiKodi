@@ -18,9 +18,9 @@ clean_all() {
 
 compile_tests () {
     clean_all
-    cmake -S . -B build -DTESTS=ON -DBUILD=ON
+    cmake -S . -B build -DTESTS=ON -DBUILD=ON -DCMAKE_TOOLCHAIN_FILE=/home/qtennerel/vcpkg/scripts/buildsystems/vcpkg.cmake
     cd build
-    make
+    make -j20
     cd ..
     # ./build/tests/$tests_binary
 }
@@ -28,7 +28,7 @@ compile_tests () {
 compile() {
     clean_all
     mkdir components
-    cmake -S . -B build -DTESTS=OFF -DBUILD=ON
+    cmake -S . -B build -DTESTS=OFF -DBUILD=ON -DCMAKE_TOOLCHAIN_FILE=/home/qtennerel/vcpkg/scripts/buildsystems/vcpkg.cmake
     cd build
     make -j20
     cd ..
