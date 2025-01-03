@@ -1,0 +1,64 @@
+{
+    "buttons": [
+        {
+            "hide": false,
+            "hoverImagePath": "assets/medias/media_hover.png",
+            "imagePath": "assets/medias/media.png",
+            "name": "WouldYouRather",
+            "position": [
+                600,
+                0
+            ],
+            "size": [
+                720,
+                75
+            ],
+            "target": "/games/WouldYouRather",
+            "type": "ToGame",
+            "uuid": "b84e9882-ffdc-4ca9-98da-19239199c81f"
+        }
+    ],
+    "images": [
+        {
+            "hide": false,
+            "path": "assets/medias/middle_part.png",
+            "position": [
+                600,
+                0
+            ],
+            "size": [
+                720,
+                1080
+            ],
+            "uuid": "b30219a1-5e4c-4e02-a3e7-af8e82517bcc"
+        },
+        {
+            "hide": false,
+            "path": "assets/medias/right_border.png",
+            "position": [
+                1320,
+                0
+            ],
+            "size": [
+                600,
+                1080
+            ],
+            "uuid": "b43dd4db-daa5-4bed-8d5a-dd054b0681df"
+        }
+    ],
+    "name": "Games",
+    "texts": [
+        {
+            "fontPath": "/fonts/Viagram.otf",
+            "hide": false,
+            "position": [
+                660,
+                20
+            ],
+            "size": 30,
+            "text": "Would You Rather",
+            "uuid": "19a80ca1-7151-41c4-b804-422fd7cf5442"
+        }
+    ],
+    "type": "ver_scroll"
+}

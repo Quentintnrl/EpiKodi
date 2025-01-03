@@ -27,6 +27,9 @@
         },
         {
             "path": "/json/boxes/radios.json"
+        },
+        {
+            "path": "/json/boxes/games.json"
         }
     ],
     "medias": [
