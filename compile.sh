@@ -32,6 +32,11 @@ compile() {
     cd build
     make -j20
     cd ..
+    rm games/pacman
+    cd pacman
+    ln -fs Makefile.linux Makefile
+    make pacman -B
+    cd ..
 }
 
 rm -rf build
