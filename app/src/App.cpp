@@ -280,7 +280,9 @@ const void App::playGame(const std::shared_ptr<Button> button) const {
 
         // Construct the command to execute
         const std::string command = fullPath + " " + getenv("PWD") + "/app" + button->getTarget() + "/json/config.json";
-        std::cout << "Command: " << command << std::endl;
+        if (DEBUG_ENABLED()) {
+            std::cout << "Command: " << command << std::endl;
+        }
 
         // Execute the command and wait for it to finish
         int result = std::system(command.c_str());
