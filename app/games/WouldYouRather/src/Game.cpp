@@ -26,7 +26,6 @@ WouldYouRather::WouldYouRather(const std::string &configPath) {
     configFile.close();
     for (const auto &turn : config["turns"]) {
         turns.push_back(Turn(Card(turn["Options"][0]), Card(turn["Options"][1]), turn["Question"]));
-        std::cout << turns.back() << std::endl;
     }
 }
 
@@ -40,7 +39,6 @@ void WouldYouRather::start() {
 
     srand(static_cast<unsigned>(time(0)));
     int randomIndex = rand() % turns.size();
-    std::cout << turns[randomIndex] << std::endl;
     graphic.draw(window, turns[randomIndex]);
     while (isRunning) {
         //random number between 0 and turns.size() - 1
@@ -55,7 +53,6 @@ void WouldYouRather::start() {
                 sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
                 if (optionIsClicked(mousePosition)) {
                     randomIndex = rand() % turns.size();
-                    std::cout << turns[randomIndex] << std::endl;
                     graphic.draw(window, turns[randomIndex]);
                 }
             }
