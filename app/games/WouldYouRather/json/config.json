@@ -1,10 +1,10 @@
 {
     "turns": [
         {
-            "Question": "Tu préfères moi ou ta mère ?",
+            "Question": "Tu preferes moi ou ta mere ?",
             "Options": [
                 "Moi",
-                "Ta mère"
+                "Ta mere"
             ]
         },
         {
