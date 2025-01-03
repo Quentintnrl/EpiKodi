@@ -1,0 +1,46 @@
+{
+    "turns": [
+        {
+            "Question": "Tu préfères moi ou ta mère ?",
+            "Options": [
+                "Moi",
+                "Ta mère"
+            ]
+        },
+        {
+            "Question": "Would you rather more classy than George Abitbol or stronger than Chuck Norris ?",
+            "Options": [
+                "More classy",
+                "Stronger"
+            ]
+        },
+        {
+            "Question": "Would you rather have a rewind button for your life or a pause button?",
+            "Options": [
+                "Rewind",
+                "Pause"
+            ]
+        },
+        {
+            "Question": "Would you rather be a turkey or a pig?",
+            "Options": [
+                "Turney",
+                "Pig"
+            ]
+        },
+        {
+            "Question": "Would you rather be invisible or be invisible?",
+            "Options": [
+                "Invisible",
+                "Invisible"
+            ]
+        },
+        {
+            "Question": "Would you rather cure cancer or stop hunger ?",
+            "Options": [
+                "Cure cancer",
+                "Stop hunger"
+            ]
+        }
+    ]
+}
