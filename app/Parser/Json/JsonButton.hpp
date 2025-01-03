@@ -10,6 +10,7 @@ enum ButtonType {
     ToPage,
     ToMedia,
     ToParam,
+    ToGame,
 };
 
 class JsonButton : public AbstractJsonElem {
