@@ -16,6 +16,23 @@
             "target": "/games/WouldYouRather",
             "type": "ToGame",
             "uuid": "b84e9882-ffdc-4ca9-98da-19239199c81f"
+        },
+        {
+            "hide": false,
+            "hoverImagePath": "assets/medias/media_hover.png",
+            "imagePath": "assets/medias/media.png",
+            "name": "Pacman",
+            "position": [
+                600,
+                75
+            ],
+            "size": [
+                720,
+                75
+            ],
+            "target": "/games/pacman.sh",
+            "type": "ToGame",
+            "uuid": "f473bf6a-bcac-469c-9202-2185b956dd4e"
         }
     ],
     "images": [
@@ -58,6 +75,17 @@
             "size": 30,
             "text": "Would You Rather",
             "uuid": "19a80ca1-7151-41c4-b804-422fd7cf5442"
+        },
+        {
+            "fontPath": "/fonts/Viagram.otf",
+            "hide": false,
+            "position": [
+                660,
+                95
+            ],
+            "size": 30,
+            "text": "Pacman",
+            "uuid": "bae325d5-20c8-4a16-a737-7f0393a47ecc"
         }
     ],
     "type": "ver_scroll"
