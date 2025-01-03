@@ -21,19 +21,6 @@
     "images": [
         {
             "hide": false,
-            "path": "assets/medias/left_border.png",
-            "position": [
-                0,
-                0
-            ],
-            "size": [
-                600,
-                1080
-            ],
-            "uuid": "ca701be5-aa9f-45bb-a1b3-d405e290b829"
-        },
-        {
-            "hide": false,
             "path": "assets/medias/middle_part.png",
             "position": [
                 600,

@@ -35,6 +35,7 @@ add_subdirectory(lib)
 add_subdirectory(src)
 add_subdirectory(Parser)
 add_subdirectory(Graphic)
+add_subdirectory(games)
 
 target_link_libraries(EpiKodi EpiKodiLib)
 target_link_libraries(EpiKodi UuidLib)
