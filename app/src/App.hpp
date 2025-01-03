@@ -36,6 +36,7 @@ class App {
         void addPage(const std::shared_ptr<Button> button);
         void addMedia(const std::shared_ptr<Button> button);
         const void changeParam(const std::shared_ptr<Button> button) const;
+        const void playGame(const std::shared_ptr<Button> button) const;
         bool _Running;
         bool _isMedia;
         std::string name;

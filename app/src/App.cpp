@@ -182,6 +182,9 @@ void App::handleSelect() {
                 if (button->getType() == ToParam) {
                     changeParam(button);
                 }
+                if (button->getType() == ToGame) {
+                    playGame(button);
+                }
             }
         }
     }
@@ -261,4 +264,29 @@ const void App::changeParam(const std::shared_ptr<Button> button) const {
     path = path.substr(0, path.find_last_of("/"));
     std::string target = button->getTarget().substr(button->getTarget().find_last_of("/") + 1);
     _settingsManager->changeSettings(path, target, param);
+}
+
+const void App::playGame(const std::shared_ptr<Button> button) const {
+    if (DEBUG_ENABLED()) {
+        std::cout << "Playing game: " << button->getTarget() << std::endl;
+    }
+
+    // Create a new thread to execute the game
+    std::thread t1([button] {
+        const std::string fullPath = getenv("PWD") + std::string("/") + button->getTarget();
+        if (DEBUG_ENABLED()) {
+            std::cout << "Launching game: " << fullPath << std::endl;
+        }
+
+        // Construct the command to execute
+        const std::string command = fullPath + " " + getenv("PWD") + "/app" + button->getTarget() + "/json/config.json";
+        std::cout << "Command: " << command << std::endl;
+
+        // Execute the command and wait for it to finish
+        int result = std::system(command.c_str());
+        if (result != 0) {
+            std::cerr << "Failed to execute command. Exit code: " << result << std::endl;
+        }
+    });
+    t1.detach();
 }
