@@ -45,6 +45,7 @@ namespace SFMLGraphic {
             const void loadPopUp(const std::string &popUpName) override;
             const void displayMedia(const std::string &mediaPath) override;
             const void stopMedia() override;
+            const void resetPopUp() override;
 
             void debug(std::size_t i) override;
         private:

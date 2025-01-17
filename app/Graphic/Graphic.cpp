@@ -356,6 +356,10 @@ const void SFMLGraphic::Graphic::stopMedia() {
     }
 }
 
+const void SFMLGraphic::Graphic::resetPopUp() {
+    _currentPopUp = nullptr;
+}
+
 extern "C" {
     IGraphic *createGraphic(const std::string &appName) {
         return new SFMLGraphic::Graphic(appName);

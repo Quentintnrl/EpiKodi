@@ -210,6 +210,11 @@ void App::handleWheel(const GraphicEvent &event) {
 }
 
 void App::handleBack() {
+    if (_popUp != nullptr) {
+        _popUp = nullptr;
+        graphic->resetPopUp();
+        return;
+    }
     if (_isMedia) {
         std::cout << "Stop media" << std::endl;
         graphic->stopMedia();

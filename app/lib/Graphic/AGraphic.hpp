@@ -26,6 +26,7 @@ class AGraphic : public IGraphic
         virtual const void removeTempBox(const std::string &boxName) = 0;
         virtual const void displayMedia(const std::string &mediaPath) = 0;
         virtual const void stopMedia() = 0;
+        virtual const void resetPopUp() = 0;
     protected:
         virtual void draw() = 0;
         virtual void manageEvents() = 0;
