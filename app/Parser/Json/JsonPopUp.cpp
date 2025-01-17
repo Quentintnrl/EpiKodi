@@ -2,27 +2,14 @@
 #include "Debug.hpp"
 #include <iostream>
 
-const std::unordered_map<std::string, PopUpType> popUpTypeMap = {
-    {"static", PopUpType::Static}
-};
-
-const std::unordered_map<PopUpType, std::string> popUpTypeStringMap = {
-    {PopUpType::Static, "static"}
-};
-
 JsonPopUp::JsonPopUp(const nlohmann::json &json) : AbstractJsonElem() {
     if (DEBUG_ENABLED()) {
         std::cout << "JsonPopUp: " << json.dump(4) << std::endl;
     }
-    _type = findType(json);
     _texts = findTexts(json);
     _buttons = findButtons(json);
     _images = findImages(json);
     _name = findName(json);
-}
-
-const PopUpType JsonPopUp::getType() const {
-    return _type;
 }
 
 const std::vector<JsonText> JsonPopUp::getTexts() const {
@@ -43,7 +30,6 @@ const std::string JsonPopUp::getName() const {
 
 const void JsonPopUp::debug(const std::size_t i) const {
     printDebug("PopUp: {", i);
-    printDebug("Type: " + popUpTypeStringMap.at(_type), i + 1);
     printDebug("Texts: {", i + 1);
     for (auto &text : _texts) {
         text.debug(i + 2);
@@ -64,15 +50,10 @@ const void JsonPopUp::debug(const std::size_t i) const {
 }
 
 bool JsonPopUp::operator==(const JsonPopUp &rhs) const {
-    return _type == rhs._type &&
-           _texts == rhs._texts &&
+    return _texts == rhs._texts &&
            _buttons == rhs._buttons &&
            _images == rhs._images &&
            _name == rhs._name;
-}
-
-const PopUpType JsonPopUp::findType(const nlohmann::json &json) const {
-    return popUpTypeMap.at(json["type"]);
 }
 
 const std::vector<JsonText> JsonPopUp::findTexts(const nlohmann::json &json) const {

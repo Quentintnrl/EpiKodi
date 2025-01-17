@@ -23,7 +23,6 @@ namespace SFMLGraphic {
             void debug(const std::size_t i = 0) override final;
             void draw(sf::RenderWindow &window) const;
         private:
-            PopUpType _type;
             std::string _name;
     };
 }

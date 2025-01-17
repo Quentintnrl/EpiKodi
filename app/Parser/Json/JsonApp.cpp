@@ -54,6 +54,10 @@ const std::vector<JsonAddOn> JsonApp::getAddOns() const {
     return _addOns;
 }
 
+const std::vector<JsonPopUp> JsonApp::getPopUps() const {
+    return _popUps;
+}
+
 const void JsonApp::debug(const std::size_t i) const {
     printDebug("App: {", i);
     printDebug("name: " + getName(), i + 1);
@@ -87,6 +91,11 @@ const void JsonApp::debug(const std::size_t i) const {
     printDebug("add-ons: [", i + 1);
     for (auto& addOn : getAddOns()) {
         addOn.debug(i + 2);
+    }
+    printDebug("]", i + 1);
+    printDebug("pop-ups: [", i + 1);
+    for (auto& popUp : getPopUps()) {
+        popUp.debug(i + 2);
     }
     printDebug("]", i + 1);
     printDebug("}", i);
@@ -193,4 +202,12 @@ const std::vector<JsonAddOn> JsonApp::findAddOns(const nlohmann::json& json) con
         addOns.push_back(JsonAddOn(addOn));
     }
     return addOns;
+}
+
+const std::vector<JsonPopUp> JsonApp::findPopUps(const nlohmann::json& json) const {
+    std::vector<JsonPopUp> popUps;
+    for (const auto& popUp : json["pop-ups"]) {
+        popUps.push_back(JsonPopUp(popUp));
+    }
+    return popUps;
 }

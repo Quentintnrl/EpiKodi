@@ -4,17 +4,8 @@
 #include "GraphicImage.hpp"
 #include "GraphicText.hpp"
 
-const std::unordered_map<std::string, PopUpType> PopUpTypeMap = {
-    {"static", PopUpType::Static}
-};
-
-const std::unordered_map<PopUpType, std::string> PopUpTypeStringMap = {
-    {PopUpType::Static, "static"}
-};
-
 SFMLGraphic::GraphicPopUp::GraphicPopUp(const JsonPopUp &jsonPopUp)
 {
-    _type = jsonPopUp.getType();
     for (const auto &text : jsonPopUp.getTexts())
         addText(text);
     for (const auto &button : jsonPopUp.getButtons())
@@ -56,7 +47,6 @@ void SFMLGraphic::GraphicPopUp::setButtonState(const Uuid buttonId, const bool s
 
 void SFMLGraphic::GraphicPopUp::debug(const std::size_t i) {
     printDebug("PopUp {", i);
-    printDebug("Type: " + PopUpTypeStringMap.at(_type), i + 1);
     printDebug("Buttons { ", i + 1);
     for (const auto &button : _buttons)
         button->debug(i + 2);

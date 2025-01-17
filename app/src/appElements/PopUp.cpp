@@ -1,7 +1,6 @@
 #include "PopUp.hpp"
 
 PopUp::PopUp(const JsonPopUp &jsonPopUp) : AppElement() {
-    _type = jsonPopUp.getType();
     for (auto& jsonElement : jsonPopUp.getButtons()) {
         _buttons.push_back(std::make_shared<Button>(jsonElement));
     }
@@ -27,10 +26,6 @@ void PopUp::addImage(const Image& image) {
 void PopUp::addText(const Text& text) {
     std::lock_guard<std::mutex> lock(_mutex);
     _texts.push_back(std::make_shared<Text>(text));
-}
-
-const std::string& PopUp::getType() const {
-    return _type;
 }
 
 const std::vector<std::shared_ptr<Button>>& PopUp::getButtons() const {
