@@ -2,9 +2,9 @@
     "buttons": [
         {
             "hide": false,
-            "hoverImagePath": "assets/home/power/power_off_hover.png",
-            "imagePath": "assets/home/power/power_off.png",
-            "name": "shut-down",
+            "hoverImagePath": "assets/home/power/exit_hover.png",
+            "imagePath": "assets/home/power/exit.png",
+            "name": "exit",
             "position": [
                 660,
                 265
@@ -13,9 +13,60 @@
                 600,
                 75
             ],
+            "target": "exit",
+            "type": "ToCommand",
+            "uuid": "45e072b9-b97d-45e4-a7d8-05e1cea4be6a"
+        },
+        {
+            "hide": false,
+            "hoverImagePath": "assets/home/power/power_off_hover.png",
+            "imagePath": "assets/home/power/power_off.png",
+            "name": "shut-down",
+            "position": [
+                660,
+                340
+            ],
+            "size": [
+                600,
+                75
+            ],
             "target": "shut-down",
             "type": "ToCommand",
             "uuid": "26fef591-626f-4455-937a-f4614326f84f"
+        },
+        {
+            "hide": false,
+            "hoverImagePath": "assets/home/power/suspend_hover.png",
+            "imagePath": "assets/home/power/suspend.png",
+            "name": "suspend",
+            "position": [
+                660,
+                415
+            ],
+            "size": [
+                600,
+                75
+            ],
+            "target": "suspend",
+            "type": "ToCommand",
+            "uuid": "4f77dc4f-324d-49f5-8565-6edbf7db3596"
+        },
+        {
+            "hide": false,
+            "hoverImagePath": "assets/home/power/reboot_hover.png",
+            "imagePath": "assets/home/power/reboot.png",
+            "name": "reboot",
+            "position": [
+                660,
+                490
+            ],
+            "size": [
+                600,
+                75
+            ],
+            "target": "reboot",
+            "type": "ToCommand",
+            "uuid": "f2e9314f-66b8-43d2-9878-96ca01ceb603"
         }
     ],
     "images": [
