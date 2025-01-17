@@ -8,8 +8,8 @@ App::App(JsonApp jsonApp) {
     _Running = false;
     _isMedia = false;
     _settingsManager = std::make_shared<SettingsManager>();
-    if (DEBUG_ENABLED()) {
         // jsonApp.debug(0);
+    if (DEBUG_ENABLED()) {
     }
     name = jsonApp.getName();
     std::string graphicPath = LIBS_PATH + jsonApp.getGraphicPath();
@@ -77,6 +77,11 @@ App::App(JsonApp jsonApp) {
         _boxes.push_back(std::make_shared<Box>(box));
         graphic->addTempBox(box);
     }
+    for (auto &popUp : jsonApp.getPopUps()) {
+        _popUps.push_back(std::make_shared<PopUp>(popUp));
+        graphic->addPopUp(popUp);
+    }
+    _popUp = nullptr;
     graphic->changePage(jsonApp.getPage().getName());
     if (DEBUG_ENABLED()) {
         // graphic->debug(0);
@@ -127,6 +132,15 @@ void App::run() {
                 }
             }
         }
+        if (_popUp != nullptr) {
+            for (auto &button : _popUp->getButtons()) {
+                if (button->isHover(pos, windowSize, std::make_tuple(APP_WIDTH, APP_HEIGHT))) {
+                    graphic->setButtonState(button->getUuid(), true);
+                } else {
+                    graphic->setButtonState(button->getUuid(), false);
+                }
+            }
+        }
         handleEvents();
     }
 }
@@ -164,6 +178,42 @@ void App::handleArrow(const GraphicEvent &event) {
 }
 
 void App::handleSelect() {
+    if (_popUp != nullptr) {
+        std::tuple<std::size_t , std::size_t> pos = graphic->getCursorPosition();
+        std::tuple<std::size_t , std::size_t> windowSize = graphic->getWindowSize();
+        // bool isOut = true;
+        for (auto &button : _popUp->getButtons()) {
+            if (button->isHover(pos, windowSize, std::make_tuple(APP_WIDTH, APP_HEIGHT))) {
+                // isOut = false;
+                if (button->getType() == ToPopUp) {
+                    addPopUp(button);
+                }
+                if (button->getType() == AddBox) {
+                    addBox(button);
+                }
+                if (button->getType() == ToPage) {
+                    addPage(button);
+                }
+                if (button->getType() == ToMedia) {
+                    addMedia(button);
+                }
+                if (button->getType() == ToParam) {
+                    changeParam(button);
+                }
+                if (button->getType() == ToGame) {
+                    playGame(button);
+                }
+                if (button->getType() == ToCommand) {
+                    handleCommand(button);
+                }
+                return;
+            }
+        }
+        // if (isOut) {
+            _popUp = nullptr;
+            graphic->resetPopUp();
+        // }
+    }
     for (const auto &box : _pages.back()->getBoxes()) {
         for (const auto &button : box.getButtons()) {
             if (button->getState()) {
@@ -185,6 +235,9 @@ void App::handleSelect() {
                 if (button->getType() == ToGame) {
                     playGame(button);
                 }
+                if (button->getType() == ToCommand) {
+                    handleCommand(button);
+                }
             }
         }
     }
@@ -196,6 +249,11 @@ void App::handleWheel(const GraphicEvent &event) {
 }
 
 void App::handleBack() {
+    if (_popUp != nullptr) {
+        _popUp = nullptr;
+        graphic->resetPopUp();
+        return;
+    }
     if (_isMedia) {
         std::cout << "Stop media" << std::endl;
         graphic->stopMedia();
@@ -211,6 +269,13 @@ void App::handleBack() {
 void App::addPopUp(const std::shared_ptr<Button> button) {
     if (DEBUG_ENABLED()) {
         std::cout << "Adding pop-up: " << button->getTarget() << std::endl;
+    }
+    for (auto &popUp : _popUps) {
+        if (popUp->getName() == button->getTarget()) {
+            _popUp = popUp;
+            graphic->loadPopUp(button->getTarget());
+            break;
+        }
     }
     return;
 }
@@ -291,4 +356,25 @@ const void App::playGame(const std::shared_ptr<Button> button) const {
         }
     });
     t1.detach();
+}
+
+const void App::handleCommand(const std::shared_ptr<Button> button) const {
+    if (DEBUG_ENABLED()) {
+        std::cout << "Executing command: " << button->getTarget() << std::endl;
+    }
+
+    // Execute the command
+    const std::string command = button->getTarget();
+    if (command == "exit") {
+        std::exit(0);
+    }
+    if (command == "shut-down") {
+        std::system("shutdown now");
+    }
+    if (command == "reboot") {
+        std::system("reboot");
+    }
+    if (command == "suspend") {
+        std::system("systemctl suspend");
+    }
 }

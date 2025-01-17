@@ -6,6 +6,7 @@
 #include "settingsBoxesManager.hpp"
 #include "settingsManager.hpp"
 #include "Add-ons.hpp"
+#include "PopUp.hpp"
 #include <memory>
 
 #define CONFIG_PATH "/json/application.json"
@@ -37,6 +38,7 @@ class App {
         void addMedia(const std::shared_ptr<Button> button);
         const void changeParam(const std::shared_ptr<Button> button) const;
         const void playGame(const std::shared_ptr<Button> button) const;
+        const void handleCommand(const std::shared_ptr<Button> button) const;
         bool _Running;
         bool _isMedia;
         std::string name;
@@ -48,4 +50,6 @@ class App {
         std::vector<std::shared_ptr<SettingsBoxesManager>> _settingsBoxesManagers;
         std::shared_ptr<SettingsManager> _settingsManager;
         std::vector<std::shared_ptr<AddOn>> _addOns;
+        std::vector<std::shared_ptr<PopUp>> _popUps;
+        std::shared_ptr<PopUp> _popUp;
 };

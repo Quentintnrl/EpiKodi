@@ -32,6 +32,11 @@
             "path": "/json/boxes/games.json"
         }
     ],
+    "pop-ups": [
+        {
+            "path": "/json/popup/power.json"
+        }
+    ],
     "medias": [
         {
             "path": "/json/movies"

@@ -13,6 +13,8 @@ target_sources(Parser
   JsonImage.hpp
   JsonPage.cpp
   JsonPage.hpp
+  JsonPopUp.cpp
+  JsonPopUp.hpp
   JsonProgressBar.cpp
   JsonProgressBar.hpp
   JsonText.cpp
@@ -33,6 +35,8 @@ add_library(ParserJsonLib STATIC
   JsonImage.hpp
   JsonPage.cpp
   JsonPage.hpp
+  JsonPopUp.cpp
+  JsonPopUp.hpp
   JsonProgressBar.cpp
   JsonProgressBar.hpp
   JsonText.cpp

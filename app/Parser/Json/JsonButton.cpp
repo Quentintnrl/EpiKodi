@@ -8,7 +8,8 @@ const std::unordered_map<std::string, ButtonType> buttonTypeMap = {
     {"ToPage", ButtonType::ToPage},
     {"ToMedia", ButtonType::ToMedia},
     {"ToParam", ButtonType::ToParam},
-    {"ToGame", ButtonType::ToGame}
+    {"ToGame", ButtonType::ToGame},
+    {"ToCommand", ButtonType::ToCommand}
 };
 
 const std::unordered_map<ButtonType, std::string> buttonTypeStringMap = {
@@ -17,7 +18,8 @@ const std::unordered_map<ButtonType, std::string> buttonTypeStringMap = {
     {ButtonType::ToPage, "ToPage"},
     {ButtonType::ToMedia, "ToMedia"},
     {ButtonType::ToParam, "ToParam"},
-    {ButtonType::ToGame, "ToGame"}
+    {ButtonType::ToGame, "ToGame"},
+    {ButtonType::ToCommand, "ToCommand"}
 };
 
 JsonButton::JsonButton(const nlohmann::json& json) {

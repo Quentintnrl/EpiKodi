@@ -4,6 +4,7 @@
 #include "GraphicBox.hpp"
 #include "GraphicPage.hpp"
 #include "GraphicEvent.hpp"
+#include "GraphicPopUp.hpp"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
@@ -28,6 +29,7 @@ namespace SFMLGraphic {
 
             void addBox(const JsonBox &jsonBox);
             void addPage(const JsonPage &jsonPage) override;
+            void addPopUp(const JsonPopUp &jsonPopUp) override;
             void addButton(const Uuid &boxId, const JsonButton &jsonButton);
             void addImage(const Uuid &boxId, const JsonImage &jsonImage);
             void addText(const Uuid &boxId, const JsonText &jsonText);
@@ -40,8 +42,10 @@ namespace SFMLGraphic {
             const void addTempBox(const JsonBox &box) override;
             const void loadTempBox(const std::string &boxName) override;
             const void removeTempBox(const std::string &boxName) override;
+            const void loadPopUp(const std::string &popUpName) override;
             const void displayMedia(const std::string &mediaPath) override;
             const void stopMedia() override;
+            const void resetPopUp() override;
 
             void debug(std::size_t i) override;
         private:
@@ -53,6 +57,7 @@ namespace SFMLGraphic {
             std::vector<std::shared_ptr<GraphicBox>> _box;
             std::vector<std::shared_ptr<GraphicPage>> _pages;
             std::vector<std::shared_ptr<GraphicBox>> _tempBox;
+            std::vector<std::shared_ptr<GraphicPopUp>> _popUps;
             sf::RenderWindow _window;
             std::string _appName;
             std::mutex _mutex;
@@ -60,5 +65,6 @@ namespace SFMLGraphic {
             std::thread _mediaThread;            // Your media thread
             pid_t _vlcProcessHandle = 0;        // Handle to the VLC process
             std::queue<GraphicEvent> _eventQueue;
+            std::shared_ptr<GraphicPopUp> _currentPopUp;
     };
 }
