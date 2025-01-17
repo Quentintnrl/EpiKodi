@@ -178,6 +178,22 @@ void App::handleArrow(const GraphicEvent &event) {
 }
 
 void App::handleSelect() {
+    if (_popUp != nullptr) {
+        std::tuple<std::size_t , std::size_t> pos = graphic->getCursorPosition();
+        std::tuple<std::size_t , std::size_t> windowSize = graphic->getWindowSize();
+        bool isOut = false;
+        for (auto &button : _popUp->getButtons()) {
+            if (button->isHover(pos, windowSize, std::make_tuple(APP_WIDTH, APP_HEIGHT))) {
+                break;
+            } else {
+                isOut = true;
+            }
+        }
+        if (isOut) {
+            _popUp = nullptr;
+            graphic->resetPopUp();
+        }
+    }
     for (const auto &box : _pages.back()->getBoxes()) {
         for (const auto &button : box.getButtons()) {
             if (button->getState()) {
