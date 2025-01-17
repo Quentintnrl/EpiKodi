@@ -20,6 +20,12 @@
 #define WINDOW_HEIGHT 1080
 #define DEFAULT_FRAME_RATE 60
 
+enum MusicSwitch {
+    NEXT,
+    PREVIOUS,
+    NONESWITCH
+};
+
 namespace SFMLGraphic {
     class Graphic final : public AGraphic {
         public:
@@ -46,6 +52,7 @@ namespace SFMLGraphic {
             const void displayMedia(const std::string &mediaPath) override;
             const void stopMedia() override;
             const void resetPopUp() override;
+            const void playNextMedia(const std::string &mediaPath) override;
 
             void debug(std::size_t i) override;
         private:
@@ -66,5 +73,13 @@ namespace SFMLGraphic {
             pid_t _vlcProcessHandle = 0;        // Handle to the VLC process
             std::queue<GraphicEvent> _eventQueue;
             std::shared_ptr<GraphicPopUp> _currentPopUp;
+            std::thread _musicThread;
+            std::atomic<bool> _stopMusic{false};
+            std::atomic<bool> _canPlayMusic{true};
+            std::atomic<bool> _newMusic{false};
+            std::atomic<bool> _pauseMusic{false};
+            std::atomic<MusicSwitch> _musicSwitch{NONESWITCH};
+            std::vector<std::string> _musicQueue;
+            std::size_t _currentMusic = 0;
     };
 }

@@ -6,6 +6,8 @@
 #include <thread>
 #include <signal.h>
 #include <sys/wait.h>
+#include <fstream>
+#include <cstdint>
 
 enum MediaType {
     IMAGE,
@@ -26,6 +28,54 @@ SFMLGraphic::Graphic::Graphic(const std::string &appName) {
     _window.setFramerateLimit(DEFAULT_FRAME_RATE);
     _appName = appName;
     _currentPopUp = nullptr;
+    _stopThread = false;
+    _musicThread = std::thread([this]() {
+        while (!_stopMusic) {
+            if (_canPlayMusic && _currentMusic < _musicQueue.size()) {
+                _musicSwitch = NONESWITCH;
+                const std::string music = _musicQueue[_currentMusic];
+                sf::SoundBuffer buffer;
+                if (!buffer.loadFromFile(music)) {
+                    std::cerr << "Failed to load sound: " << music << std::endl;
+                }
+                sf::Sound sound;
+                sound.setBuffer(buffer);
+                sound.play();
+                _newMusic = false;
+                _pauseMusic = false;
+                while (sound.getStatus() != sf::Sound::Stopped && !_stopMusic && _canPlayMusic) {
+                    if (_newMusic) {
+                        sound.stop();
+                    }
+                    if (_pauseMusic) {
+                        if (sound.getStatus() == sf::Sound::Playing) {
+                            sound.pause();
+                        } else if (sound.getStatus() == sf::Sound::Paused) {
+                            sound.play();
+                        }
+                        _pauseMusic = false;
+                    }
+                }
+                if (_musicSwitch == NONESWITCH || _musicSwitch == NEXT) {
+                    _currentMusic++;
+                } else if (_musicSwitch == PREVIOUS) {
+                    if (_currentMusic > 0) {
+                        _currentMusic--;
+                    } else {
+                        _currentMusic = 0;
+                    }
+                }
+            }
+            if (_musicSwitch == PREVIOUS) {
+                if (_currentMusic > 0) {
+                    _currentMusic--;
+                } else {
+                    _currentMusic = 0;
+                }
+            }
+        }
+    });
+    _musicThread.detach();
 }
 
 SFMLGraphic::Graphic::~Graphic() {
@@ -81,6 +131,23 @@ void SFMLGraphic::Graphic::manageEvents() {
         }
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
             _eventQueue.push(GraphicEvent::GO_BACK);
+        }
+        if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Right) {
+            _eventQueue.push(GraphicEvent::MOUSE_RIGHT_CLICK);
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
+            _pauseMusic = true;
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::K) {
+            _canPlayMusic = false;
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
+            _musicSwitch = NEXT;
+            _newMusic = true;
+        }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
+            _musicSwitch = PREVIOUS;
+            _newMusic = true;
         }
     }
 }
@@ -265,17 +332,9 @@ void SFMLGraphic::Graphic::displayVideo(const std::string &mediaPath) {
 
 void SFMLGraphic::Graphic::playSound(const std::string &soundPath) {
     std::cout << "Playing sound: " << soundPath << std::endl;
-    sf::SoundBuffer buffer;
-    if (!buffer.loadFromFile(soundPath)) {
-        std::cerr << "Failed to load sound: " << soundPath << std::endl;
-        return;
-    }
-    sf::Sound sound;
-    sound.setBuffer(buffer);
-    sound.play();
-    while (sound.getStatus() == sf::Sound::Playing) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
+    _musicQueue.push_back(soundPath);
+    _newMusic = true;
+    _canPlayMusic = true;
 }
 
 void SFMLGraphic::Graphic::playRadio(const std::string &radioPath) {
@@ -358,6 +417,10 @@ const void SFMLGraphic::Graphic::stopMedia() {
 
 const void SFMLGraphic::Graphic::resetPopUp() {
     _currentPopUp = nullptr;
+}
+
+const void SFMLGraphic::Graphic::playNextMedia(const std::string &mediaPath) {
+    // _musicQueue.push_back(getenv("PWD") + std::string("/medias") + mediaPath);
 }
 
 extern "C" {
