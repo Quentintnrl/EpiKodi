@@ -365,10 +365,16 @@ const void App::handleCommand(const std::shared_ptr<Button> button) const {
 
     // Execute the command
     const std::string command = button->getTarget();
-    // if (command == "shut-down") {
-    //     std::system("shutdown now");
-    // }
     if (command == "exit") {
         std::exit(0);
+    }
+    if (command == "shut-down") {
+        std::system("shutdown now");
+    }
+    if (command == "reboot") {
+        std::system("reboot");
+    }
+    if (command == "suspend") {
+        std::system("systemctl suspend");
     }
 }
