@@ -10,6 +10,8 @@ target_sources(EpiKodiLib
   Image.hpp
   Page.cpp
   Page.hpp
+  PopUp.cpp
+  PopUp.hpp
   Text.cpp
   Text.hpp
 )
