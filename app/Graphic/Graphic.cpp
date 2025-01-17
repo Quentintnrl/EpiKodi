@@ -141,6 +141,9 @@ void SFMLGraphic::Graphic::setButtonState(const Uuid buttonId, const bool state)
         auto tmpBox = std::dynamic_pointer_cast<GraphicBox>(box);
         tmpBox->setButtonState(buttonId, state);
     }
+    if (_currentPopUp != nullptr) {
+        _currentPopUp->setButtonState(buttonId, state);
+    }
 }
 
 const GraphicEvent SFMLGraphic::Graphic::getLastEvent() {

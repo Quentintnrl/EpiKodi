@@ -132,6 +132,15 @@ void App::run() {
                 }
             }
         }
+        if (_popUp != nullptr) {
+            for (auto &button : _popUp->getButtons()) {
+                if (button->isHover(pos, windowSize, std::make_tuple(APP_WIDTH, APP_HEIGHT))) {
+                    graphic->setButtonState(button->getUuid(), true);
+                } else {
+                    graphic->setButtonState(button->getUuid(), false);
+                }
+            }
+        }
         handleEvents();
     }
 }
