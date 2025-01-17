@@ -39,6 +39,8 @@ class App {
         const void changeParam(const std::shared_ptr<Button> button) const;
         const void playGame(const std::shared_ptr<Button> button) const;
         const void handleCommand(const std::shared_ptr<Button> button) const;
+        const void handleSpecial() const;
+        const void addMediaNext(const std::shared_ptr<Button> button) const;
         bool _Running;
         bool _isMedia;
         std::string name;

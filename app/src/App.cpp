@@ -171,6 +171,9 @@ void App::handleEvents() {
     if (lastEvent == GraphicEvent::GO_BACK) {
         handleBack();
     }
+    if (lastEvent == GraphicEvent::MOUSE_RIGHT_CLICK) {
+        handleSpecial();
+    }
 }
 
 void App::handleArrow(const GraphicEvent &event) {
@@ -237,6 +240,21 @@ void App::handleSelect() {
                 }
                 if (button->getType() == ToCommand) {
                     handleCommand(button);
+                }
+            }
+        }
+    }
+    return;
+}
+
+const void App::handleSpecial() const {
+    std::tuple<std::size_t , std::size_t> pos = graphic->getCursorPosition();
+    std::tuple<std::size_t , std::size_t> windowSize = graphic->getWindowSize();
+    for (const auto &box : _pages.back()->getBoxes()) {
+        for (const auto &button : box.getButtons()) {
+            if (button->isHover(pos, windowSize, std::make_tuple(APP_WIDTH, APP_HEIGHT))) {
+                if (button->getType() == ToMedia) {
+                    addMediaNext(button);
                 }
             }
         }
@@ -377,4 +395,11 @@ const void App::handleCommand(const std::shared_ptr<Button> button) const {
     if (command == "suspend") {
         std::system("systemctl suspend");
     }
+}
+
+const void App::addMediaNext(const std::shared_ptr<Button> button) const {
+    if (DEBUG_ENABLED()) {
+        std::cout << "Changing media: " << button->getTarget() << std::endl;
+    }
+    graphic->playNextMedia(button->getTarget());
 }

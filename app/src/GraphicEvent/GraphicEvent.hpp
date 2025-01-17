@@ -12,4 +12,5 @@ enum GraphicEvent {
     MOUSE_WHEEL_UP = 8,
     MOUSE_WHEEL_DOWN = 9,
     GO_BACK = 10,
+    MOUSE_RIGHT_CLICK = 11
 };
