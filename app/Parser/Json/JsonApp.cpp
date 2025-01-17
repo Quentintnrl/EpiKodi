@@ -16,6 +16,7 @@ JsonApp::JsonApp(const nlohmann::json& json) {
     _mediasDirPath = findMediasDirPath(json);
     _settingsPath = findSettingsPath(json);
     _addOns = findAddOns(json);
+    _popUps = findPopUps(json);
 }
 
 const std::string JsonApp::getName() const {
@@ -207,7 +208,23 @@ const std::vector<JsonAddOn> JsonApp::findAddOns(const nlohmann::json& json) con
 const std::vector<JsonPopUp> JsonApp::findPopUps(const nlohmann::json& json) const {
     std::vector<JsonPopUp> popUps;
     for (const auto& popUp : json["pop-ups"]) {
-        popUps.push_back(JsonPopUp(popUp));
+        std::string path = popUp["path"];
+        const std::string completePath = getenv("PWD") + path;
+        if (DEBUG_ENABLED()) {
+            std::cout << "Parsing file: " << completePath << std::endl;
+        }
+        std::ifstream file(completePath);
+        if (!file.is_open()) {
+            throw std::runtime_error("Could not open file: " + completePath);
+        }
+
+        // Read the file content into a string
+        std::stringstream buffer;
+        buffer << file.rdbuf();
+
+        // Parse the JSON from the string
+        nlohmann::json jsonPopUp = nlohmann::json::parse(buffer.str());
+        popUps.push_back(JsonPopUp(jsonPopUp));
     }
     return popUps;
 }

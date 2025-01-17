@@ -25,6 +25,7 @@ SFMLGraphic::Graphic::Graphic(const std::string &appName) {
     _window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), appName, sf::Style::Fullscreen);
     _window.setFramerateLimit(DEFAULT_FRAME_RATE);
     _appName = appName;
+    _currentPopUp = nullptr;
 }
 
 SFMLGraphic::Graphic::~Graphic() {
@@ -41,6 +42,9 @@ void SFMLGraphic::Graphic::draw() {
     _window.clear();
     for (std::size_t i = 0; i < _box.size(); i++) {
         _box[i]->draw(_window);
+    }
+    if (_currentPopUp != nullptr) {
+        _currentPopUp->draw(_window);
     }
     _window.display();
 }
@@ -87,6 +91,10 @@ void SFMLGraphic::Graphic::addBox(const JsonBox &jsonBox) {
 
 void SFMLGraphic::Graphic::addPage(const JsonPage &jsonPage) {
     _pages.push_back(std::make_shared<GraphicPage>(jsonPage));
+}
+
+void SFMLGraphic::Graphic::addPopUp(const JsonPopUp &jsonPopUp) {
+    _popUps.push_back(std::make_shared<GraphicPopUp>(jsonPopUp));
 }
 
 void SFMLGraphic::Graphic::addButton(const Uuid &boxId, const JsonButton &jsonButton) {
@@ -181,6 +189,15 @@ const void SFMLGraphic::Graphic::removeTempBox(const std::string &boxName) {
         if (_box[i]->getName() == boxName) {
             _box.erase(_box.begin() + i);
             i--;
+        }
+    }
+}
+
+const void SFMLGraphic::Graphic::loadPopUp(const std::string &popUpName) {
+    for (const auto &popUp : _popUps) {
+        if (popUp->getName() == popUpName) {
+            _currentPopUp = popUp;
+            return;
         }
     }
 }

@@ -1,0 +1,39 @@
+{
+    "buttons": [
+        {
+            "hide": false,
+            "hoverImagePath": "assets/home/power/power_off_hover.png",
+            "imagePath": "assets/home/power/power_off.png",
+            "name": "shut-down",
+            "position": [
+                660,
+                265
+            ],
+            "size": [
+                600,
+                75
+            ],
+            "target": "shut-down",
+            "type": "ToCommand",
+            "uuid": "26fef591-626f-4455-937a-f4614326f84f"
+        }
+    ],
+    "images": [
+        {
+            "hide": false,
+            "path": "assets/home/power/band.png",
+            "position": [
+                660,
+                190
+            ],
+            "size": [
+                600,
+                75
+            ],
+            "uuid": "da9efde5-a2f7-4602-b86e-b17d914415ee"
+        }
+    ],
+    "name": "Power",
+    "texts": [
+    ]
+}

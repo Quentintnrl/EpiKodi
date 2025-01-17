@@ -8,8 +8,8 @@ App::App(JsonApp jsonApp) {
     _Running = false;
     _isMedia = false;
     _settingsManager = std::make_shared<SettingsManager>();
-    if (DEBUG_ENABLED()) {
         // jsonApp.debug(0);
+    if (DEBUG_ENABLED()) {
     }
     name = jsonApp.getName();
     std::string graphicPath = LIBS_PATH + jsonApp.getGraphicPath();
@@ -77,6 +77,11 @@ App::App(JsonApp jsonApp) {
         _boxes.push_back(std::make_shared<Box>(box));
         graphic->addTempBox(box);
     }
+    for (auto &popUp : jsonApp.getPopUps()) {
+        _popUps.push_back(std::make_shared<PopUp>(popUp));
+        graphic->addPopUp(popUp);
+    }
+    _popUp = nullptr;
     graphic->changePage(jsonApp.getPage().getName());
     if (DEBUG_ENABLED()) {
         // graphic->debug(0);
@@ -211,6 +216,13 @@ void App::handleBack() {
 void App::addPopUp(const std::shared_ptr<Button> button) {
     if (DEBUG_ENABLED()) {
         std::cout << "Adding pop-up: " << button->getTarget() << std::endl;
+    }
+    for (auto &popUp : _popUps) {
+        if (popUp->getName() == button->getTarget()) {
+            _popUp = popUp;
+            graphic->loadPopUp(button->getTarget());
+            break;
+        }
     }
     return;
 }
